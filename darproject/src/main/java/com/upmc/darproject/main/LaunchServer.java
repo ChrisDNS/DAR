@@ -45,9 +45,9 @@ public class LaunchServer {
 
 		// Add a handler for resources (/*)
 		ResourceHandler handlerPortal = new ResourceHandler();
-		handlerPortal.setResourceBase("src/main/webapp");
+		handlerPortal.setResourceBase("src/main/webapp/html");
 		handlerPortal.setDirectoriesListed(false);
-		handlerPortal.setWelcomeFiles(new String[] { "login.html" });
+		handlerPortal.setWelcomeFiles(new String[] { "home.html" });
 		ContextHandler handlerPortalCtx = new ContextHandler();
 		handlerPortalCtx.setContextPath("/");
 		handlerPortalCtx.setHandler(handlerPortal);
