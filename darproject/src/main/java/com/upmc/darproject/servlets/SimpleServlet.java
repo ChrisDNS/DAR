@@ -18,7 +18,7 @@ public class SimpleServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("html/index.html");
+		RequestDispatcher rd = request.getRequestDispatcher("index.html");
 		rd.forward(request, response);
 	}
 
