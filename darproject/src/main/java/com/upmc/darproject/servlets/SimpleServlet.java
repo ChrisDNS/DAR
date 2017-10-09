@@ -2,6 +2,7 @@ package com.upmc.darproject.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +17,9 @@ public class SimpleServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
-	protected void doGet(HttpServletRequest reqest, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().println("Hello World ezdezde!");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("html/index.html");
+		rd.forward(request, response);
 	}
 
 	@Override
