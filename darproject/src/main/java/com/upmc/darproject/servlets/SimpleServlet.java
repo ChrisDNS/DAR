@@ -31,7 +31,9 @@ public class SimpleServlet extends HttpServlet {
 //		u.setLogin("chris");
 //		u.setPassword("test");
 		
-		((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u);
+		//((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u);
+		
+		System.out.println(((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).get(u.getId()).toString());
 	}
 
 	@Override
