@@ -1,4 +1,4 @@
-package com.upmc.darproject.DAOImpl;
+package com.upmc.darproject.DAO.DAOImpl;
 
 import java.util.List;
 
@@ -19,27 +19,38 @@ public class MySQLDAOImpl<T> implements DAO<T> {
 		return typeT;
 	}
 
-	public T get(String type, String id) {
-		return null;
+	public T get(Long id) {
+		Session session = sql.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		T t = typeT.cast(session.get(typeT, id));
+		session.getTransaction().commit();
+
+		return t;
 	}
 
 	public void add(T obj) {
-		Session session = sql.getSessionFactory().openSession();
+		Session session = sql.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		session.save(obj);
 		session.getTransaction().commit();
-		sql.closeSession();
 	}
 
 	public void delete(String type, String id) {
 
 	}
 
-	public List<T> getAll(String type) {
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<T> getAll() {
+		Session session = sql.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<T> l = session.createCriteria(typeT).list();
+		session.getTransaction().commit();
+
+		return l;
 	}
 
 	public void deleteAll(String type) {
 
 	}
+
 }

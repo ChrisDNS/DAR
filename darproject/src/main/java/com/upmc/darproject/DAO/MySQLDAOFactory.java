@@ -1,6 +1,6 @@
 package com.upmc.darproject.DAO;
 
-import com.upmc.darproject.DAOImpl.UserDAOImpl;
+import com.upmc.darproject.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.darproject.business.User;
 
 public class MySQLDAOFactory extends AbstractDAOFactory {

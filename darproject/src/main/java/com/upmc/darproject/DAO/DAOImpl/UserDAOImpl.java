@@ -1,4 +1,4 @@
-package com.upmc.darproject.DAOImpl;
+package com.upmc.darproject.DAO.DAOImpl;
 
 import com.upmc.darproject.DAO.UserDAO;
 import com.upmc.darproject.business.User;

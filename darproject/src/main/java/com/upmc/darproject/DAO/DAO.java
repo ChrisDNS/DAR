@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface DAO<T> {
 	
-	public abstract T get(String type, String id);
+	public abstract T get(Long id);
 
 	public abstract void add(T obj);
 
@@ -12,7 +12,7 @@ public interface DAO<T> {
 
 	public abstract void delete(String type, String id);
 
-	public abstract List<T> getAll(String type);
+	public abstract List<T> getAll();
 
 	public abstract void deleteAll(String type);
 }
