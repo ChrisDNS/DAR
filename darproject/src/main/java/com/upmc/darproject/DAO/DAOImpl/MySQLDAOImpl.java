@@ -8,7 +8,7 @@ import com.upmc.darproject.DAO.DAO;
 import com.upmc.darproject.persistence.MySQLPersistence;
 
 public class MySQLDAOImpl<T> implements DAO<T> {
-	private MySQLPersistence sql = MySQLPersistence.getInstance();
+	protected MySQLPersistence sql = MySQLPersistence.getInstance();
 	private Class<T> typeT;
 
 	public MySQLDAOImpl(Class<T> t) {
@@ -52,5 +52,4 @@ public class MySQLDAOImpl<T> implements DAO<T> {
 	public void deleteAll(String type) {
 
 	}
-
 }

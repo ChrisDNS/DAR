@@ -6,12 +6,20 @@
 	<display-name>Archetype Created Web Application</display-name>
 
 	<servlet>
-		<servlet-name>SimpleServlet</servlet-name>
-		<servlet-class>com.upmc.darproject.servlets.SimpleServlet</servlet-class>
+		<servlet-name>Homepage</servlet-name>
+		<servlet-class>com.upmc.darproject.servlets.Homepage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.upmc.darproject.servlets.Login</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>SimpleServlet</servlet-name>
-		<url-pattern></url-pattern>
+		<servlet-name>Homepage</servlet-name>
+		<url-pattern>/homepage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 </web-app>

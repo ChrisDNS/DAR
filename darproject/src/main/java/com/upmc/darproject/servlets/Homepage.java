@@ -1,7 +1,8 @@
 package com.upmc.darproject.servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +13,9 @@ import com.upmc.darproject.DAO.AbstractDAOFactory;
 import com.upmc.darproject.DAO.Factory;
 import com.upmc.darproject.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.darproject.business.User;
+import com.upmc.darproject.services.AuthenticationService;
 
-public class SimpleServlet extends HttpServlet {
+public class Homepage extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
@@ -28,29 +30,18 @@ public class SimpleServlet extends HttpServlet {
 		User u = new User();
 		u.setFirstname("chris");
 		u.setLastname("dionisio");
+		u.setLogin("chris");
 
-		User u2 = new User();
-		u2.setFirstname("marie");
-		u2.setLastname("hamaz");
-		// u.setLogin("chris");
-		// u.setPassword("test");
-
-		
-		
-		////////////////////// TEST //////////////////////
-		((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u);
-		((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u2);
-
-		System.out.println(
-				((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).get(u2.getId()));
-
-		List<User> l = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).getAll();
-		System.out.println(l.size());
-		for (User s : l) {
-			System.out.println("caca");
-			System.out.println(s);
+		try {
+			u.setSalt(new AuthenticationService().generateSalt());
+			u.setPassword(new AuthenticationService().getEncryptedPassword("test", u.getSalt()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (InvalidKeySpecException e) {
+			e.printStackTrace();
 		}
-		////////////////////// TEST //////////////////////
+
+		((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u);
 	}
 
 	@Override

@@ -10,5 +10,8 @@
 		</id>
 		<property name="firstname" column="firstname" type="string" />
 		<property name="lastname" column="lastname" type="string" />
+		<property name="login" column="login" type="string" />
+		<property name="password" column="password" type="binary" />
+		<property name="salt" column="salt" type="binary" />
 	</class>
 </hibernate-mapping>

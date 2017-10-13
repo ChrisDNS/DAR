@@ -1,10 +1,13 @@
 package com.upmc.darproject.business;
 
+import java.util.Arrays;
+
 public class User {
 	private Long id;
-	
+
 	private String firstname, lastname;
-	private String login, password, salt;
+	private String login;
+	private byte[] password, salt;
 
 	public User() {
 	}
@@ -14,11 +17,10 @@ public class User {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.login = login;
-//		this.salt = Util.generateSalt();
-//		this.password = Util.hashPass(password + salt);
+		// this.salt = Util.generateSalt();
+		// this.password = Util.hashPass(password + salt);
 	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -51,17 +53,25 @@ public class User {
 		this.login = login;
 	}
 
-	public String getPassword() {
+	public byte[] getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(byte[] password) {
 		this.password = password;
+	}
+
+	public byte[] getSalt() {
+		return salt;
+	}
+
+	public void setSalt(byte[] salt) {
+		this.salt = salt;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", login=" + login
-				+ ", password=" + password + ", salt=" + salt + "]";
+				+ ", password=" + password + ", salt=" + Arrays.toString(salt) + "]";
 	}
 }
