@@ -51,7 +51,7 @@ public class Login extends HttpServlet {
 
 						json.put("success", true);
 						json.put("user", userToJSON);
-						System.out.println(userToJSON);
+						System.out.println("caca "+ userToJSON);
 					}
 
 					else {

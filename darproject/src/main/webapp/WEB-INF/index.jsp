@@ -1,13 +1,13 @@
 <%@ page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>PariSup'!</title>
+<title>PariSup' !</title>
 
 <!-- Bootstrap core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -18,88 +18,7 @@
 
 <body>
 
-	<!-- Navigation -->
-	<nav id="navbar"
-		class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-
-			<!-- Search for a school -->
-			<a class="navbar-brand" href="#">Rechercher une école ou
-				université</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarResponsive" aria-controls="navbarResponsive"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					+
-
-					<!-- HOME -->
-					<li class="nav-item active"><a class="nav-link" href="#">Accueil
-							<span class="sr-only">(current)</span>
-					</a></li>
-
-					<!-- ABOUT -->
-					<li class="nav-item"><a class="nav-link" href="#">À propos</a>
-					</li>
-
-					<!-- SIGN UP -->
-					<li class="nav-item"><a class="nav-link" href="#">Inscription</a>
-					</li>
-
-					<!-- LOGIN -->
-					<li class="nav-item dropdown"><a href="#"
-						class="nav-link dropdown-toggle" data-toggle="dropdown"><b>Connexion</b>
-							<span class="caret"></span></a>
-						<ul id="login-dp" class="dropdown-menu">
-							<li>
-								<div class="row">
-									<div class="col-md-12">
-										Connexion via
-										<div class="social-buttons">
-											<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>
-												Facebook</a> <a href="#" class="btn btn-tw"><i
-												class="fa fa-twitter"></i> Twitter</a>
-										</div>
-										ou
-										<form id="form" class="form" role="form" method="post"
-											action="/darproject/login" accept-charset="UTF-8"
-											id="login-nav">
-											<div class="form-group">
-												<label class="sr-only" for="login">Pseudo</label> <input
-													id="login" type="text" class="form-control" name="login"
-													placeholder="Pseudo" required>
-											</div>
-											<div class="form-group">
-												<label class="sr-only" for="password">Mot de passe</label> <input
-													id="password" type="password" class="form-control"
-													name="password" placeholder="Mot de passe" required>
-												<div class="help-block text-right">
-													<a href="">Mot de passe oublié ?</a>
-												</div>
-											</div>
-											<div class="form-group">
-												<button id="connect" type="submit"
-													class="btn btn-primary btn-block">Connexion</button>
-											</div>
-											<div class="checkbox">
-												<label> <input type="checkbox"> Rester
-													connecté
-												</label>
-											</div>
-										</form>
-									</div>
-									<div class="bottom text-center">
-										Pas encore inscrit ? <a href="#"><b>Incrivez-vous !</b></a>
-									</div>
-								</div>
-							</li>
-						</ul></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<div id="navbar"></div>
 
 	<!-- Header -->
 	<header class="masthead">
@@ -199,9 +118,17 @@
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script>
+		(function() {
+			var login = Cookies.get('login');
+			if (login == null || login == "")
+				$("#navbar").load("html/navbar.html");
+			else
+				$("#navbar").load("html/navbarConnected.html");
+		})();
+
 		$(document).ready(function() {
-			$('#connect').click(function() {
-				event.preventDefault();
+			$('#connect').click(function(e) {
+				e.preventDefault();
 
 				$.ajax({
 					type : 'POST',
@@ -214,7 +141,8 @@
 					if (data.success) {
 						var user = JSON.parse(data.user);
 						Cookies.set('login', user.login);
-						$("#navbar").load("html/navbarConnected.html");
+						//ajouter autres données dans le cookie si necessaire
+						location.reload();
 					} else
 						console.log(data.message);
 				}).fail(function() {
