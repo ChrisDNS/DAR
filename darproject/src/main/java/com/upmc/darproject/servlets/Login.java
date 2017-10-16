@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
 			json.put("message", "Invalid login.");
 			json.put("success", false);
 		} else if (password == null || password.isEmpty()) {
-			json.put("message", "Password not correct.");
+			json.put("message", "Invalid password.");
 			json.put("success", false);
 
 		} else {
@@ -51,7 +51,6 @@ public class Login extends HttpServlet {
 
 						json.put("success", true);
 						json.put("user", userToJSON);
-						System.out.println("caca "+ userToJSON);
 					}
 
 					else {

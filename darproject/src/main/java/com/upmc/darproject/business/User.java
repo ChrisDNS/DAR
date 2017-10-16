@@ -17,8 +17,6 @@ public class User {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.login = login;
-		// this.salt = Util.generateSalt();
-		// this.password = Util.hashPass(password + salt);
 	}
 
 	public Long getId() {
