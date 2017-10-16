@@ -9,11 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.upmc.darproject.DAO.AbstractDAOFactory;
-import com.upmc.darproject.DAO.Factory;
-import com.upmc.darproject.DAO.DAOImpl.UserDAOImpl;
-import com.upmc.darproject.business.User;
-import com.upmc.darproject.services.AuthenticationService;
+import com.upmc.darproject.services.FillDB;
 
 public class Homepage extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
@@ -27,21 +23,15 @@ public class Homepage extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		System.out.println("Servlet " + this.getServletName() + " has started");
-		User u = new User();
-		u.setFirstname("chris");
-		u.setLastname("dionisio");
-		u.setLogin("chris");
-
+		
 		try {
-			u.setSalt(new AuthenticationService().generateSalt());
-			u.setPassword(new AuthenticationService().getEncryptedPassword("test", u.getSalt()));
+			FillDB.addUsers();
+			
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {
 			e.printStackTrace();
 		}
-
-		((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u);
 	}
 
 	@Override
