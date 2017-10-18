@@ -3,16 +3,16 @@ package com.upmc.darproject.DAO;
 import java.util.List;
 
 public interface DAO<T> {
-	
-	public abstract T get(Long id);
 
-	public abstract void add(T obj);
+	public T get(Long id);
 
-	//public abstract void update(UpdateRequest updateReq);
+	public void add(T obj);
 
-	public abstract void delete(String type, String id);
+	// public void update(UpdateRequest updateReq);
 
-	public abstract List<T> getAll();
+	public void delete(String type, String id);
 
-	public abstract void deleteAll(String type);
+	public List<T> getAll();
+
+	public void deleteAll(String type);
 }
