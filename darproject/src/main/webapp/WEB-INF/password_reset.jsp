@@ -27,7 +27,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
-	
+
 <link href="css/login-navbar.css" rel="stylesheet">
 </head>
 
@@ -40,16 +40,17 @@
 			<div class="form-group">
 				<label class="control-label col-sm-5" for="firstName"></label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="firstName"
+					<input type="email" class="form-control" id="email"
 						placeholder="Entrer votre adresse électronique">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<button type="submit" class="btn btn-success">Envoyer email de réinitialisation du mot de passe</button>
+					<button id="reset" type="submit" class="btn btn-success">Envoyer
+						email de réinitialisation du mot de passe</button>
 				</div>
 			</div>
-			
+
 			<div>
 				<!-- Footer -->
 				<footer class="py-5 bg-dark">
@@ -59,17 +60,18 @@
 					</div>
 					<!-- /.container -->
 				</footer>
-
-				<!-- Bootstrap core JavaScript -->
-				<script src="vendor/popper/popper.min.js"></script>
-				<script
-					src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-				<script
-					src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-				<script src="vendor/js/js.cookie.js"></script>
-				<script src="js/showNavbar.js"></script>
 			</div>
 		</form>
 	</div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/popper/popper.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="vendor/js/js.cookie.js"></script>
+	<script src="js/showNavbar.js"></script>
+	<script src="js/passwordReset.js"></script>
 </body>
 </html>

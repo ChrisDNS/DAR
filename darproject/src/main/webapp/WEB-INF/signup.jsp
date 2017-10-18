@@ -56,7 +56,7 @@
 				<label class="control-label col-sm-5" for="email">Mail:</label>
 				<div class="col-sm-3">
 					<input type="email" class="form-control" id="email"
-						placeholder="Entrer votre mail">
+						placeholder="Entrer votre adresse électronique">
 				</div>
 			</div>
 			<div class="form-group">
