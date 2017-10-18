@@ -3,79 +3,80 @@
 <meta charset="UTF-8">
 </head>
 
-<nav id="navbar"
-	class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-	<div class="container">
+<!-- Navigation -->
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="#page-top">Rechercher une école ou une
+        université</a>
+        </div>
 
-		<!-- Search for a school -->
-		<a class="navbar-brand" href="#">Rechercher une école ou
-			université</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarResponsive" aria-controls="navbarResponsive"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">À propos</a>
+                </li>
 
-				<!-- HOME -->
-				<li class="nav-item active"><a class="nav-link" href="#">Accueil
-						<span class="sr-only">(current)</span>
-				</a></li>
-
-				<!-- ABOUT -->
-				<li class="nav-item"><a class="nav-link" href="#">À propos</a>
-				</li>
-
-				<!-- LOGIN -->
-				<li class="nav-item dropdown"><a href="#"
-					class="nav-link dropdown-toggle" data-toggle="dropdown"><b>Connexion</b>
-						<span class="caret"></span></a>
-					<ul id="login-dp" class="dropdown-menu">
-						<li>
-							<div class="row">
-								<div class="col-md-12">
-									Connexion via
-									<div class="social-buttons">
-										<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>
-											Facebook</a> <a href="#" class="btn btn-tw"><i
-											class="fa fa-twitter"></i> Twitter</a>
-									</div>
-									ou
-									<form id="form" class="form" role="form" method="post"
-										action="/darproject/login" accept-charset="UTF-8"
-										id="login-nav">
-										<div class="form-group">
-											<label class="sr-only" for="login">Pseudo</label> <input
-												id="login" type="text" class="form-control" name="login"
-												placeholder="Pseudo" required>
-										</div>
-										<div class="form-group">
-											<label class="sr-only" for="password">Mot de passe</label> <input
-												id="password" type="password" class="form-control"
-												name="password" placeholder="Mot de passe" required>
-											<div class="help-block text-right">
-												<a href="">Mot de passe oublié ?</a>
-											</div>
-										</div>
-										<div class="form-group">
-											<button id="connect" type="submit"
-												class="btn btn-primary btn-block">Connexion</button>
-										</div>
-										<div class="checkbox">
-											<label> <input type="checkbox"> Rester
-												connecté
-											</label>
-										</div>
-									</form>
-								</div>
-								<div class="bottom text-center">
-									Pas encore inscrit ? <a href="#"><b>Incrivez-vous !</b></a>
-								</div>
-							</div>
-						</li>
-					</ul></li>
-			</ul>
-		</div>
-	</div>
+                <!-- LOGIN -->
+                <li class="nav-item dropdown"><a href="#"
+                    class="nav-link dropdown-toggle" data-toggle="dropdown"><b>Connexion</b>
+                        <span class="caret"></span></a>
+                    <ul id="login-dp" class="dropdown-menu">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Connexion via
+                                    <div class="social-buttons">
+                                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>
+                                            Facebook</a> <a href="#" class="btn btn-tw"><i
+                                            class="fa fa-twitter"></i> Twitter</a>
+                                    </div>
+                                    ou
+                                    <form id="form" class="form" role="form" method="post"
+                                        action="/darproject/login" accept-charset="UTF-8"
+                                        id="login-nav">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="login">Pseudo</label> <input
+                                                id="login" type="text" class="form-control" name="login"
+                                                placeholder="Pseudo" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="password">Mot de passe</label> <input
+                                                id="password" type="password" class="form-control"
+                                                name="password" placeholder="Mot de passe" required>
+                                            <div class="help-block text-right">
+                                                <a href="" class="connect">Mot de passe oublié ?</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button id="connect" type="submit"
+                                                class="btn btn-primary btn-block">Connexion</button>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label> <input type="checkbox"> Rester
+                                                connecté
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="bottom text-center">
+                                    Pas encore inscrit ? <a href="signup" class="connect"><b>Incrivez-vous !</b></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
 </nav>

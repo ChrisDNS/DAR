@@ -3,30 +3,29 @@
 <meta charset="UTF-8">
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-	<div class="container">
+<!-- Navigation -->
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="#page-top">Rechercher une école ou une
+        université</a>
+        </div>
 
-		<!-- Search for a school -->
-		<a class="navbar-brand" href="#">Rechercher une école ou
-			université</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarResponsive" aria-controls="navbarResponsive"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">À propos</a>
+                </li>
 
-				<!-- HOME -->
-				<li class="nav-item active"><a class="nav-link" href="#">Accueil
-						<span class="sr-only">(current)</span>
-				</a></li>
-
-				<!-- ABOUT -->
-				<li class="nav-item"><a class="nav-link" href="#">À propos</a>
-				</li>
-
-				<!-- LOGIN -->
+                <!-- LOGIN -->
 				<li class="nav-item dropdown"><a id="login" href="#"
 					class="nav-link dropdown-toggle" data-toggle="dropdown"><b></b>
 						<span class="caret"></span></a>
@@ -46,9 +45,12 @@
 							</div>
 						</li>
 					</ul>
-			</ul>
-		</div>
-	</div>
+				</li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
 </nav>
 
 <script>
