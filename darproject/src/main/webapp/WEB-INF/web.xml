@@ -17,6 +17,10 @@
 		<servlet-name>SignUp</servlet-name>
 		<servlet-class>com.upmc.darproject.servlets.SignUp</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>PasswordReset</servlet-name>
+		<servlet-class>com.upmc.darproject.servlets.PasswordReset</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Homepage</servlet-name>
@@ -29,5 +33,9 @@
 	<servlet-mapping>
 		<servlet-name>SignUp</servlet-name>
 		<url-pattern>/signup</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PasswordReset</servlet-name>
+		<url-pattern>/password_reset</url-pattern>
 	</servlet-mapping>
 </web-app>
