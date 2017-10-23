@@ -73,5 +73,6 @@
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/passwordReset.js"></script>
+	<script src="js/login.js"></script>
 </body>
 </html>

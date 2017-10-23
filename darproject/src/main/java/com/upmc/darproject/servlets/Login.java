@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,10 +22,13 @@ import com.upmc.darproject.services.AuthenticationService;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = -5677200504573287154L;
 
-	public Login() {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		JSONObject json = new JSONObject();
@@ -40,7 +44,7 @@ public class Login extends HttpServlet {
 			User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
 					.getByLogin(login);
 			if (user == null) {
-				json.put("message", "Invalid login or password.");
+				json.put("message", "Pseudo ou mot de passe incorrect.");
 				json.put("success", false);
 
 			} else {
@@ -55,7 +59,7 @@ public class Login extends HttpServlet {
 
 					else {
 						json.put("success", false);
-						// affiche message erreur;
+						json.put("message", "Pseudo ou mot de passe incorrect.");
 					}
 
 				} catch (NoSuchAlgorithmException e) {

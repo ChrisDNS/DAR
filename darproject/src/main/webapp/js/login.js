@@ -9,16 +9,18 @@ $(document).ready(function() {
 				login : $('#login').val(),
 				password : $('#password').val()
 			}
-		
+
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
 				Cookies.set('login', user.login);
-				//ajouter autres données dans le cookie si necessaire
+				// ajouter autres données dans le cookie si necessaire
 				location.reload();
-			} else
+			} else {
+				$('#error').html(data.message);
 				$('#error').show();
-			
+			}
+
 		}).fail(function() {
 			alert("Server not responding.");
 		});
