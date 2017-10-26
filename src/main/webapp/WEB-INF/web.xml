@@ -7,19 +7,19 @@
 
 	<servlet>
 		<servlet-name>Homepage</servlet-name>
-		<servlet-class>com.upmc.darproject.servlets.Homepage</servlet-class>
+		<servlet-class>com.upmc.parisup.servlets.Homepage</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>Login</servlet-name>
-		<servlet-class>com.upmc.darproject.servlets.Login</servlet-class>
+		<servlet-class>com.upmc.parisup.servlets.Login</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>SignUp</servlet-name>
-		<servlet-class>com.upmc.darproject.servlets.SignUp</servlet-class>
+		<servlet-class>com.upmc.parisup.servlets.SignUp</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>PasswordReset</servlet-name>
-		<servlet-class>com.upmc.darproject.servlets.PasswordReset</servlet-class>
+		<servlet-class>com.upmc.parisup.servlets.PasswordReset</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

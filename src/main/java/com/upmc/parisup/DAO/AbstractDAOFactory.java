@@ -1,6 +1,10 @@
-package com.upmc.darproject.DAO;
+package com.upmc.parisup.DAO;
 
 public abstract class AbstractDAOFactory {
+	
+	public AbstractDAOFactory() {
+		
+	}
 	
 	public abstract DAO<?> getUserDAO();
 	

@@ -1,4 +1,4 @@
-package com.upmc.darproject.services;
+package com.upmc.parisup.services;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;

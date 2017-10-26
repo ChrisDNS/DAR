@@ -1,4 +1,4 @@
-package com.upmc.darproject.services;
+package com.upmc.parisup.services;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

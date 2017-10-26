@@ -3,7 +3,7 @@
 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.upmc.darproject.business">
+<hibernate-mapping package="com.upmc.parisup.business">
 	<class name="User" table="USERS">
 		<id name="id" column="id">
 			<generator class="native" />

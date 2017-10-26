@@ -1,4 +1,4 @@
-package com.upmc.darproject.servlets;
+package com.upmc.parisup.servlets;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.upmc.darproject.services.Mail;
+import com.upmc.parisup.services.Mail;
 
 public class PasswordReset extends HttpServlet {
 	private static final long serialVersionUID = 625693337139608816L;

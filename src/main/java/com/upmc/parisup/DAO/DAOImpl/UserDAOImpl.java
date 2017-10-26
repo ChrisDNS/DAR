@@ -1,10 +1,10 @@
-package com.upmc.darproject.DAO.DAOImpl;
+package com.upmc.parisup.DAO.DAOImpl;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.upmc.darproject.DAO.UserDAO;
-import com.upmc.darproject.business.User;
+import com.upmc.parisup.DAO.UserDAO;
+import com.upmc.parisup.business.User;
 
 public class UserDAOImpl extends MySQLDAOImpl<User> implements UserDAO {
 

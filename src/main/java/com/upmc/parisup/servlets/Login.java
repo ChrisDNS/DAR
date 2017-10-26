@@ -1,4 +1,4 @@
-package com.upmc.darproject.servlets;
+package com.upmc.parisup.servlets;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -13,11 +13,11 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.upmc.darproject.DAO.AbstractDAOFactory;
-import com.upmc.darproject.DAO.Factory;
-import com.upmc.darproject.DAO.DAOImpl.UserDAOImpl;
-import com.upmc.darproject.business.User;
-import com.upmc.darproject.services.AuthenticationService;
+import com.upmc.parisup.DAO.AbstractDAOFactory;
+import com.upmc.parisup.DAO.Factory;
+import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
+import com.upmc.parisup.business.User;
+import com.upmc.parisup.services.AuthenticationService;
 
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = -5677200504573287154L;

@@ -1,11 +1,11 @@
-package com.upmc.darproject.DAO.DAOImpl;
+package com.upmc.parisup.DAO.DAOImpl;
 
 import java.util.List;
 
 import org.hibernate.Session;
 
-import com.upmc.darproject.DAO.DAO;
-import com.upmc.darproject.persistence.MySQLPersistence;
+import com.upmc.parisup.DAO.DAO;
+import com.upmc.parisup.persistence.MySQLPersistence;
 
 public class MySQLDAOImpl<T> implements DAO<T> {
 	protected MySQLPersistence sql = MySQLPersistence.getInstance();

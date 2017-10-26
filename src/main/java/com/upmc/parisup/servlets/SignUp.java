@@ -1,4 +1,4 @@
-package com.upmc.darproject.servlets;
+package com.upmc.parisup.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

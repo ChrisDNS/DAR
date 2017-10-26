@@ -1,4 +1,4 @@
-package com.upmc.darproject.business;
+package com.upmc.parisup.business;
 
 import java.util.Arrays;
 

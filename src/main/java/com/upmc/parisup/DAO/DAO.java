@@ -1,4 +1,4 @@
-package com.upmc.darproject.DAO;
+package com.upmc.parisup.DAO;
 
 import java.util.List;
 

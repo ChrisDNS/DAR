@@ -1,12 +1,12 @@
-package com.upmc.darproject.services;
+package com.upmc.parisup.services;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
-import com.upmc.darproject.DAO.AbstractDAOFactory;
-import com.upmc.darproject.DAO.Factory;
-import com.upmc.darproject.DAO.DAOImpl.UserDAOImpl;
-import com.upmc.darproject.business.User;
+import com.upmc.parisup.DAO.AbstractDAOFactory;
+import com.upmc.parisup.DAO.Factory;
+import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
+import com.upmc.parisup.business.User;
 
 public class FillDB {
 

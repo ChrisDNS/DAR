@@ -1,4 +1,4 @@
-package com.upmc.darproject.persistence;
+package com.upmc.parisup.persistence;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -12,9 +12,10 @@ public class MySQLPersistence {
 	private MySQLPersistence() {
 		try {
 			Configuration configuration = new Configuration();
-			configuration.configure(/* choix fichier de configuration database - hibernate.cfg.xml par défaut */);
+			configuration.configure();
 			serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+			
 		} catch (Throwable ex) {
 			System.err.println("Initial SessionFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
