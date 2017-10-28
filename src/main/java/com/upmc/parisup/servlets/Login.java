@@ -51,10 +51,10 @@ public class Login extends HttpServlet {
 				try {
 					if (new AuthenticationService().authenticate(password, user.getPassword(), user.getSalt())) {
 						ObjectMapper mapper = new ObjectMapper();
-						String userToJSON = mapper.writeValueAsString(user);
+						String userToJson = mapper.writeValueAsString(user);
 
 						json.put("success", true);
-						json.put("user", userToJSON);
+						json.put("user", userToJson);
 					}
 
 					else {

@@ -10,6 +10,7 @@ public class User {
 	private byte[] password, salt;
 
 	public User() {
+
 	}
 
 	public User(String firstname, String lastname, String login) {

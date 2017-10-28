@@ -1,132 +1,172 @@
 package com.upmc.parisup.business;
 
-public class School {
-	private Long id;
+import java.util.Arrays;
 
-	private String university, name, type, acronym, address, city, postcode, academy, status;
-	private double lon, lat;
+public class School {
+	private String departement, code_uai, lien_site_onisep_fr, statut, commune, adresse, longitude_x,
+			type_d_etablissement, tutelle, universite, nom, cp, academie, sigle, latitude_y;
+	private String[] x_y;
 
 	public School() {
 
 	}
 
-	public School(Long id, String university, String name, String type, String acronym, String address, String city,
-			String postcode, String academy, String status, double lon, double lat) {
+	public School(String departement, String code_uai, String lien_site_onisep_fr, String statut, String commune,
+			String adresse, String longitude_x, String type_d_etablissement, String tutelle, String universite,
+			String nom, String cp, String academie, String sigle, String latitude_y, String[] x_y) {
 		super();
-		this.id = id;
-		this.university = university;
-		this.name = name;
-		this.type = type;
-		this.acronym = acronym;
-		this.address = address;
-		this.city = city;
-		this.postcode = postcode;
-		this.academy = academy;
-		this.status = status;
-		this.lon = lon;
-		this.lat = lat;
+		this.departement = departement;
+		this.code_uai = code_uai;
+		this.lien_site_onisep_fr = lien_site_onisep_fr;
+		this.statut = statut;
+		this.commune = commune;
+		this.adresse = adresse;
+		this.longitude_x = longitude_x;
+		this.type_d_etablissement = type_d_etablissement;
+		this.tutelle = tutelle;
+		this.universite = universite;
+		this.nom = nom;
+		this.cp = cp;
+		this.academie = academie;
+		this.sigle = sigle;
+		this.latitude_y = latitude_y;
+		this.x_y = x_y;
 	}
 
-	public Long getId() {
-		return id;
+	public String getDepartement() {
+		return departement;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setDepartement(String departement) {
+		this.departement = departement;
 	}
 
-	public String getUniversity() {
-		return university;
+	public String getCode_uai() {
+		return code_uai;
 	}
 
-	public void setUniversity(String university) {
-		this.university = university;
+	public void setCode_uai(String code_uai) {
+		this.code_uai = code_uai;
 	}
 
-	public String getName() {
-		return name;
+	public String getLien_site_onisep_fr() {
+		return lien_site_onisep_fr;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLien_site_onisep_fr(String lien_site_onisep_fr) {
+		this.lien_site_onisep_fr = lien_site_onisep_fr;
 	}
 
-	public String getType() {
-		return type;
+	public String getStatut() {
+		return statut;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
 
-	public String getAcronym() {
-		return acronym;
+	public String getCommune() {
+		return commune;
 	}
 
-	public void setAcronym(String acronym) {
-		this.acronym = acronym;
+	public void setCommune(String commune) {
+		this.commune = commune;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getAdresse() {
+		return adresse;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
-	public String getCity() {
-		return city;
+	public String getLongitude_x() {
+		return longitude_x;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setLongitude_x(String longitude_x) {
+		this.longitude_x = longitude_x;
 	}
 
-	public String getPostcode() {
-		return postcode;
+	public String getType_d_etablissement() {
+		return type_d_etablissement;
 	}
 
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
+	public void setType_d_etablissement(String type_d_etablissement) {
+		this.type_d_etablissement = type_d_etablissement;
 	}
 
-	public String getAcademy() {
-		return academy;
+	public String getTutelle() {
+		return tutelle;
 	}
 
-	public void setAcademy(String academy) {
-		this.academy = academy;
+	public void setTutelle(String tutelle) {
+		this.tutelle = tutelle;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getUniversite() {
+		return universite;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setUniversite(String universite) {
+		this.universite = universite;
 	}
 
-	public double getLon() {
-		return lon;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setLon(double lon) {
-		this.lon = lon;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public double getLat() {
-		return lat;
+	public String getCp() {
+		return cp;
 	}
 
-	public void setLat(double lat) {
-		this.lat = lat;
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
+
+	public String getAcademie() {
+		return academie;
+	}
+
+	public void setAcademie(String academie) {
+		this.academie = academie;
+	}
+
+	public String getSigle() {
+		return sigle;
+	}
+
+	public void setSigle(String sigle) {
+		this.sigle = sigle;
+	}
+
+	public String getLatitude_y() {
+		return latitude_y;
+	}
+
+	public void setLatitude_y(String latitude_y) {
+		this.latitude_y = latitude_y;
+	}
+
+	public String[] getX_y() {
+		return x_y;
+	}
+
+	public void setX_y(String[] x_y) {
+		this.x_y = x_y;
 	}
 
 	@Override
 	public String toString() {
-		return "School [id=" + id + ", university=" + university + ", name=" + name + ", type=" + type + ", acronym="
-				+ acronym + ", address=" + address + ", city=" + city + ", postcode=" + postcode + ", academy="
-				+ academy + ", status=" + status + ", lon=" + lon + ", lat=" + lat + "]";
+		return "School [departement=" + departement + ", code_uai=" + code_uai + ", lien_site_onisep_fr="
+				+ lien_site_onisep_fr + ", statut=" + statut + ", commune=" + commune + ", adresse=" + adresse
+				+ ", longitude_x=" + longitude_x + ", type_d_etablissement=" + type_d_etablissement + ", tutelle="
+				+ tutelle + ", universite=" + universite + ", nom=" + nom + ", cp=" + cp + ", academie=" + academie
+				+ ", sigle=" + sigle + ", latitude_y=" + latitude_y + ", x_y=" + Arrays.toString(x_y) + "]";
 	}
 }

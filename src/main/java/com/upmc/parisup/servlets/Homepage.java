@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.upmc.parisup.api.schools.SchoolAPIService;
 import com.upmc.parisup.services.FillDB;
 
 public class Homepage extends HttpServlet {
@@ -26,12 +27,13 @@ public class Homepage extends HttpServlet {
 
 		try {
 			FillDB.addUsers();
+			
+			/*EXEMPLES SCHOOLS API*/
+			System.out.println(new SchoolAPIService().retrieveAllSchools().size());
 
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
