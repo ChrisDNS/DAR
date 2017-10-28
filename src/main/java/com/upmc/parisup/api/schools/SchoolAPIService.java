@@ -34,7 +34,7 @@ public class SchoolAPIService {
 
 			schools.addAll(tmp);
 		}
-		
+
 		return schools;
 	}
 
