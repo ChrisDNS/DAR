@@ -4,4 +4,6 @@ import com.upmc.parisup.business.User;
 
 public interface UserDAO extends DAO<User> {
 
+	public User getByLogin(String login);
+	
 }

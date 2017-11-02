@@ -2,10 +2,14 @@ package com.upmc.parisup.services;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 
 import com.upmc.parisup.DAO.AbstractDAOFactory;
 import com.upmc.parisup.DAO.Factory;
+import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
+import com.upmc.parisup.api.schools.SchoolAPIService;
+import com.upmc.parisup.business.School;
 import com.upmc.parisup.business.User;
 
 public class FillDB {
@@ -27,5 +31,11 @@ public class FillDB {
 		((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u1);
 		((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u2);
 		((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(u3);
+	}
+
+	public static void addSchools() {
+		List<School> schools = new SchoolAPIService().retrieveAllSchools();
+		for (School s : schools)
+			((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).add(s);
 	}
 }

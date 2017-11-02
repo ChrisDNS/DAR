@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.upmc.parisup.api.RequestHelper;
 import com.upmc.parisup.business.School;
 
 public class SchoolAPIService {
@@ -22,10 +21,9 @@ public class SchoolAPIService {
 		List<School> schools = new ArrayList<School>();
 
 		for (int i = 0; i < SchoolAPIConstants.NHINTS; i += SchoolAPIConstants.PAGE_SIZE) {
-			System.out.println("i : " + i);
 			params.put(SchoolAPIConstants.START, String.valueOf(i));
 
-			resp = RequestHelper.send(RequestHelper.create(params));
+			resp = SchoolAPIRequestHelper.send(SchoolAPIRequestHelper.create(params));
 			List<School> tmp = SchoolAPIHelper.retrieveAllSchools(resp);
 			tmp.forEach(s -> {
 				if (s.getUniversite() == null)
@@ -36,16 +34,5 @@ public class SchoolAPIService {
 		}
 
 		return schools;
-	}
-
-	public School retriveSchoolByUAI(String uai) {
-		Map<String, String> params = new HashMap<String, String>();
-
-		params.put(SchoolAPIConstants.Q, uai);
-
-		String resp = RequestHelper.send(RequestHelper.create(params));
-		System.out.println(resp);
-
-		return null;
 	}
 }

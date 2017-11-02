@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.upmc.parisup.business">
+	<class name="School" table="SCHOOLS">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="departement" column="departement" type="string" />
+		<property name="code_uai" column="uai" type="string" />
+		<property name="lien_site_onisep_fr" column="lien" type="string" />
+		<property name="statut" column="statut" type="string" />
+		<property name="commune" column="commune" type="string" />
+		<property name="adresse" column="adresse" type="string" />
+		<property name="longitude_x" column="longitude_x" type="string" />
+		<property name="type_d_etablissement" column="type" type="string" />
+		<property name="tutelle" column="tutelle" type="string" />
+		<property name="universite" column="universite" type="string" />
+		<property name="nom" column="nom" type="string" />
+		<property name="cp" column="cp" type="string" />
+		<property name="academie" column="academie" type="string" />
+		<property name="sigle" column="sigle" type="string" />
+		<property name="latitude_y" column="latitude_y" type="string" />
+	</class>
+</hibernate-mapping>

@@ -8,6 +8,8 @@ public abstract class AbstractDAOFactory {
 	
 	public abstract DAO<?> getUserDAO();
 	
+	public abstract DAO<?> getSchoolDAO();
+	
 	public static AbstractDAOFactory getFactory(Factory type) {
 		if (type.equals(Factory.MYSQL_DAO_FACTORY))
 			return new MySQLDAOFactory();

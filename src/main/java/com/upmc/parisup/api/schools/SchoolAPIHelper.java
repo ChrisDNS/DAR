@@ -30,7 +30,6 @@ public class SchoolAPIHelper {
 
 		JSONObject tmp;
 		for (int i = 0; i < jArray.length(); i++) {
-			System.out.println("i = "+i);
 			tmp = jArray.getJSONObject(i).getJSONObject(SchoolAPIConstants.FIELDS);
 
 			try {
