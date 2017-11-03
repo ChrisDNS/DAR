@@ -5,13 +5,13 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.upmc.parisup.DAO.DAO;
-import com.upmc.parisup.persistence.MySQLPersistence;
+import com.upmc.parisup.persistence.MyPostgreSQLPersistence;
 
-public class MySQLDAOImpl<T> implements DAO<T> {
-	protected MySQLPersistence sql = MySQLPersistence.getInstance();
+public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
+	protected MyPostgreSQLPersistence sql = MyPostgreSQLPersistence.getInstance();
 	private Class<T> typeT;
 
-	public MySQLDAOImpl(Class<T> t) {
+	public MyPostgreSQLDAOImpl(Class<T> t) {
 		typeT = t;
 	}
 

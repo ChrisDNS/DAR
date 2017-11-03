@@ -6,6 +6,11 @@
 	<display-name>Archetype Created Web Application</display-name>
 
 	<servlet>
+		<servlet-name>Init</servlet-name>
+		<servlet-class>com.upmc.parisup.servlets.Init</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
 		<servlet-name>Homepage</servlet-name>
 		<servlet-class>com.upmc.parisup.servlets.Homepage</servlet-class>
 	</servlet>

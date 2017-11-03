@@ -34,7 +34,8 @@ public class FillDB {
 	}
 
 	public static void addSchools() {
-		List<School> schools = new SchoolAPIService().retrieveAllSchools();
+		SchoolAPIService sas = SchoolAPIService.getInstance();
+		List<School> schools = sas.retrieveAllSchools();
 		for (School s : schools)
 			((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).add(s);
 	}

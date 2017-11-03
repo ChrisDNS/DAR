@@ -5,9 +5,9 @@ import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.School;
 import com.upmc.parisup.business.User;
 
-public class MySQLDAOFactory extends AbstractDAOFactory {
+public class MyPostgreSQLDAOFactory extends AbstractDAOFactory {
 
-	public MySQLDAOFactory() {
+	public MyPostgreSQLDAOFactory() {
 		super();
 	}
 

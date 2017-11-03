@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import com.upmc.parisup.DAO.UserDAO;
 import com.upmc.parisup.business.User;
 
-public class UserDAOImpl extends MySQLDAOImpl<User> implements UserDAO {
+public class UserDAOImpl extends MyPostgreSQLDAOImpl<User> implements UserDAO {
 
 	public UserDAOImpl(Class<User> userClass) {
 		super(userClass);
