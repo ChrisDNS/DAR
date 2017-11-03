@@ -1,4 +1,4 @@
-package com.upmc.parisup.api;
+package com.upmc.parisup.api.schools;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,11 +7,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
-import com.upmc.parisup.api.schools.SchoolAPIConstants;
-
-public class RequestHelper {
+public class SchoolAPIRequestHelper {
 	
-	private RequestHelper() {
+	private SchoolAPIRequestHelper() {
 		
 	}
 

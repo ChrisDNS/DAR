@@ -3,6 +3,8 @@ package com.upmc.parisup.business;
 import java.util.Arrays;
 
 public class School {
+	private Long id;
+
 	private String departement, code_uai, lien_site_onisep_fr, statut, commune, adresse, longitude_x,
 			type_d_etablissement, tutelle, universite, nom, cp, academie, sigle, latitude_y;
 	private String[] x_y;
@@ -11,10 +13,11 @@ public class School {
 
 	}
 
-	public School(String departement, String code_uai, String lien_site_onisep_fr, String statut, String commune,
-			String adresse, String longitude_x, String type_d_etablissement, String tutelle, String universite,
-			String nom, String cp, String academie, String sigle, String latitude_y, String[] x_y) {
+	public School(Long id, String departement, String code_uai, String lien_site_onisep_fr, String statut,
+			String commune, String adresse, String longitude_x, String type_d_etablissement, String tutelle,
+			String universite, String nom, String cp, String academie, String sigle, String latitude_y, String[] x_y) {
 		super();
+		this.id = id;
 		this.departement = departement;
 		this.code_uai = code_uai;
 		this.lien_site_onisep_fr = lien_site_onisep_fr;
@@ -31,6 +34,14 @@ public class School {
 		this.sigle = sigle;
 		this.latitude_y = latitude_y;
 		this.x_y = x_y;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getDepartement() {
@@ -163,7 +174,7 @@ public class School {
 
 	@Override
 	public String toString() {
-		return "School [departement=" + departement + ", code_uai=" + code_uai + ", lien_site_onisep_fr="
+		return "School [id=" + id + ", departement=" + departement + ", code_uai=" + code_uai + ", lien_site_onisep_fr="
 				+ lien_site_onisep_fr + ", statut=" + statut + ", commune=" + commune + ", adresse=" + adresse
 				+ ", longitude_x=" + longitude_x + ", type_d_etablissement=" + type_d_etablissement + ", tutelle="
 				+ tutelle + ", universite=" + universite + ", nom=" + nom + ", cp=" + cp + ", academie=" + academie
