@@ -9,8 +9,8 @@ import com.upmc.parisup.business.School;
 
 public class SchoolAPIService {
 
-	public SchoolAPIService() {
-		
+	private SchoolAPIService() {
+
 	}
 
 	private static class SchoolAPIHolder {
