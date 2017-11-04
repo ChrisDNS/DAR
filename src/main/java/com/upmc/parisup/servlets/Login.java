@@ -22,11 +22,6 @@ import com.upmc.parisup.services.AuthenticationService;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = -5677200504573287154L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String login = request.getParameter("login");
