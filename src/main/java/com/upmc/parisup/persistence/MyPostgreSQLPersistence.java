@@ -5,11 +5,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-public class MySQLPersistence {
+public class MyPostgreSQLPersistence {
 	private SessionFactory sessionFactory;
 	private ServiceRegistry serviceRegistry;
 
-	private MySQLPersistence() {
+	private MyPostgreSQLPersistence() {
 		try {
 			Configuration configuration = new Configuration();
 			configuration.configure();
@@ -22,12 +22,12 @@ public class MySQLPersistence {
 		}
 	}
 
-	private static class MySQLPersistenceHolder {
-		private static final MySQLPersistence INSTANCE = new MySQLPersistence();
+	private static class MyPostgreSQLPersistenceHolder {
+		private static final MyPostgreSQLPersistence INSTANCE = new MyPostgreSQLPersistence();
 	}
 	
-	public static MySQLPersistence getInstance() {
-		return MySQLPersistenceHolder.INSTANCE;
+	public static MyPostgreSQLPersistence getInstance() {
+		return MyPostgreSQLPersistenceHolder.INSTANCE;
 	}
 
 	public SessionFactory getSessionFactory() {

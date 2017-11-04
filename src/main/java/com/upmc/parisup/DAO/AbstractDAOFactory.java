@@ -12,7 +12,7 @@ public abstract class AbstractDAOFactory {
 	
 	public static AbstractDAOFactory getFactory(Factory type) {
 		if (type.equals(Factory.MYSQL_DAO_FACTORY))
-			return new MySQLDAOFactory();
+			return new MyPostgreSQLDAOFactory();
 
 		return null;
 	}

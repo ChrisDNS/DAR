@@ -9,8 +9,16 @@ import com.upmc.parisup.business.School;
 
 public class SchoolAPIService {
 
-	public SchoolAPIService() {
+	private SchoolAPIService() {
 
+	}
+
+	private static class SchoolAPIHolder {
+		private static final SchoolAPIService INSTANCE = new SchoolAPIService();
+	}
+
+	public static SchoolAPIService getInstance() {
+		return SchoolAPIHolder.INSTANCE;
 	}
 
 	public List<School> retrieveAllSchools() {

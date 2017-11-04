@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import com.upmc.parisup.DAO.SchoolDAO;
 import com.upmc.parisup.business.School;
 
-public class SchoolDAOImpl extends MySQLDAOImpl<School> implements SchoolDAO {
+public class SchoolDAOImpl extends MyPostgreSQLDAOImpl<School> implements SchoolDAO {
 
 	public SchoolDAOImpl(Class<School> t) {
 		super(t);
