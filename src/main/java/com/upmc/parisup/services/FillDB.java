@@ -15,9 +15,9 @@ import com.upmc.parisup.business.User;
 public class FillDB {
 
 	public static void addUsers() throws NoSuchAlgorithmException, InvalidKeySpecException {
-		User u1 = new User("chris", "dionisio", "ChriChri");
-		User u2 = new User("belynda", "hamaz", "Beloche");
-		User u3 = new User("marie", "laporte", "Wano");
+		User u1 = new User("chris", "dionisio", "chris@etu.upmc.fr");
+		User u2 = new User("belynda", "hamaz", "beloche@etu.upmc.fr");
+		User u3 = new User("marie", "laporte", "wano@etu.upmc.fr");
 
 		u1.setSalt(new AuthenticationService().generateSalt());
 		u1.setPassword(new AuthenticationService().getEncryptedPassword("test", u1.getSalt()));

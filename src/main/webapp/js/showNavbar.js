@@ -1,6 +1,6 @@
 (function() {
-	var login = Cookies.get('login');
-	if (login == null || login == "")
+	var email = Cookies.get('email');
+	if (email == null || email == "")
 		$("#navbar").load("html/navbar.html");
 	else
 		$("#navbar").load("html/navbarConnected.html");

@@ -13,8 +13,8 @@ public class UserDAOImpl extends MyPostgreSQLDAOImpl<User> implements UserDAO {
 	}
 
 	@Override
-	public User getByLogin(String login) {
-		String req = "FROM User u WHERE u.login=" + "'" + login + "'";
+	public User getByEmail(String login) {
+		String req = "FROM User u WHERE u.email=" + "'" + login + "'";
 
 		Session session = sql.getSessionFactory().getCurrentSession();
 		session.beginTransaction();

@@ -24,22 +24,22 @@ public class Login extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String login = request.getParameter("login");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		JSONObject json = new JSONObject();
 
-		if (login == null || login.isEmpty()) {
-			json.put("message", "Invalid login.");
+		if (email == null || email.isEmpty()) {
+			json.put("message", "Veuillez remplir tous les champs.");
 			json.put("success", false);
 		} else if (password == null || password.isEmpty()) {
-			json.put("message", "Invalid password.");
+			json.put("message", "Veuillez remplir tous les champs.");
 			json.put("success", false);
 
 		} else {
 			User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-					.getByLogin(login);
+					.getByEmail(email);
 			if (user == null) {
-				json.put("message", "Pseudo ou mot de passe incorrect.");
+				json.put("message", "Email ou mot de passe incorrect.");
 				json.put("success", false);
 
 			} else {
@@ -54,7 +54,7 @@ public class Login extends HttpServlet {
 
 					else {
 						json.put("success", false);
-						json.put("message", "Pseudo ou mot de passe incorrect.");
+						json.put("message", "Email ou mot de passe incorrect.");
 					}
 
 				} catch (NoSuchAlgorithmException e) {

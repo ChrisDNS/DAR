@@ -53,20 +53,30 @@
 
 <script>
 	(function() {
-		var login = Cookies.get('login');
-		if (login == null || login == "")
+		var email = Cookies.get('email');
+		if (email == null || email == "")
 			console.log("...");
-		else
-			$('#login').text(login);
+		else {
+			var firstname = Cookies.get('firstname');
+			var lastname = Cookies.get('lastname').charAt(0);
+			$('#login').text(firstname + " " + lastname);
+		}
 	})();
 
 	$(document).ready(function() {
 		$('#disconnect').click(function(e) {
 			e.preventDefault();
 
-			Cookies.remove('login', {
+			Cookies.remove('email', {
 				path : '/'
 			});
+			Cookies.remove('firstname', {
+				path : '/'
+			});
+			Cookies.remove('lastname', {
+				path : '/'
+			});
+
 			location.href = "/homepage";
 		});
 	});

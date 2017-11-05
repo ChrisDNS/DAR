@@ -6,15 +6,17 @@ $(document).ready(function() {
 			type : 'POST',
 			url : 'login',
 			data : {
-				login : $('#login').val(),
+				email : $('#email').val(),
 				password : $('#password').val()
 			}
 
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
-				Cookies.set('login', user.login);
-				// ajouter autres données dans le cookie si necessaire
+				Cookies.set('email', user.email);
+				Cookies.set('firstname', user.firstname);
+				Cookies.set('lastname', user.lastname);
+				
 				location.reload();
 			} else {
 				$('#error').html(data.message);

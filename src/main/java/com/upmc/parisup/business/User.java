@@ -6,18 +6,18 @@ public class User {
 	private Long id;
 
 	private String firstname, lastname;
-	private String login;
+	private String email;
 	private byte[] password, salt;
 
 	public User() {
 
 	}
 
-	public User(String firstname, String lastname, String login) {
+	public User(String firstname, String lastname, String email) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.login = login;
+		this.email = email;
 	}
 
 	public Long getId() {
@@ -44,12 +44,12 @@ public class User {
 		this.lastname = lastname;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getemail() {
+		return email;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setemail(String email) {
+		this.email = email;
 	}
 
 	public byte[] getPassword() {
@@ -70,7 +70,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", login=" + login
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
 				+ ", password=" + password + ", salt=" + Arrays.toString(salt) + "]";
 	}
 }

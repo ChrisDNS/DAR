@@ -149,7 +149,7 @@
 		<div class="footer-below">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-12">Copyright &copy; PariSup 2017</div>
+					<div class="col-lg-12">Copyright &copy; PariSup' 2017</div>
 				</div>
 			</div>
 		</div>
