@@ -13,9 +13,7 @@ $(document).ready(function() {
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
-				Cookies.set('login', user.login);
-				// ajouter autres données dans le cookie si necessaire
-				location.reload();
+				login(user.login);
 			} else {
 				$('#error').html(data.message);
 				$('#error').show();
@@ -26,3 +24,9 @@ $(document).ready(function() {
 		});
 	});
 });
+
+function login(mail) {
+	Cookies.set('login', mail);
+	// ajouter autres données dans le cookie si necessaire
+	location.reload();
+}

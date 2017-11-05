@@ -551,3 +551,9 @@ body#no-top {
 .signupInfos {
   font-size: 0.8em;
 }
+
+#schoolsp {
+  margin-top: 1.5em;
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}

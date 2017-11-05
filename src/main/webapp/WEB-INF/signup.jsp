@@ -37,6 +37,9 @@
 
 	<div class="signupForm">
 		<h1 class="text-muted">Inscription</h1>
+		<div id="error" style="text-align: center; display: none; color: red;" class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">×</a>
+		</div>
 		<form class="form-horizontal">
 			<div class="form-group">
 				<label class="control-label col-sm-5" for="firstName">Prénom:</label>
@@ -85,12 +88,21 @@
 				<div class="col-sm-12">
 					<label class="control-label col-sm-5" for="email">Anciennes
 						et / ou récente(s) école(s) fréquentée(s):*</label>
-					<div class="col-sm-11">
-						<p>TODO</p>
+					<div class="col-sm-3" style="text-align: left;">
+						<select>
+							<option value="volvo">Université Paris Diderot 7</option>
+						</select>
+						<button type="button" class="btn btn-primary">Ajouter</button>
+						<div>
+							<p id="schoolsp">Liste complète :</p>
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-warning">Aucune école</li>
+							</ul> 
+						</div>
 					</div>
 				</div>
 			</div>
-			<p class="text-warning signupInfos">Les champs * sont optionnels.</p>
+			<p class="text-warning signupInfos">Les champs * sont optionnels mais serviront à perfectionner vos recherches et/ou relations avec les autres étudiants.</p>
 			<div class="form-group">
 				<div class="col-sm-11">
 					<div class="checkbox">
@@ -100,29 +112,29 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<button type="submit" class="btn btn-success">Inscription</button>
+					<button id="sign" type="submit" class="btn btn-success">Inscription</button>
 				</div>
 			</div>
 		</form>
-		<div>
+	</div>
 
-			<!-- Footer -->
-			<footer class="py-5 bg-dark">
-				<div class="container">
-					<p class="m-0 text-center text-white">Copyright &copy; 2017
-						Christopher Dionisio, Marie Laporte, Belynda Hamaz</p>
-				</div>
-				<!-- /.container -->
-			</footer>
 
-			<!-- Bootstrap core JavaScript -->
-			<script src="vendor/popper/popper.min.js"></script>
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script
-				src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-			<script src="vendor/js/js.cookie.js"></script>
-			<script src="js/showNavbar.js"></script>
-			<script src="js/login.js"></script>
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; 2017
+				Christopher Dionisio, Marie Laporte, Belynda Hamaz</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/popper/popper.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="vendor/js/js.cookie.js"></script>
+	<script src="js/showNavbar.js"></script>
 </body>
 </html>
