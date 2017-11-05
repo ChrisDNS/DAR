@@ -1,0 +1,46 @@
+<!-- Navigation -->
+<head>
+<meta charset="UTF-8">
+</head>
+
+<li class="nav-item dropdown">
+	<a id="login" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><b></b>
+		<span class="caret"></span>
+	</a>
+	<ul id="login-dp" class="dropdown-menu">
+		<li>
+			<div class="row">
+				<div class="col-md-12">
+					<form id="form" class="form" role="form" method="post"
+						accept-charset="UTF-8" id="login-nav">
+						<div class="form-group">
+							<button id="disconnect" type="submit"
+								class="btn btn-primary btn-block">Déconnexion</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</li>
+	</ul>
+</li>
+
+<script>
+	(function() {
+		var login = Cookies.get('login');
+		if (login == null || login == "")
+			console.log("...");
+		else
+			$('#login').text(login);
+	})();
+
+	$(document).ready(function() {
+		$('#disconnect').click(function(e) {
+			e.preventDefault();
+
+			Cookies.remove('login', {
+				path : '/'
+			});
+			location.href = "/homepage";
+		});
+	});
+</script>

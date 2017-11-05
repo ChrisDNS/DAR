@@ -23,65 +23,28 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="hidden"><a href="#page-top"></a></li>
-				<li class="page-scroll"><a href="#about">À propos</a></li>
+				<li class="page-scroll"><a href="/homepage#about">À propos</a></li>
 
-				<!-- LOGIN -->
-				<li class="nav-item dropdown"><a href="#"
-					class="nav-link dropdown-toggle" data-toggle="dropdown"><b>Connexion</b>
-						<span class="caret"></span></a>
-					<ul id="login-dp" class="dropdown-menu">
-						<li>
-							<div class="row">
-								<div class="col-md-12">
-
-									<div id="error"
-										style="text-align: center; display: none; color: red;"
-										class="alert alert-error">
-										<a class="close" data-dismiss="alert" href="#">×</a>
-									</div>
-
-									<form id="form" class="form" role="form" method="post"
-										action="login" accept-charset="UTF-8" id="login-nav">
-										<div class="form-group">
-											<label class="sr-only" for="login">Pseudo</label> <input
-												id="login" type="text" class="form-control" name="login"
-												placeholder="Pseudo" required>
-										</div>
-										<div class="form-group">
-											<label class="sr-only" for="password">Mot de passe</label> <input
-												id="password" type="password" class="form-control"
-												name="password" placeholder="Mot de passe" required>
-											<div class="help-block text-right">
-												<a href="password_reset" class="connect">Mot de passe
-													oublié ?</a>
-											</div>
-										</div>
-										<div class="form-group">
-											<button id="connect" type="submit"
-												class="btn btn-primary btn-block">Connexion</button>
-										</div>
-									</form>
-
-									<div style="text-align: center">
-										<h4>ou</h4>
-									</div>
-
-									<div class="social-buttons">
-										<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>
-											Facebook</a> <a href="#" class="btn btn-tw"><i
-											class="fa fa-twitter"></i> Twitter</a>
-									</div>
-								</div>
-								<div class="bottom text-center">
-									Pas encore inscrit ? <a href="signup" class="connect"><b>Incrivez-vous
-											!</b></a>
-								</div>
-							</div>
-						</li>
-					</ul></li>
+				<div id="connectDisconnect"></div>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid -->
 </nav>
+
+<script type="text/javascript">
+	(function() {
+		var login = Cookies.get('login');
+		if (login == null || login == "") {
+			$.get("html/navbarConnect.html", function(data) {
+			    $("#connectDisconnect").replaceWith(data);
+			});
+		}
+		else {
+			$.get("html/navbarDisconnect.html", function(data) {
+			    $("#connectDisconnect").replaceWith(data);
+			});
+		}		
+	})();
+</script>
