@@ -26,6 +26,11 @@
 		<servlet-name>PasswordReset</servlet-name>
 		<servlet-class>com.upmc.parisup.servlets.PasswordReset</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>com.upmc.parisup.servlets.Search</servlet-class>
+	</servlet>
+	
 
 	<servlet-mapping>
 		<servlet-name>Homepage</servlet-name>
@@ -42,6 +47,11 @@
 	<servlet-mapping>
 		<servlet-name>PasswordReset</servlet-name>
 		<url-pattern>/password_reset</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 
 
