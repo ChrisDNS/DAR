@@ -1,3 +1,6 @@
+var schools = [];
+var allSchools = [{id:1}];
+
 $(document).ready(function() {
 	$('#sign').click(function(e) {
 		e.preventDefault();
@@ -10,9 +13,9 @@ $(document).ready(function() {
 				name : $('#name').val(),
 				mail : $('#mail').val(),
 				password : $('#pwd').val(),
-				adress : $('#adress').val(),
+				address : $('#address').val(),
 				town : $('#town').val(),
-				schools: []
+				schools: schools.join(";")
 			}
 
 		}).done(function(data) {
@@ -29,3 +32,12 @@ $(document).ready(function() {
 		});
 	});
 });
+
+function addSchool() {
+	var index = $('#allSchoolsList').prop('selectedIndex');
+	var school = allSchools[index];
+	var id = school.id;
+
+	if (schools.indexOf(id) == -1)
+		schools.push(id);
+}

@@ -3,6 +3,7 @@ package com.upmc.parisup.servlets;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.stream.Stream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +29,10 @@ public class SigningUp extends HttpServlet {
 		String name = request.getParameter("name");
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
-		
-		
+		String address = request.getParameter("address");
+		String town = request.getParameter("town");
+		int[] schools = Stream.of(request.getParameter("schools").split(";")).mapToInt(Integer::parseInt).toArray();
+
 		JSONObject json = new JSONObject();
 		User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
 				.getByLogin(mail);
@@ -50,11 +53,13 @@ public class SigningUp extends HttpServlet {
 			((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(user);
 			*/
 			
+			/*
 			ObjectMapper mapper = new ObjectMapper();
 			String userToJson = mapper.writeValueAsString(user);
 
 			json.put("success", true);
 			json.put("user", userToJson);
+			*/
 		}
 		
 		response.setCharacterEncoding("UTF-8");

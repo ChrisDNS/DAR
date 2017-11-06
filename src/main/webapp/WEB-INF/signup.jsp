@@ -71,9 +71,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-5" for="adress">Adresse:*</label>
+				<label class="control-label col-sm-5" for="address">Adresse:*</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="adress"
+					<input type="text" class="form-control" id="address"
 						placeholder="Entrer votre addresse">
 				</div>
 			</div>
@@ -89,10 +89,10 @@
 					<label class="control-label col-sm-5" for="email">Anciennes
 						et / ou récente(s) école(s) fréquentée(s):*</label>
 					<div class="col-sm-3" style="text-align: left;">
-						<select>
+						<select id="allSchoolsList">
 							<option value="volvo">Université Paris Diderot 7</option>
 						</select>
-						<button type="button" class="btn btn-primary">Ajouter</button>
+						<button onclick="addSchool()" type="button" class="btn btn-primary">Ajouter</button>
 						<div>
 							<p id="schoolsp">Liste complète :</p>
 							<ul class="list-group">
@@ -136,5 +136,6 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/showNavbar.js"></script>
+	<script src="js/signup.js"></script>
 </body>
 </html>
