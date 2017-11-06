@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 		}
 
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/json");
+		response.setContentType("application/json");
 
 		try {
 			response.getWriter().print(json);
