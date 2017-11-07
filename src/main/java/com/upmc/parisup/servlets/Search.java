@@ -23,5 +23,6 @@ public class Search extends HttpServlet {
 		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 		System.out.println("ok");
 		List<School> schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).getAll();
+		
 	}
 }

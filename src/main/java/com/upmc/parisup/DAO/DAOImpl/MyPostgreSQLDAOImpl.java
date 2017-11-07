@@ -39,6 +39,13 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 
 	}
 
+	public void update(T obj) {
+		Session session = sql.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		session.update(obj);
+		session.getTransaction().commit();
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<T> getAll() {
 		Session session = sql.getSessionFactory().getCurrentSession();

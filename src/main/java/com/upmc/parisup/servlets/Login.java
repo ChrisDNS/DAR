@@ -37,7 +37,7 @@ public class Login extends HttpServlet {
 
 		} else {
 			User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-					.getByEmail(email);
+					.getByAttribute("email", email);
 			if (user == null) {
 				json.put("message", "Email ou mot de passe incorrect.");
 				json.put("success", false);

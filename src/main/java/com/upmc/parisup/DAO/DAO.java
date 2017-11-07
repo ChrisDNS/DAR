@@ -8,7 +8,7 @@ public interface DAO<T> {
 
 	public void add(T obj);
 
-	// public void update(UpdateRequest updateReq);
+	public void update(T obj);
 
 	public void delete(String type, String id);
 

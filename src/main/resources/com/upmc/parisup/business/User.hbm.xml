@@ -13,5 +13,6 @@
 		<property name="email" column="email" type="string" />
 		<property name="password" column="password" type="binary" />
 		<property name="salt" column="salt" type="binary" />
+		<property name="token" column="token" type="string" />
 	</class>
 </hibernate-mapping>
