@@ -37,21 +37,17 @@
 	<div class="signupForm">
 		<h1 class="text-muted">Mot de passe oublié</h1>
 		<form class="form-horizontal">
-			<div id="info" class="alert alert-info"></div>
+			<div id="info" class="alert alert-info col-sm-4 col-md-offset-4"></div>
 			<div class="form-group">
-				<label class="control-label col-sm-5" for="firstName"></label>
-				<div class="col-sm-3">
+				<div class="col-sm-4 col-md-offset-4">
 					<input id="mail" type="email" name="reset" class="form-control"
-						placeholder="Entrer votre adresse électronique">
+						placeholder="Entrez votre adresse électronique">
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<button id="reset" class="btn btn-success">Envoyer l'email
-						de réinitialisation du mot de passe</button>
-				</div>
+			<div class="col-md-4 col-md-offset-4">
+				<button id="reset" class="btn btn-success btn-md">Envoyer
+					l'email de réinitialisation du mot de passe</button>
 			</div>
-
 		</form>
 	</div>
 
@@ -76,13 +72,13 @@
 						mail : $('#mail').val(),
 						value : $("#mail").attr("name")
 					}
-				
+
 				}).done(function(data) {
-					console.log(data.message);
 					if (data.success) {
 						$('#info').html(data.message);
 						$('.form-group').hide();
 						$('#info').show();
+						$('#reset').hide();
 					} else {
 						$('#info').html(data.message);
 						$('#info').show();

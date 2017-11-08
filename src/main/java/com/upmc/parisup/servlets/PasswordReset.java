@@ -33,12 +33,15 @@ public class PasswordReset extends HttpServlet {
 			UserDAO udao = (UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO();
 			User u = null;
 			if ((u = udao.getByAttribute("token", token)) != null) {
-				System.out.println(u.getEmail());
 				request.setAttribute("email", u.getEmail());
 				request.getRequestDispatcher("/WEB-INF/change_password.jsp").forward(request, response);
 
-			} else
-				return;
+			} else {
+				JSONObject json = new JSONObject();
+				json.put("success", false);
+				// json.put("url",
+				// request.getRequestURL().toString().replaceAll(request.getPathInfo(), ""));
+			}
 		}
 	}
 
@@ -62,7 +65,8 @@ public class PasswordReset extends HttpServlet {
 				MailService ms = new MailService("ouais", request.getRequestURL() + "/" + u.getToken());
 				ms.sendTo(email);
 				json.put("success", true);
-				json.put("message", "Regardez vos emails, vous trouverez un lien pour réinitialiser votre mot de passe.");
+				json.put("message",
+						"Regardez vos emails, vous trouverez un lien pour réinitialiser votre mot de passe.");
 			}
 
 		} else if (request.getParameter("value").equals("change")) {
@@ -73,7 +77,6 @@ public class PasswordReset extends HttpServlet {
 
 			else {
 				u = udao.getByAttribute("token", request.getPathInfo().substring(1).split("/")[1]);
-				System.out.println(u);
 				if (u.getEmail().equals(request.getParameter("email"))) {
 					try {
 						AuthenticationService as = new AuthenticationService();
@@ -95,15 +98,6 @@ public class PasswordReset extends HttpServlet {
 			}
 		}
 
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
-
-		try {
-			response.getWriter().print(json);
-			response.getWriter().close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Util.sendJSON(response, json);
 	}
 }
