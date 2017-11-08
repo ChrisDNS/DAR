@@ -17,12 +17,23 @@ public class MailService {
 
 	private String message, url;
 
+	/**
+	 * Constructor MailService with message content and change password hyperlink
+	 * 
+	 * @param message
+	 * @param url
+	 */
 	public MailService(String message, String url) {
 		super();
 		this.message = message;
 		this.url = url;
 	}
 
+	/**
+	 * Sends SMTP email to email argument
+	 * 
+	 * @param email
+	 */
 	public void sendTo(String email) {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -61,6 +72,10 @@ public class MailService {
 			e.printStackTrace();
 		}
 	}
+
+	/////////////////////////
+	// GETTERS AND SETTERS //
+	/////////////////////////
 
 	public String getMessage() {
 		return message;

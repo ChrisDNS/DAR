@@ -37,6 +37,7 @@
 	<div class="signupForm">
 		<h1 class="text-muted">Mot de passe oublié</h1>
 		<form class="form-horizontal">
+			<div id="info" class="alert alert-info"></div>
 			<div class="form-group">
 				<label class="control-label col-sm-5" for="firstName"></label>
 				<div class="col-sm-3">
@@ -51,16 +52,6 @@
 				</div>
 			</div>
 
-			<div>
-				<!-- Footer -->
-				<footer class="py-5 bg-dark">
-					<div class="container">
-						<p class="m-0 text-center text-white">Copyright &copy; 2017
-							Christopher Dionisio, Marie Laporte, Belynda Hamaz</p>
-					</div>
-					<!-- /.container -->
-				</footer>
-			</div>
 		</form>
 	</div>
 
@@ -72,6 +63,9 @@
 	<script src="js/showNavbar.js"></script>
 	<script>
 		$(document).ready(function() {
+			$('#info').hide();
+			$('#info').html("");
+
 			$('#reset').click(function(e) {
 				e.preventDefault();
 
@@ -82,8 +76,18 @@
 						mail : $('#mail').val(),
 						value : $("#mail").attr("name")
 					}
-
+				
 				}).done(function(data) {
+					console.log(data.message);
+					if (data.success) {
+						$('#info').html(data.message);
+						$('.form-group').hide();
+						$('#info').show();
+					} else {
+						$('#info').html(data.message);
+						$('#info').show();
+					}
+
 				}).fail(function() {
 					alert("Server not responding.");
 				});

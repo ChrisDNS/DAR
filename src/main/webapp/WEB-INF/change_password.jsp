@@ -86,7 +86,6 @@
 	<script src="/vendor/js/js.cookie.js"></script>
 	<script>
 		$(document).ready(function() {
-			console.log($('#pwd').val());
 			$('#error').hide();
 
 			$('#change').click(function(e) {
@@ -103,7 +102,7 @@
 					}
 
 				}).done(function(data) {
-					if(data)
+					if(data.success)
 						location.href = "/";
 					else
 						$("#error").show();

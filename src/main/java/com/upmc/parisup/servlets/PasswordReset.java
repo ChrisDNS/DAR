@@ -18,6 +18,7 @@ import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.User;
 import com.upmc.parisup.services.AuthenticationService;
 import com.upmc.parisup.services.MailService;
+import com.upmc.parisup.services.Util;
 
 public class PasswordReset extends HttpServlet {
 	private static final long serialVersionUID = 625693337139608816L;
@@ -49,20 +50,26 @@ public class PasswordReset extends HttpServlet {
 		if (request.getParameter("value").equals("reset")) {
 			String email = request.getParameter("mail");
 			u = udao.getByAttribute("email", email);
+			if (u == null) {
+				json.put("success", false);
+				json.put("message", "Désolé, nous ne trouvons pas cet adresse email");
+			}
 
-			u.setToken("zajfreifne");
-			udao.update(u);
+			else {
+				u.setToken(Util.generateToken());
+				udao.update(u);
 
-			MailService ms = new MailService("ouais", request.getRequestURL() + "/" + u.getToken());
-			ms.sendTo(email);
+				MailService ms = new MailService("ouais", request.getRequestURL() + "/" + u.getToken());
+				ms.sendTo(email);
+				json.put("success", true);
+				json.put("message", "Regardez vos emails, vous trouverez un lien pour réinitialiser votre mot de passe.");
+			}
 
 		} else if (request.getParameter("value").equals("change")) {
 			String pwd = request.getParameter("pwd");
 			String pwdConfirm = request.getParameter("pwdConfirm");
-			if (!pwd.equals(pwdConfirm)) {
+			if (!pwd.equals(pwdConfirm))
 				json.put("success", false);
-				return;
-			}
 
 			else {
 				u = udao.getByAttribute("token", request.getPathInfo().substring(1).split("/")[1]);
@@ -82,6 +89,7 @@ public class PasswordReset extends HttpServlet {
 					} catch (InvalidKeySpecException e) {
 						e.printStackTrace();
 					}
+
 				} else
 					json.put("success", false);
 			}
