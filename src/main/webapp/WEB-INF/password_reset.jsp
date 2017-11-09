@@ -37,42 +37,58 @@
 	<div class="signupForm">
 		<h1 class="text-muted">Mot de passe oublié</h1>
 		<form class="form-horizontal">
+			<div id="info" class="alert alert-info col-sm-4 col-md-offset-4"></div>
 			<div class="form-group">
-				<label class="control-label col-sm-5" for="firstName"></label>
-				<div class="col-sm-3">
-					<input type="email" class="form-control" id="email"
-						placeholder="Entrer votre adresse électronique">
+				<div class="col-sm-4 col-md-offset-4">
+					<input id="mail" type="email" name="reset" class="form-control"
+						placeholder="Entrez votre adresse électronique">
 				</div>
 			</div>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<button id="reset" type="submit" class="btn btn-success">Envoyer
-						email de réinitialisation du mot de passe</button>
-				</div>
-			</div>
-
-			<div>
-				<!-- Footer -->
-				<footer class="py-5 bg-dark">
-					<div class="container">
-						<p class="m-0 text-center text-white">Copyright &copy; 2017
-							Christopher Dionisio, Marie Laporte, Belynda Hamaz</p>
-					</div>
-					<!-- /.container -->
-				</footer>
+			<div class="col-md-4 col-md-offset-4">
+				<button id="reset" class="btn btn-success btn-md">Envoyer
+					l'email de réinitialisation du mot de passe</button>
 			</div>
 		</form>
 	</div>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/popper/popper.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/showNavbar.js"></script>
-	<script src="js/passwordReset.js"></script>
-	<script src="js/login.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#info').hide();
+			$('#info').html("");
+
+			$('#reset').click(function(e) {
+				e.preventDefault();
+
+				$.ajax({
+					type : 'POST',
+					url : 'password_reset',
+					data : {
+						mail : $('#mail').val(),
+						value : $("#mail").attr("name")
+					}
+
+				}).done(function(data) {
+					if (data.success) {
+						$('#info').html(data.message);
+						$('.form-group').hide();
+						$('#info').show();
+						$('#reset').hide();
+					} else {
+						$('#info').html(data.message);
+						$('#info').show();
+					}
+
+				}).fail(function() {
+					alert("Server not responding.");
+				});
+			});
+		});
+	</script>
 </body>
 </html>

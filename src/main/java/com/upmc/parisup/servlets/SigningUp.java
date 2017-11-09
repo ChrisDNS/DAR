@@ -35,7 +35,7 @@ public class SigningUp extends HttpServlet {
 
 		JSONObject json = new JSONObject();
 		User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-				.getByEmail(email);
+				.getByAttribute("email", email);
 		if (user != null) {
 			json.put("message", "Ce mail est déjà enregistré.");
 			json.put("success", false);

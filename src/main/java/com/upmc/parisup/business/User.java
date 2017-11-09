@@ -9,6 +9,8 @@ public class User {
 	private String email;
 	private byte[] password, salt;
 
+	private String token;
+
 	public User() {
 
 	}
@@ -44,14 +46,6 @@ public class User {
 		this.lastname = lastname;
 	}
 
-	public String getemail() {
-		return email;
-	}
-
-	public void setemail(String email) {
-		this.email = email;
-	}
-
 	public byte[] getPassword() {
 		return password;
 	}
@@ -68,9 +62,26 @@ public class User {
 		this.salt = salt;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
-				+ ", password=" + password + ", salt=" + Arrays.toString(salt) + "]";
+				+ ", password=" + Arrays.toString(password) + ", salt=" + Arrays.toString(salt) + ", token=" + token
+				+ "]";
 	}
 }

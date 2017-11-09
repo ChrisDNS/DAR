@@ -18,6 +18,7 @@ import com.upmc.parisup.DAO.Factory;
 import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.User;
 import com.upmc.parisup.services.AuthenticationService;
+import com.upmc.parisup.services.Util;
 
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = -5677200504573287154L;
@@ -37,7 +38,7 @@ public class Login extends HttpServlet {
 
 		} else {
 			User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-					.getByEmail(email);
+					.getByAttribute("email", email);
 			if (user == null) {
 				json.put("message", "Email ou mot de passe incorrect.");
 				json.put("success", false);
@@ -67,15 +68,6 @@ public class Login extends HttpServlet {
 			}
 		}
 
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
-
-		try {
-			response.getWriter().print(json);
-			response.getWriter().close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Util.sendJSON(response, json);
 	}
 }
