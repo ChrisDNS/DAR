@@ -31,8 +31,11 @@ public class SigningUp extends HttpServlet {
 		String password = request.getParameter("password");
 		String address = request.getParameter("address");
 		String town = request.getParameter("town");
-		//int[] schools = Stream.of(request.getParameter("schools").split(";")).mapToInt(Integer::parseInt).toArray();
-
+		String[] schoolsStrings = request.getParameterValues("schools[]");
+		int[] schools;
+		if (schoolsStrings.length > 0)
+			schools = Stream.of(schoolsStrings).mapToInt(Integer::parseInt).toArray();
+		
 		JSONObject json = new JSONObject();
 		User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
 				.getByAttribute("email", email);

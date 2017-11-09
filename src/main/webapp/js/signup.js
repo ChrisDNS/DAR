@@ -1,10 +1,9 @@
-var schools = [];
+var schools = [1,2,3];
 var allSchools = [{id:1}];
 
 $(document).ready(function() {
 	$('#sign').click(function(e) {
 		e.preventDefault();
-		alert($('#email').val());
 
 		$.ajax({
 			type : 'POST',
@@ -12,11 +11,11 @@ $(document).ready(function() {
 			data : {
 				firstName : $('#firstName').val(),
 				name : $('#name').val(),
-				email : $('#email').val(),
+				email : $('#mail').val(),
 				password : $('#pwd').val(),
 				address : $('#address').val(),
 				town : $('#town').val(),
-				schools: ""
+				schools: schools
 			}
 
 		}).done(function(data) {
@@ -24,8 +23,8 @@ $(document).ready(function() {
 				var user = JSON.parse(data.user);
 				//login(user.mail);
 			} else {
-				$('#error').html(data.message);
-				$('#error').show();
+				$('div #error').html(data.message);
+				$('div #error').show();
 			}
 
 		}).fail(function() {

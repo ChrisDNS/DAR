@@ -37,9 +37,6 @@
 
 	<div class="signupForm">
 		<h1 class="text-muted">Inscription</h1>
-		<div id="error" style="text-align: center; display: none; color: red;" class="alert alert-error">
-			<a class="close" data-dismiss="alert" href="#">×</a>
-		</div>
 		<form class="form-horizontal">
 			<div class="form-group">
 				<label class="control-label col-sm-5" for="firstName">Prénom:</label>
@@ -56,9 +53,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-5" for="email">Email:</label>
+				<label class="control-label col-sm-5" for="mail">Email:</label>
 				<div class="col-sm-3">
-					<input type="email" class="form-control" id="email"
+					<input type="email" class="form-control" id="mail"
 						placeholder="Entrer votre adresse électronique">
 				</div>
 			</div>
@@ -86,7 +83,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<label class="control-label col-sm-5" for="email">Anciennes
+					<label class="control-label col-sm-5">Anciennes
 						et / ou récente(s) école(s) fréquentée(s):*</label>
 					<div class="col-sm-3" style="text-align: left;">
 						<select id="allSchoolsList">
@@ -110,9 +107,10 @@
 					</div>
 				</div>
 			</div>
+			<div id="error" style="text-align: center; display: none; color: red;" class="alert alert-error"></div>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<button id="sign" type="submit" class="btn btn-success">Inscription</button>
+					<button id="sign" class="btn btn-success">Inscription</button>
 				</div>
 			</div>
 		</form>
