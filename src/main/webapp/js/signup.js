@@ -4,6 +4,7 @@ var allSchools = [{id:1}];
 $(document).ready(function() {
 	$('#sign').click(function(e) {
 		e.preventDefault();
+		alert($('#email').val());
 
 		$.ajax({
 			type : 'POST',
@@ -11,11 +12,11 @@ $(document).ready(function() {
 			data : {
 				firstName : $('#firstName').val(),
 				name : $('#name').val(),
-				mail : $('#mail').val(),
+				email : $('#email').val(),
 				password : $('#pwd').val(),
 				address : $('#address').val(),
 				town : $('#town').val(),
-				schools: schools.join(";")
+				schools: ""
 			}
 
 		}).done(function(data) {

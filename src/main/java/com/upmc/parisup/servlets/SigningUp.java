@@ -27,15 +27,15 @@ public class SigningUp extends HttpServlet {
 			throws ServletException, IOException {
 		String firstName = request.getParameter("firstName");
 		String name = request.getParameter("name");
-		String mail = request.getParameter("mail");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String address = request.getParameter("address");
 		String town = request.getParameter("town");
-		int[] schools = Stream.of(request.getParameter("schools").split(";")).mapToInt(Integer::parseInt).toArray();
+		//int[] schools = Stream.of(request.getParameter("schools").split(";")).mapToInt(Integer::parseInt).toArray();
 
 		JSONObject json = new JSONObject();
 		User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-				.getByLogin(mail);
+				.getByEmail(email);
 		if (user != null) {
 			json.put("message", "Ce mail est déjà enregistré.");
 			json.put("success", false);
@@ -63,7 +63,7 @@ public class SigningUp extends HttpServlet {
 		}
 		
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/json");
+		response.setContentType("application/json");
 
 		try {
 			response.getWriter().print(json);

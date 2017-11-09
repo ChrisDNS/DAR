@@ -6,14 +6,14 @@ $(document).ready(function() {
 			type : 'POST',
 			url : 'login',
 			data : {
-				login : $('#login').val(),
+				email : $('#email').val(),
 				password : $('#password').val()
 			}
 
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
-				login(user.login);
+				login(user);
 			} else {
 				$('#error').html(data.message);
 				$('#error').show();
@@ -25,8 +25,9 @@ $(document).ready(function() {
 	});
 });
 
-function login(mail) {
-	Cookies.set('login', mail);
-	// ajouter autres données dans le cookie si necessaire
+function login(user) {
+	Cookies.set('email', user.email);
+	Cookies.set('firstname', user.firstname);
+	Cookies.set('lastname', user.lastname);
 	location.reload();
 }
