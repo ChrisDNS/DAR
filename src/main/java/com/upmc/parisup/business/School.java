@@ -174,10 +174,13 @@ public class School {
 
 	@Override
 	public String toString() {
+		return ((this.type_d_etablissement.equals("Unité de formation et de recherche")) ? this.universite + " - " : "") + this.nom;
+		/*
 		return "School [id=" + id + ", departement=" + departement + ", code_uai=" + code_uai + ", lien_site_onisep_fr="
 				+ lien_site_onisep_fr + ", statut=" + statut + ", commune=" + commune + ", adresse=" + adresse
 				+ ", longitude_x=" + longitude_x + ", type_d_etablissement=" + type_d_etablissement + ", tutelle="
 				+ tutelle + ", universite=" + universite + ", nom=" + nom + ", cp=" + cp + ", academie=" + academie
 				+ ", sigle=" + sigle + ", latitude_y=" + latitude_y + ", x_y=" + Arrays.toString(x_y) + "]";
+		 */
 	}
 }

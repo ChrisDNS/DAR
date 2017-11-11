@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,8 +102,10 @@
 					<label class="control-label col-sm-5">Anciennes
 						et / ou récente(s) école(s) fréquentée(s):*</label>
 					<div class="col-sm-3" style="text-align: left;">
-						<select id="allSchoolsList">
-							<option value="volvo">Université Paris Diderot 7</option>
+						<select class="fixed-size" id="allSchoolsList" name="school">
+							<c:forEach items="${schools}" var="school">
+							    <option value="${school.id}"><c:out value="${school}" /></option>
+							</c:forEach>
 						</select>
 						<button onclick="addSchool()" type="button" class="btn btn-primary">Ajouter</button>
 						<div>

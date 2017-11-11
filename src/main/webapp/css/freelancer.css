@@ -557,3 +557,7 @@ body#no-top {
   font-size: 1em;
   margin-bottom: 0.5em;
 }
+
+.fixed-size {
+  width: 220px;
+}

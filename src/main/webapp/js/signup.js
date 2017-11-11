@@ -1,4 +1,4 @@
-var schools = [1,2,3];
+var schools = [];
 var allSchools = [{id:1}];
 
 $(document).ready(function() {
@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url : 'signingup',
+			url : 'signup',
 			data : {
 				firstName : $('#firstName').val(),
 				name : $('#name').val(),
