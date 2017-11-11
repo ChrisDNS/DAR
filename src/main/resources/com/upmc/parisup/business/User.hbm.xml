@@ -11,6 +11,8 @@
 		<property name="firstname" column="firstname" type="string" />
 		<property name="lastname" column="lastname" type="string" />
 		<property name="email" column="email" type="string" />
+		<property name="address" column="address" type="string" />
+		<property name="town" column="town" type="string" />
 		<property name="password" column="password" type="binary" />
 		<property name="salt" column="salt" type="binary" />
 		<property name="token" column="token" type="string" />

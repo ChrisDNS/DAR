@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,9 +38,6 @@
 
 	<div class="signupForm">
 		<h1 class="text-muted">Inscription</h1>
-		<div id="error" style="text-align: center; display: none; color: red;" class="alert alert-error">
-			<a class="close" data-dismiss="alert" href="#">×</a>
-		</div>
 		<form class="form-horizontal">
 			<div class="form-group">
 				<label class="control-label col-sm-5" for="firstName">Prénom:</label>
@@ -56,10 +54,17 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-5" for="email">Email:</label>
+				<label class="control-label col-sm-5" for="mail">Email:</label>
 				<div class="col-sm-3">
-					<input type="email" class="form-control" id="email"
+					<input type="email" class="form-control" id="mail"
 						placeholder="Entrer votre adresse électronique">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" for="confmail">Confirmation de l'email:</label>
+				<div class="col-sm-3">
+					<input type="email" class="form-control" id="confmail"
+						placeholder="Confirmer votre adresse électronique">
 				</div>
 			</div>
 			<div class="form-group">
@@ -68,6 +73,14 @@
 				<div class="col-sm-3">
 					<input type="password" class="form-control" id="pwd"
 						placeholder="Entrer votre mot de passe">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" for="confpwd">Confirmation du mot de
+					passe:</label>
+				<div class="col-sm-3">
+					<input type="password" class="form-control" id="confpwd"
+						placeholder="Confirmer votre mot de passe">
 				</div>
 			</div>
 			<div class="form-group">
@@ -86,11 +99,13 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<label class="control-label col-sm-5" for="email">Anciennes
+					<label class="control-label col-sm-5">Anciennes
 						et / ou récente(s) école(s) fréquentée(s):*</label>
 					<div class="col-sm-3" style="text-align: left;">
-						<select id="allSchoolsList">
-							<option value="volvo">Université Paris Diderot 7</option>
+						<select class="fixed-size" id="allSchoolsList" name="school">
+							<c:forEach items="${schools}" var="school">
+							    <option value="${school.id}"><c:out value="${school}" /></option>
+							</c:forEach>
 						</select>
 						<button onclick="addSchool()" type="button" class="btn btn-primary">Ajouter</button>
 						<div>
@@ -110,6 +125,7 @@
 					</div>
 				</div>
 			</div>
+			<div id="error" style="text-align: center; display: none; color: red;" class="alert alert-error"></div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<button id="sign" type="submit" class="btn btn-success">Inscription</button>

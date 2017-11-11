@@ -4,28 +4,30 @@ var allSchools = [{id:1}];
 $(document).ready(function() {
 	$('#sign').click(function(e) {
 		e.preventDefault();
-		alert($('#email').val());
 
 		$.ajax({
 			type : 'POST',
-			url : 'signingup',
+			url : 'signup',
 			data : {
 				firstName : $('#firstName').val(),
 				name : $('#name').val(),
-				email : $('#email').val(),
+				email : $('#mail').val(),
+				confemail: $('#confmail').val(),
 				password : $('#pwd').val(),
+				confpassword : $('#confpwd').val(),
 				address : $('#address').val(),
 				town : $('#town').val(),
-				schools: ""
+				schools: schools
 			}
 
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
-				//login(user.mail);
+				window.location.assign("/");
+				login(user);
 			} else {
-				$('#error').html(data.message);
-				$('#error').show();
+				$('div #error').html(data.message);
+				$('div #error').show();
 			}
 
 		}).fail(function() {

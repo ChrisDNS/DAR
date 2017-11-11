@@ -5,8 +5,7 @@ import java.util.Arrays;
 public class User {
 	private Long id;
 
-	private String firstname, lastname;
-	private String email;
+	private String firstname, lastname, email, address, town;
 	private byte[] password, salt;
 
 	private String token;
@@ -20,6 +19,12 @@ public class User {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
+	}
+	
+	public User(String firstname, String lastname, String email, String address, String town) {
+		this(firstname, lastname, email);
+		this.address = address;
+		this.town = town;
 	}
 
 	public Long getId() {
@@ -69,6 +74,22 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	public String getTown() {
+		return town;
+	}
+
+	public void setTown(String town) {
+		this.town = town;
+	}
 
 	public String getToken() {
 		return token;
@@ -81,7 +102,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
-				+ ", password=" + Arrays.toString(password) + ", salt=" + Arrays.toString(salt) + ", token=" + token
+				+ ", address=" + address + ", town=" + town + ", password=" + Arrays.toString(password) + ", salt=" + Arrays.toString(salt) + ", token=" + token
 				+ "]";
 	}
 }
