@@ -14,6 +14,7 @@ $(document).ready(function() {
 			if (data.success) {
 				var user = JSON.parse(data.user);
 				login(user);
+				window.location.reload();
 			} else {
 				$('#error').html(data.message);
 				$('#error').show();
@@ -29,5 +30,4 @@ function login(user) {
 	Cookies.set('email', user.email);
 	Cookies.set('firstname', user.firstname);
 	Cookies.set('lastname', user.lastname);
-	location.reload();
 }

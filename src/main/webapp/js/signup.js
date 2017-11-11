@@ -12,7 +12,9 @@ $(document).ready(function() {
 				firstName : $('#firstName').val(),
 				name : $('#name').val(),
 				email : $('#mail').val(),
+				confemail: $('#confmail').val(),
 				password : $('#pwd').val(),
+				confpassword : $('#confpwd').val(),
 				address : $('#address').val(),
 				town : $('#town').val(),
 				schools: schools
@@ -21,7 +23,8 @@ $(document).ready(function() {
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
-				//login(user.mail);
+				window.location.assign("/");
+				login(user);
 			} else {
 				$('div #error').html(data.message);
 				$('div #error').show();

@@ -60,11 +60,26 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="control-label col-sm-5" for="confmail">Confirmation de l'email:</label>
+				<div class="col-sm-3">
+					<input type="email" class="form-control" id="confmail"
+						placeholder="Confirmer votre adresse électronique">
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="control-label col-sm-5" for="pwd">Mot de
 					passe:</label>
 				<div class="col-sm-3">
 					<input type="password" class="form-control" id="pwd"
 						placeholder="Entrer votre mot de passe">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-5" for="confpwd">Confirmation du mot de
+					passe:</label>
+				<div class="col-sm-3">
+					<input type="password" class="form-control" id="confpwd"
+						placeholder="Confirmer votre mot de passe">
 				</div>
 			</div>
 			<div class="form-group">
@@ -110,7 +125,7 @@
 			<div id="error" style="text-align: center; display: none; color: red;" class="alert alert-error"></div>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<button id="sign" class="btn btn-success">Inscription</button>
+					<button id="sign" type="submit" class="btn btn-success">Inscription</button>
 				</div>
 			</div>
 		</form>
