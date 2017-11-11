@@ -10,9 +10,7 @@ public interface DAO<T> {
 
 	public void update(T obj);
 
-	public void delete(String type, String id);
-
 	public List<T> getAll();
-
-	public void deleteAll(String type);
+	
+	public List<T> pagination(int first, int total);
 }

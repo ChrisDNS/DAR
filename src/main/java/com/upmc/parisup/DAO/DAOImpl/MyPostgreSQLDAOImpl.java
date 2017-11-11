@@ -2,6 +2,7 @@ package com.upmc.parisup.DAO.DAOImpl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 import com.upmc.parisup.DAO.DAO;
@@ -35,10 +36,6 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 		session.getTransaction().commit();
 	}
 
-	public void delete(String type, String id) {
-
-	}
-
 	public void update(T obj) {
 		Session session = sql.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -56,7 +53,18 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 		return l;
 	}
 
-	public void deleteAll(String type) {
+	@SuppressWarnings("unchecked")
+	public List<T> pagination(int first, int total) {
+		Session session = sql.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Criteria query = session.createCriteria(typeT);
 
+		query.setFirstResult(first);
+		query.setMaxResults(total);
+
+		List<T> list = query.list();
+		session.getTransaction().commit();
+
+		return list;
 	}
 }
