@@ -24,7 +24,6 @@ import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.School;
 import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
-import com.upmc.parisup.services.AuthenticationService;
 
 public class Account extends HttpServlet {
 	private static final long serialVersionUID = -5677200504573287154L;
@@ -41,19 +40,8 @@ public class Account extends HttpServlet {
 		request.setAttribute("schools", schools);
 		
 		// User infos
-		Cookie[] cookies = request.getCookies();
-		User user = null;
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("email")) {
-				     String email = cookie.getValue();
-				     user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-							.getByAttribute("email", email);
-				     request.setAttribute("user", user);
-				     break;
-				}
-			}
-		}
+		User user = Account.getCurrentUser(request);
+		request.setAttribute("user", user);
 		
 		// Schools selected
 		if (user != null) {
@@ -67,72 +55,38 @@ public class Account extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String firstName = request.getParameter("firstName");
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String confirmationEmail = request.getParameter("confemail");
-		String password = request.getParameter("password");
-		String confirmationPassword = request.getParameter("confpassword");
-		String address = request.getParameter("address");
-		String town = request.getParameter("town");
-		String[] schoolsStrings = request.getParameterValues("schools[]");
-		int[] schools = {};
-		if (schoolsStrings != null)
-			schools = Stream.of(schoolsStrings).mapToInt(Integer::parseInt).toArray();
 		
+		ArrayList<String> errors = new ArrayList<String>();
 		JSONObject json = new JSONObject();
-		User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-				.getByAttribute("email", email);
-		ArrayList<String> messages = new ArrayList<String>();
-
-		if (user != null)
-			messages.add("Ce mail est déjà enregistré.");
-		if (!email.equals(confirmationEmail))
-			messages.add("Les deux emails sont différents.");
-		if (!password.equals(confirmationPassword))
-			messages.add("Les deux mots de passes sont différents.");
-		if (firstName.isEmpty())
-			messages.add("Le champ prénom ne peut pas être vide.");
-		if (name.isEmpty())
-			messages.add("Le champ nom ne peut pas être vide.");
-		if (email.isEmpty())
-			messages.add("Le champ email ne peut pas être vide.");
-		if (password.isEmpty())
-			messages.add("Le champ mot de passe ne peut pas être vide.");
+		User currentUser = Account.getCurrentUser(request);
+		User user = SignUp.getUser(request, errors, currentUser.getEmail());
 		
-		// If no errors, then sign up
-		if (messages.isEmpty()) {
-			/*
-			user = new User(firstName, name, email, address, town);
-			try {
-				user.setSalt(new AuthenticationService().generateSalt());
-				user.setPassword(new AuthenticationService().getEncryptedPassword(password, user.getSalt()));
-			} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-				e.printStackTrace();
-			}
-			// Add the user to DB
-			((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(user);
+		// If no errors, then modify
+		if (user != null) {
+			String password = request.getParameter("password");
 			
-			// Reload the user juste to get the correct ID
-			user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-					.getByAttribute("email", email);
+			// Update user informations in DB
+			currentUser.update(user, !password.isEmpty());
+			((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).update(currentUser);
 			
-			// Add the selected schools to DB
-			for (int i = 0; i < schools.length; i++) {
-				long idSchool = schools[i];
-				SelectedSchool selectedSchool = new SelectedSchool(idSchool, user.getId());
-				((SelectedSchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSelectedSchoolDAO()).add(selectedSchool);
+			// Delete the previous selected schools in DB
+			List<SelectedSchool> previousSchools = ((SelectedSchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSelectedSchoolDAO())
+					.getByUserID(currentUser.getId());
+			for (int i = 0; i < previousSchools.size(); i++) {
+				((SelectedSchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY)
+						.getSelectedSchoolDAO()).delete(previousSchools.get(i));
 			}
+			
+			// Add the new selected schools
+			SignUp.addNewSelectedSchools(request, currentUser.getId());
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String userToJson = mapper.writeValueAsString(user);
-
 			json.put("user", userToJson);
-			*/
 		}
 		
-		json.put("success", messages.isEmpty());
-		json.put("message", String.join("\n", messages));
+		json.put("success", user != null);
+		json.put("message", String.join("\n", errors));
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 
@@ -143,5 +97,21 @@ public class Account extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static User getCurrentUser(HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("email")) {
+				     String email = cookie.getValue();
+				     return ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
+							.getByAttribute("email", email);
+				}
+			}
+		}
+		
+		return null;
 	}
 }

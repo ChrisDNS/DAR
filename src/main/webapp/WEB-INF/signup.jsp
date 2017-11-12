@@ -98,23 +98,15 @@
 					de l'email:</label>
 				<div class="col-sm-3">
 					<input type="email" class="form-control" id="confmail"
-						placeholder="Confirmer votre adresse électronique">
+						placeholder="Confirmer votre adresse électronique" value="${email}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-5" for="pwd">Mot de
 					passe:</label>
 				<div class="col-sm-3">
-					<c:choose>
-					    <c:when test="${user==null}">
-					        <c:set value="" var="password"></c:set>
-					    </c:when>    
-					    <c:otherwise>
-					        <c:set value="${user.password}" var="password"></c:set>
-					    </c:otherwise>
-					</c:choose>
 					<input type="password" class="form-control" id="pwd"
-						placeholder="Entrer votre mot de passe" value="${password}">
+						placeholder="Entrer votre mot de passe">
 				</div>
 			</div>
 			<div class="form-group">

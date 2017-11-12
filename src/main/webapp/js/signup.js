@@ -32,6 +32,20 @@ function updateSchools() {
 	ul.html(html);
 }
 
+function getDatas() {
+	return {
+		firstName : $('#firstName').val(),
+		name : $('#name').val(),
+		email : $('#mail').val(),
+		confemail: $('#confmail').val(),
+		password : $('#pwd').val(),
+		confpassword : $('#confpwd').val(),
+		address : $('#address').val(),
+		town : $('#town').val(),
+		schools: schools
+	};
+}
+
 $(document).ready(function() {
 	updateSchools();
 
@@ -41,23 +55,35 @@ $(document).ready(function() {
 		$.ajax({
 			type : 'POST',
 			url : 'signup',
-			data : {
-				firstName : $('#firstName').val(),
-				name : $('#name').val(),
-				email : $('#mail').val(),
-				confemail: $('#confmail').val(),
-				password : $('#pwd').val(),
-				confpassword : $('#confpwd').val(),
-				address : $('#address').val(),
-				town : $('#town').val(),
-				schools: schools
-			}
-
+			data : getDatas()
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
 				window.location.assign("/");
 				login(user);
+			} else {
+				$('div #error').html(data.message);
+				$('div #error').show();
+			}
+
+		}).fail(function() {
+			alert("Server not responding.");
+		});
+	});
+
+	$('#modify').click(function(e) {
+		e.preventDefault();
+
+		$.ajax({
+			type : 'POST',
+			url : 'account',
+			data : getDatas()
+		}).done(function(data) {
+			if (data.success) {
+				var user = JSON.parse(data.user);
+				login(user);
+				$('div #error').hide();
+				alert("Vos informations ont été enregistrées avec succès.")
 			} else {
 				$('div #error').html(data.message);
 				$('div #error').show();
