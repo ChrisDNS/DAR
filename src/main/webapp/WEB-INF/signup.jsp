@@ -112,10 +112,7 @@
 							class="btn btn-primary">Ajouter</button>
 						<div>
 							<p id="schoolsp">Liste complète :</p>
-							<ul class="list-group">
-								<li class="list-group-item list-group-item-warning">Aucune
-									école</li>
-							</ul>
+							<ul class="list-group" id="schoolsList"></ul>
 						</div>
 					</div>
 				</div>
