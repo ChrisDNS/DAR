@@ -1,5 +1,3 @@
-var schools = [];
-
 function addSchool() {
 
 	// Stock the new ID if not already in

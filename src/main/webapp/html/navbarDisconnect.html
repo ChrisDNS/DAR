@@ -1,13 +1,14 @@
 <!-- Navigation -->
-<head>
-<meta charset="UTF-8">
-</head>
-
 <li class="nav-item dropdown">
 	<a id="login" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><b></b>
 		<span class="caret"></span>
 	</a>
 	<ul id="login-dp" class="dropdown-menu">
+		<li>
+			<form action="/account">
+				<button class="btn btn-primary btn-block">Mon compte</button>
+			</form>
+		</li>
 		<li>
 			<div class="row">
 				<div class="col-md-12">
@@ -32,7 +33,7 @@
 		else {
 			var firstname = Cookies.get('firstname');
 			var lastname = Cookies.get('lastname').charAt(0);
-			$('#login').text(firstname + " " + lastname);
+			$('#login b').text(firstname + " " + lastname);
 		}
 	})();
 

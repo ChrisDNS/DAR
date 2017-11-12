@@ -15,27 +15,27 @@ public class SelectedSchool {
 		this.idUser = idUser;
 	}
 	
-	Long getId() {
+	public Long getId() {
 		return this.id;
 	}
 	
-	void setId(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
-	Long getIdSchool() {
+	public Long getIdSchool() {
 		return this.idSchool;
 	}
 	
-	void setIdSchool(Long id) {
+	public void setIdSchool(Long id) {
 		this.idSchool = id;
 	}
 	
-	Long getIdUser() {
+	public Long getIdUser() {
 		return this.idUser;
 	}
 	
-	void setIdUser(Long id) {
+	public void setIdUser(Long id) {
 		this.idUser = id;
 	}
 }

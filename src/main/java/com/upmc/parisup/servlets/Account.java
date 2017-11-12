@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +26,10 @@ import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
 import com.upmc.parisup.services.AuthenticationService;
 
-public class SignUp extends HttpServlet {
+public class Account extends HttpServlet {
 	private static final long serialVersionUID = -5677200504573287154L;
 
-	public SignUp() {
+	public Account() {
 	}
 
 	@Override
@@ -38,8 +39,29 @@ public class SignUp extends HttpServlet {
 		// Add all schools into combobox
 		List<School> schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).getAll();
 		request.setAttribute("schools", schools);
-		request.setAttribute("user", null);
-		request.setAttribute("selectedSchools", null);
+		
+		// User infos
+		Cookie[] cookies = request.getCookies();
+		User user = null;
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("email")) {
+				     String email = cookie.getValue();
+				     user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
+							.getByAttribute("email", email);
+				     request.setAttribute("user", user);
+				     break;
+				}
+			}
+		}
+		
+		// Schools selected
+		if (user != null) {
+			List<SelectedSchool> selectedSchools = ((SelectedSchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSelectedSchoolDAO())
+				.getByUserID(user.getId());
+			request.setAttribute("selectedSchools", selectedSchools);
+		}
+		
 		request.getRequestDispatcher("WEB-INF/signup.jsp").forward(request, response);
 	}
 	
@@ -80,6 +102,7 @@ public class SignUp extends HttpServlet {
 		
 		// If no errors, then sign up
 		if (messages.isEmpty()) {
+			/*
 			user = new User(firstName, name, email, address, town);
 			try {
 				user.setSalt(new AuthenticationService().generateSalt());
@@ -105,6 +128,7 @@ public class SignUp extends HttpServlet {
 			String userToJson = mapper.writeValueAsString(user);
 
 			json.put("user", userToJson);
+			*/
 		}
 		
 		json.put("success", messages.isEmpty());
