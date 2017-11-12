@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,199 +37,99 @@
 <body id="page-top" class="index">
 
 	<div id="navbar"></div>
-
-	<!-- Header -->
-	<header>
-		<div class="overlay">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="intro-text">
-							<span class="name">PariSup'</span> <span class="skills">Les
-								études supérieures en un clic !</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<div class="container">
 	<div class="row">
 
-		<section class="content">
-			<h1>Table Filter</h1>
-			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<div class="pull-right">
-							<div class="btn-group">
-								<button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
-								<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
-								<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
-								<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+<section class="content">
+<div class="col-md-8 col-md-offset-2">
+<div class="panel panel-default">
+<div class="panel-body">
+
+<div class="pull-right">
+	<div class="btn-group">
+	<button type="button" class="btn btn-success btn-filter" data-target="pagado">Par note</button>
+	<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
+	<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
+	<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+</div>
+</div>
+
+<div class="table-container">
+<table class="table table-filter">
+		<tbody>
+		
+	
+			<c:forEach var="employee" items="${employeeList}">
+				<tr data-status="pagado" >
+					<td>
+							<div class="ckbox">
+									<input type="checkbox" id="checkbox1">
+									<label for="checkbox1"></label>
 							</div>
-						</div>
-						<div class="table-container">
-							<table class="table table-filter">
-								<tbody>
-									<tr data-status="pagado">
-										<td>
-											<div class="ckbox">
-												<input type="checkbox" id="checkbox1">
-												<label for="checkbox1"></label>
-											</div>
-										</td>
-										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
+					</td>
+					<td>
+						<a href="javascript:;" class="star">
+							<i class="glyphicon glyphicon-star"></i>
 											</a>
 										</td>
 										<td>
 											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
+											
 												<div class="media-body">
 													<span class="media-meta pull-right">Febrero 13, 2016</span>
 													<h4 class="title">
-														Lorem Impsum
+														${employee.nom}
 														<span class="pull-right pagado">(Pagado)</span>
 													</h4>
-													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+													<p class="summary">${employee.commune}</p>
+													<p class="summary">${employee.type_d_etablissement}</p>
+													
 												</div>
 											</div>
-										</td>
-									</tr>
-									<tr data-status="pendiente">
-										<td>
-											<div class="ckbox">
-												<input type="checkbox" id="checkbox3">
-												<label for="checkbox3"></label>
-											</div>
-										</td>
-										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
-											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
-												<div class="media-body">
-													<span class="media-meta pull-right">Febrero 13, 2016</span>
-													<h4 class="title">
-														Lorem Impsum
-														<span class="pull-right pendiente">(Pendiente)</span>
-													</h4>
-													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr data-status="cancelado">
-										<td>
-											<div class="ckbox">
-												<input type="checkbox" id="checkbox2">
-												<label for="checkbox2"></label>
-											</div>
-										</td>
-										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
-											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
-												<div class="media-body">
-													<span class="media-meta pull-right">Febrero 13, 2016</span>
-													<h4 class="title">
-														Lorem Impsum
-														<span class="pull-right cancelado">(Cancelado)</span>
-													</h4>
-													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr data-status="pagado" class="selected">
-										<td>
-											<div class="ckbox">
-												<input type="checkbox" id="checkbox4" checked>
-												<label for="checkbox4"></label>
-											</div>
-										</td>
-										<td>
-											<a href="javascript:;" class="star star-checked">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
-											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
-												<div class="media-body">
-													<span class="media-meta pull-right">Febrero 13, 2016</span>
-													<h4 class="title">
-														Lorem Impsum
-														<span class="pull-right pagado">(Pagado)</span>
-													</h4>
-													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr data-status="pendiente">
-										<td>
-											<div class="ckbox">
-												<input type="checkbox" id="checkbox5">
-												<label for="checkbox5"></label>
-											</div>
-										</td>
-										<td>
-											<a href="javascript:;" class="star">
-												<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
-											<div class="media">
-												<a href="#" class="pull-left">
-													<img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-												</a>
-												<div class="media-body">
-													<span class="media-meta pull-right">Febrero 13, 2016</span>
-													<h4 class="title">
-														Lorem Impsum
-														<span class="pull-right pendiente">(Pendiente)</span>
-													</h4>
-													<p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-												</div>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="content-footer">
-					<p>
-						Page © - 2016 <br>
-						Powered By <a href="https://www.facebook.com/tavo.qiqe.lucero" target="_blank">TavoQiqe</a>
-					</p>
-				</div>
-			</div>
-		</section>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	</div>
+	
+	<%--For displaying Previous link except for the 1st page --%>
+	<c:if test="${currentPage != 1}">
+		<td><a href="search?page=${currentPage - 1}">Previous</a></td>
+	</c:if>
+	
+	<%--For displaying Page numbers. 
+	The when condition does not display a link for the current page--%>
+	<div class="table-container">
+	<table class="table table-filter" >
+		<tbody>
+			<tr>
+				<c:forEach begin="1" end="${noOfPages}" var="i">
+					<c:choose>
+						<c:when test="${currentPage eq i}">
+							<td>${i}</td>
+						</c:when>
+						<c:otherwise>
+							<td><a href="search?page=${i}">${i}</a></td>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	
+	<%--For displaying Next link --%>
+	<c:if test="${currentPage lt noOfPages}">
+		<td><a href="search?page=${currentPage + 1}">Next</a></td>
+	</c:if>
+	</div>
+	</div>
+	</div>
+	</section>
 		
 	</div>
 </div>
-
+	
 	<!-- Footer -->
 	<footer class="text-center">
 		<div class="footer-above">

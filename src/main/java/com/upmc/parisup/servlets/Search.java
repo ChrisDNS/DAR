@@ -20,9 +20,31 @@ public class Search extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int page = 1;
+		int recordsPerPage = 20;
+		
+		/*recuperer le num de la page demandée*/
+		if(request.getParameter("page") != null)
+			page = Integer.parseInt(request.getParameter("page"));
+		
+		List<School> schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).
+				pagination((page-1)*recordsPerPage, recordsPerPage);
+		
+		//nombre total de page 
+		
+		int noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).getAll().size();
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		
+		
+		//envoyer à la view
+		request.setAttribute("employeeList", schools);
+		request.setAttribute("noOfPages", noOfPages);
+		request.setAttribute("currentPage", page);
+		
+		
 		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 		System.out.println("ok");
-		List<School> schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).getAll();
-		
+			
+
 	}
 }
