@@ -14,7 +14,7 @@ $(document).ready(function() {
 			if (data.success) {
 				var user = JSON.parse(data.user);
 				login(user);
-				window.location.reload();
+				location.href = "/";
 			} else {
 				$('#error').html(data.message);
 				$('#error').show();

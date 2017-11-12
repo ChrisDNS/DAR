@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -50,6 +50,8 @@
 			</div>
 		</form>
 	</div>
+	
+	<div id="footer"></div>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/popper/popper.min.js"></script>
@@ -57,6 +59,7 @@
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/showNavbar.js"></script>
+<!-- 	<script src="js/showFooter.js"></script> -->
 	<script>
 		$(document).ready(function() {
 			$('#info').hide();

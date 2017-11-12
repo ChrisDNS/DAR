@@ -16,14 +16,12 @@ import com.upmc.parisup.business.School;
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 8564336809015917293L;
 	
-
-	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int page = 1;
 		int recordsPerPage = 20;
 		
-		/*recuperer le num de la page demandée*/
+		/*recuperer le num de la page demand��e*/
 		if(request.getParameter("page") != null)
 			page = Integer.parseInt(request.getParameter("page"));
 		
@@ -36,15 +34,12 @@ public class Search extends HttpServlet {
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 		
 		
-		//envoyer à la view
+		//envoyer �� la view
 		request.setAttribute("employeeList", schools);
 		request.setAttribute("noOfPages", noOfPages);
 		request.setAttribute("currentPage", page);
 		
 		
 		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
-		System.out.println("ok");
-			
-
 	}
 }

@@ -39,8 +39,6 @@ public class PasswordReset extends HttpServlet {
 			} else {
 				JSONObject json = new JSONObject();
 				json.put("success", false);
-				// json.put("url",
-				// request.getRequestURL().toString().replaceAll(request.getPathInfo(), ""));
 			}
 		}
 	}

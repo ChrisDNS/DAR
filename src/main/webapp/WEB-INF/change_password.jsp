@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -42,7 +43,7 @@
 				<label class="control-label col-sm-5" for="mail"></label>
 				<div class="col-sm-4 col-md-offset-4">
 					<input id="mail" type="email" class="form-control"
-						placeholder="<%=request.getAttribute("email")%>" readonly>
+						placeholder="<c:out value="${email}" />" readonly>
 				</div>
 			</div>
 			<div class="form-group">
@@ -85,35 +86,42 @@
 	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/vendor/js/js.cookie.js"></script>
 	<script>
-		$(document).ready(function() {
-			$('#error').hide();
-			
-			$('#change').click(function(e) {
-				e.preventDefault();
+		$(document).ready(
+				function() {
+					$('#error').hide();
 
-				$.ajax({
-					type : 'POST',
-					url : 'password_reset/' + window.location.pathname.split("/")[2],
-					data : {
-						pwd : $('#pwd').val(),
-						pwdConfirm : $('#pwdConfirm').val(),
-						email : $('#mail').attr('placeholder'),
-						value : $('#change').attr('id')
-					}
+					$('#change').click(
+							function(e) {
+								e.preventDefault();
 
-				}).done(function(data) {
-					if(data.success)
-						location.href = "/";
-					else {
-						console.log("caca");
-						$("#error").show();
-					}
-					
-				}).fail(function() {
-					alert("Le serveur ne répond pas.");
+								$.ajax(
+										{
+											type : 'POST',
+											url : 'password_reset/'
+													+ window.location.pathname
+															.split("/")[2],
+											data : {
+												pwd : $('#pwd').val(),
+												pwdConfirm : $('#pwdConfirm')
+														.val(),
+												email : $('#mail').attr(
+														'placeholder'),
+												value : $('#change').attr('id')
+											}
+
+										}).done(function(data) {
+									if (data.success)
+										location.href = "/";
+									else {
+										console.log("caca");
+										$("#error").show();
+									}
+
+								}).fail(function() {
+									alert("Le serveur ne répond pas.");
+								});
+							});
 				});
-			});
-		});
 	</script>
 </body>
 </html>

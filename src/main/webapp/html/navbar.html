@@ -14,8 +14,8 @@
 				<span class="sr-only">Toggle navigation</span> Menu <i
 					class="fa fa-bars"></i>
 			</button>
-			<a class="navbar-brand" href="#">Rechercher une école ou
-				une université</a>
+			<a class="navbar-brand" href="#">Rechercher une école ou une
+				université</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,18 +33,19 @@
 	<!-- /.container-fluid -->
 </nav>
 
+<script src="js/login.js"></script>
 <script type="text/javascript">
 	(function() {
 		var login = Cookies.get('email');
 		if (login == null || login == "") {
 			$.get("html/navbarConnect.html", function(data) {
-			    $("#connectDisconnect").replaceWith(data);
+				$("#connectDisconnect").replaceWith(data);
+			});
+			
+		} else {
+			$.get("html/navbarDisconnect.html", function(data) {
+				$("#connectDisconnect").replaceWith(data);
 			});
 		}
-		else {
-			$.get("html/navbarDisconnect.html", function(data) {
-			    $("#connectDisconnect").replaceWith(data);
-			});
-		}		
 	})();
 </script>

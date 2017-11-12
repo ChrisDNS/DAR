@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +61,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-5" for="confmail">Confirmation de l'email:</label>
+				<label class="control-label col-sm-5" for="confmail">Confirmation
+					de l'email:</label>
 				<div class="col-sm-3">
 					<input type="email" class="form-control" id="confmail"
 						placeholder="Confirmer votre adresse électronique">
@@ -76,8 +77,8 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-5" for="confpwd">Confirmation du mot de
-					passe:</label>
+				<label class="control-label col-sm-5" for="confpwd">Confirmation
+					du mot de passe:</label>
 				<div class="col-sm-3">
 					<input type="password" class="form-control" id="confpwd"
 						placeholder="Confirmer votre mot de passe">
@@ -99,25 +100,29 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-12">
-					<label class="control-label col-sm-5">Anciennes
-						et / ou récente(s) école(s) fréquentée(s):*</label>
+					<label class="control-label col-sm-5">Anciennes et / ou
+						récente(s) école(s) fréquentée(s):*</label>
 					<div class="col-sm-3" style="text-align: left;">
 						<select class="fixed-size" id="allSchoolsList" name="school">
 							<c:forEach items="${schools}" var="school">
-							    <option value="${school.id}"><c:out value="${school}" /></option>
+								<option value="${school.id}"><c:out value="${school}" /></option>
 							</c:forEach>
 						</select>
-						<button onclick="addSchool()" type="button" class="btn btn-primary">Ajouter</button>
+						<button onclick="addSchool()" type="button"
+							class="btn btn-primary">Ajouter</button>
 						<div>
 							<p id="schoolsp">Liste complète :</p>
 							<ul class="list-group">
-								<li class="list-group-item list-group-item-warning">Aucune école</li>
-							</ul> 
+								<li class="list-group-item list-group-item-warning">Aucune
+									école</li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-			<p class="text-warning signupInfos">Les champs * sont optionnels mais serviront à perfectionner vos recherches et/ou relations avec les autres étudiants.</p>
+			<p class="text-warning signupInfos">Les champs * sont optionnels
+				mais serviront à perfectionner vos recherches et/ou relations avec
+				les autres étudiants.</p>
 			<div class="form-group">
 				<div class="col-sm-11">
 					<div class="checkbox">
@@ -125,7 +130,9 @@
 					</div>
 				</div>
 			</div>
-			<div id="error" style="text-align: center; display: none; color: red;" class="alert alert-error"></div>
+			<div id="error"
+				style="text-align: center; display: none; color: red;"
+				class="alert alert-error"></div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<button id="sign" type="submit" class="btn btn-success">Inscription</button>
@@ -134,24 +141,14 @@
 		</form>
 	</div>
 
+	<div id="footer"></div>
 
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; 2017
-				Christopher Dionisio, Marie Laporte, Belynda Hamaz</p>
-		</div>
-		<!-- /.container -->
-	</footer>
-
-	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/popper/popper.min.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/showNavbar.js"></script>
+	<script src="js/showFooter.js"></script>
 	<script src="js/signup.js"></script>
 </body>
 </html>

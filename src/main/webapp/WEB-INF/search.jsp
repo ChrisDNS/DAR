@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -39,134 +39,99 @@
 	<div id="navbar"></div>
 	<div class="row">
 
-<section class="content">
-<div class="col-md-8 col-md-offset-2">
-<div class="panel panel-default">
-<div class="panel-body">
+		<section class="content">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="panel panel-default">
+					<div class="panel-body">
 
-<div class="pull-right">
-	<div class="btn-group">
-	<button type="button" class="btn btn-success btn-filter" data-target="pagado">Par note</button>
-	<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
-	<button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
-	<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
-</div>
-</div>
-
-<div class="table-container">
-<table class="table table-filter">
-		<tbody>
-		
-	
-			<c:forEach var="employee" items="${employeeList}">
-				<tr data-status="pagado" >
-					<td>
-							<div class="ckbox">
-									<input type="checkbox" id="checkbox1">
-									<label for="checkbox1"></label>
+						<div class="pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-success btn-filter"
+									data-target="pagado">Par note</button>
+								<button type="button" class="btn btn-warning btn-filter"
+									data-target="pendiente">Pendiente</button>
+								<button type="button" class="btn btn-danger btn-filter"
+									data-target="cancelado">Cancelado</button>
+								<button type="button" class="btn btn-default btn-filter"
+									data-target="all">Todos</button>
 							</div>
-					</td>
-					<td>
-						<a href="javascript:;" class="star">
-							<i class="glyphicon glyphicon-star"></i>
-											</a>
-										</td>
-										<td>
-											<div class="media">
-											
-												<div class="media-body">
-													<span class="media-meta pull-right">Febrero 13, 2016</span>
-													<h4 class="title">
-														${employee.nom}
-														<span class="pull-right pagado">(Pagado)</span>
-													</h4>
-													<p class="summary">${employee.commune}</p>
-													<p class="summary">${employee.type_d_etablissement}</p>
-													
+						</div>
+
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+
+
+									<c:forEach var="employee" items="${employeeList}">
+										<tr data-status="pagado">
+											<td>
+												<div class="ckbox">
+													<input type="checkbox" id="checkbox1"> <label
+														for="checkbox1"></label>
 												</div>
-											</div>
-					</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	</div>
-	
-	<%--For displaying Previous link except for the 1st page --%>
-	<c:if test="${currentPage != 1}">
-		<td><a href="search?page=${currentPage - 1}">Previous</a></td>
-	</c:if>
-	
-	<%--For displaying Page numbers. 
+											</td>
+											<td><a href="javascript:;" class="star"> <i
+													class="glyphicon glyphicon-star"></i>
+											</a></td>
+											<td>
+												<div class="media">
+
+													<div class="media-body">
+														<span class="media-meta pull-right">Febrero 13,
+															2016</span>
+														<h4 class="title">
+															${employee.nom} <span class="pull-right pagado">(Pagado)</span>
+														</h4>
+														<p class="summary">${employee.commune}</p>
+														<p class="summary">${employee.type_d_etablissement}</p>
+
+													</div>
+												</div>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+
+						<%--For displaying Previous link except for the 1st page --%>
+						<c:if test="${currentPage != 1}">
+							<td><a href="search?page=${currentPage - 1}">Previous</a></td>
+						</c:if>
+
+						<%--For displaying Page numbers. 
 	The when condition does not display a link for the current page--%>
-	<div class="table-container">
-	<table class="table table-filter" >
-		<tbody>
-			<tr>
-				<c:forEach begin="1" end="${noOfPages}" var="i">
-					<c:choose>
-						<c:when test="${currentPage eq i}">
-							<td>${i}</td>
-						</c:when>
-						<c:otherwise>
-							<td><a href="search?page=${i}">${i}</a></td>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</tr>
-		</tbody>
-	</table>
-	</div>
-	
-	<%--For displaying Next link --%>
-	<c:if test="${currentPage lt noOfPages}">
-		<td><a href="search?page=${currentPage + 1}">Next</a></td>
-	</c:if>
-	</div>
-	</div>
-	</div>
-	</section>
-		
-	</div>
-</div>
-	
-	<!-- Footer -->
-	<footer class="text-center">
-		<div class="footer-above">
-			<div class="container">
-				<div class="row">
-					<div class="footer-col col-md-6">
-						<h3>Team</h3>
-						<p>Marie laporte</p>
-						<p>Christopher Dionisio</p>
-						<p>Belynda Hamaz</p>
-					</div>
-					<div class="footer-col col-md-6">
-						<h3>Réseaux sociaux</h3>
-						<ul class="list-inline">
-							<li><a href="#" class="btn-social btn-outline"><i
-									class="fa fa-fw fa-facebook"></i></a></li>
-							<li><a href="#" class="btn-social btn-outline"><i
-									class="fa fa-fw fa-google-plus"></i></a></li>
-							<li><a href="#" class="btn-social btn-outline"><i
-									class="fa fa-fw fa-twitter"></i></a></li>
-							<li><a href="#" class="btn-social btn-outline"><i
-									class="fa fa-fw fa-linkedin"></i></a></li>
-							<li><a href="#" class="btn-social btn-outline"><i
-									class="fa fa-fw fa-dribbble"></i></a></li>
-						</ul>
+						<div class="table-container">
+							<table class="table table-filter">
+								<tbody>
+									<tr>
+										<c:forEach begin="1" end="${noOfPages}" var="i">
+											<c:choose>
+												<c:when test="${currentPage eq i}">
+													<td>${i}</td>
+												</c:when>
+												<c:otherwise>
+													<td><a href="search?page=${i}">${i}</a></td>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<%--For displaying Next link --%>
+						<c:if test="${currentPage lt noOfPages}">
+							<td><a href="search?page=${currentPage + 1}">Next</a></td>
+						</c:if>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="footer-below">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">Copyright &copy; PariSup' 2017</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+		</section>
+
+	</div>
+
+	<div id="footer"></div>
 
 	<!-- jQuery -->
 	<script src="vendor/jquery/jquery.min.js"></script>
@@ -177,7 +142,7 @@
 	<script src="vendor/popper/popper.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/showNavbar.js"></script>
-	<script src="js/login.js"></script>
+	<script src="js/showFooter.js"></script>
 	<script src="js/search.js"></script>
 </body>
 
