@@ -46,14 +46,27 @@
 
 						<div class="pull-right">
 							<div class="btn-group">
+								<!-- 
 								<button type="button" class="btn btn-success btn-filter"
 									data-target="pagado">Par note</button>
+									
+									
 								<button type="button" class="btn btn-warning btn-filter"
 									data-target="pendiente">Pendiente</button>
 								<button type="button" class="btn btn-danger btn-filter"
 									data-target="cancelado">Cancelado</button>
 								<button type="button" class="btn btn-default btn-filter"
 									data-target="all">Todos</button>
+									-->
+									
+									<form action="${pageContext.request.contextPath}/search" method="post">
+  									 	 <input type="submit" name="button1" value="Button 1"class="btn btn-success btn-filter"
+									data-target="pagado" />
+    									 <input type="submit" name="button2" value="Button 2" class="btn btn-danger btn-filter"
+									data-target="cancelado" />
+   										 <input type="submit" name="button3" value="Button 3" class="btn btn-default btn-filter"
+									data-target="all" />
+									</form>
 							</div>
 						</div>
 
@@ -62,7 +75,7 @@
 								<tbody>
 
 
-									<c:forEach var="employee" items="${employeeList}">
+									<c:forEach var="school" items="${schoolList}">
 										<tr data-status="pagado">
 											<td>
 												<div class="ckbox">
@@ -80,10 +93,10 @@
 														<span class="media-meta pull-right">Febrero 13,
 															2016</span>
 														<h4 class="title">
-															${employee.nom} <span class="pull-right pagado">(Pagado)</span>
+															${school.nom} <span class="pull-right pagado">(Pagado)</span>
 														</h4>
-														<p class="summary">${employee.commune}</p>
-														<p class="summary">${employee.type_d_etablissement}</p>
+														<p class="summary">${school.commune}</p>
+														<p class="summary">${school.type_d_etablissement}</p>
 
 													</div>
 												</div>

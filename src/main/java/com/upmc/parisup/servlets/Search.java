@@ -21,7 +21,8 @@ public class Search extends HttpServlet {
 		int page = 1;
 		int recordsPerPage = 20;
 		
-		/*recuperer le num de la page demand��e*/
+		/*recuperer le num de la page demandee*/
+		
 		if(request.getParameter("page") != null)
 			page = Integer.parseInt(request.getParameter("page"));
 		
@@ -34,12 +35,40 @@ public class Search extends HttpServlet {
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 		
 		
-		//envoyer �� la view
-		request.setAttribute("employeeList", schools);
+		//envoyer a la view
+		request.setAttribute("schoolList", schools);
 		request.setAttribute("noOfPages", noOfPages);
 		request.setAttribute("currentPage", page);
 		
 		
 		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		int page = 1;
+		int recordsPerPage = 20;
+		
+		/*recuperer le num de la page demandee*/
+		
+		if(request.getParameter("page") != null)
+			page = Integer.parseInt(request.getParameter("page"));
+		
+		List<School> schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).
+				pagination((page-1)*recordsPerPage, recordsPerPage);
+		
+		//nombre total de page 
+		
+		int noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).getAll().size();
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		//envoyer a la view
+		request.setAttribute("schoolList", schools);
+		request.setAttribute("noOfPages", noOfPages);
+		request.setAttribute("currentPage", page);
+		System.out.println("post");
+		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
+					
+
+	}
+	
 }
