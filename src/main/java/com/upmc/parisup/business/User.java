@@ -1,5 +1,6 @@
 package com.upmc.parisup.business;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class User {
@@ -104,5 +105,18 @@ public class User {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
 				+ ", address=" + address + ", town=" + town + ", password=" + Arrays.toString(password) + ", salt=" + Arrays.toString(salt) + ", token=" + token
 				+ "]";
+	}
+	
+	public void update(User user, boolean pwd) {
+		setFirstname(user.getFirstname());
+		setLastname(user.getLastname());
+		setEmail(user.getEmail());
+		if (pwd) {
+			setPassword(user.getPassword());
+			setSalt(user.getSalt());
+		}
+		setToken(user.getToken());
+		setAddress(user.getAddress());
+		setTown(user.getTown());
 	}
 }

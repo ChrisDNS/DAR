@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.upmc.parisup.business">
+	<class name="SelectedSchool" table="SELECTED_SCHOOLS">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="idSchool" column="idSchool" type="long" />
+		<property name="idUser" column="idUser" type="long" />
+	</class>
+</hibernate-mapping>

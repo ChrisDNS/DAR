@@ -59,7 +59,7 @@
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/showNavbar.js"></script>
-<!-- 	<script src="js/showFooter.js"></script> -->
+	<script src="js/showFooter.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#info').hide();

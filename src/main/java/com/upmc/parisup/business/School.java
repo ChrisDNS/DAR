@@ -1,7 +1,5 @@
 package com.upmc.parisup.business;
 
-import java.util.Arrays;
-
 public class School {
 	private Long id;
 
