@@ -119,7 +119,7 @@
 			</div>
 			<p class="text-warning signupInfos">Les champs * sont optionnels
 				mais serviront à perfectionner vos recherches et/ou relations avec
-				les autres étudiants.</p>
+				les autres étudiants. Les anciennes et / ou récente(s) école(s) fréquentée(s) vous feront automatiquement rejoindre les réseaux associés.</p>
 			<div class="form-group">
 				<div class="col-sm-11">
 					<div class="checkbox">

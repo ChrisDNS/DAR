@@ -18,8 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upmc.parisup.DAO.AbstractDAOFactory;
 import com.upmc.parisup.DAO.Factory;
 import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
+import com.upmc.parisup.DAO.DAOImpl.SelectedSchoolDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.School;
+import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
 import com.upmc.parisup.services.AuthenticationService;
 
@@ -85,6 +87,17 @@ public class SignUp extends HttpServlet {
 			}
 			// Add the user to DB
 			((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO()).add(user);
+			
+			// Reload the user juste to get the correct ID
+			user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
+					.getByAttribute("email", email);
+			
+			// Add the selected schools to DB
+			for (int i = 0; i < schools.length; i++) {
+				long idSchool = schools[i];
+				SelectedSchool selectedSchool = new SelectedSchool(idSchool, user.getId());
+				((SelectedSchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSelectedSchoolDAO()).add(selectedSchool);
+			}
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String userToJson = mapper.writeValueAsString(user);
