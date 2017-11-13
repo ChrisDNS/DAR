@@ -37,25 +37,6 @@
 <body id="page-top" class="index">
 
 	<div id="navbar"></div>
-	
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<h2>Custom search field</h2>
-				<div id="custom-search-input">
-					<div class="input-group col-md-12">
-						<input id="userSearch" type="text" class="form-control input-lg"
-							placeholder="Buscar" /> <span class="input-group-btn">
-							<button id="search" class="btn btn-info btn-lg" type="button">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
 	<div class="row">
 
 		<section class="content">
@@ -64,29 +45,41 @@
 					<div class="panel-body">
 
 						<div class="pull-right">
+						<div class="row">
+	           				<div id="custom-search-input">
+	                            <div class="input-group col-md-12">
+	                            <form action="${pageContext.request.contextPath}/search" method="post">
+	                                <input type="text"  name="recherche" class="  search-query form-control" placeholder="Search" />
+	                                <span class="input-group-btn">
+		                            <input type="submit" name="buttonrecheche" value="search" class="btn btn-danger btn-filter"
+										data-target="cancelado" />
+	                                </span>
+	                              </form>
+	                            </div>
+	                        </div>
+	</div>
+	</div>
+						<div class="container">
+	
 							<div class="btn-group">
-								<!-- 
-								<button type="button" class="btn btn-success btn-filter"
-									data-target="pagado">Par note</button>
 									
+									<form action="${pageContext.request.contextPath}/search" method="post">
+									<p> Trier par : </p>
+  									 	 <input type="submit" name="button1" value="Ordre alphabetique"class="btn btn-success btn-filter"
+									data-target="pagado" />
+    									 <input type="submit" name="button2" value="Note moyenne" class="btn btn-danger btn-filter"
+									data-target="cancelado" />
+									<p> Type d'établissement : </p>
+   										 <input type="submit" name="button3" value="Ecoles"class="btn btn-success btn-filter"
+									data-target="pagado" />
+									 <input type="submit" name="button4" value="Instituts" class="btn btn-danger btn-filter"
+									data-target="cancelado" />
+									 <input type="submit" name="button5" value="UFR"class="btn btn-success btn-filter"
+									data-target="pagado" />
+									 <input type="submit" name="button6" value="Autre" class="btn btn-danger btn-filter"
+									data-target="cancelado" />
 									
-								<button type="button" class="btn btn-warning btn-filter"
-									data-target="pendiente">Pendiente</button>
-								<button type="button" class="btn btn-danger btn-filter"
-									data-target="cancelado">Cancelado</button>
-								<button type="button" class="btn btn-default btn-filter"
-									data-target="all">Todos</button>
-									-->
-
-								<form action="${pageContext.request.contextPath}/search"
-									method="post">
-									<input type="submit" name="button1" value="Button 1"
-										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="button2" value="Button 2"
-										class="btn btn-danger btn-filter" data-target="cancelado" />
-									<input type="submit" name="button3" value="Button 3"
-										class="btn btn-default btn-filter" data-target="all" />
-								</form>
+									</form>
 							</div>
 						</div>
 
@@ -117,6 +110,7 @@
 														</h4>
 														<p class="summary">${school.commune}</p>
 														<p class="summary">${school.type_d_etablissement}</p>
+														<p class="summary">${school.universite}</p>
 
 													</div>
 												</div>
@@ -128,9 +122,11 @@
 						</div>
 
 						<%--For displaying Previous link except for the 1st page --%>
-						<c:if test="${currentPage != 1}">
-							<td><a href="search?page=${currentPage - 1}">Previous</a></td>
-						</c:if>
+						<form action="${pageContext.request.contextPath}/search" method="post">
+							<c:if test="${currentPage != 1}">
+								<td><a href="search?page=${currentPage - 1}">Previous</a></td>
+							</c:if>
+						</form>
 
 						<%--For displaying Page numbers. 
 	The when condition does not display a link for the current page--%>
@@ -144,7 +140,13 @@
 													<td>${i}</td>
 												</c:when>
 												<c:otherwise>
-													<td><a href="search?page=${i}">${i}</a></td>
+													<form action="${pageContext.request.contextPath}/search" method="post">
+												
+														<td>
+														<input type="submit" name="page" value="${i}"/> 
+														<%-- <a href="search?page=${i}">${i}</a>--%>
+														</td>
+													</form>	
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
@@ -154,9 +156,13 @@
 						</div>
 
 						<%--For displaying Next link --%>
-						<c:if test="${currentPage lt noOfPages}">
-							<td><a href="search?page=${currentPage + 1}">Next</a></td>
-						</c:if>
+						<form action="${pageContext.request.contextPath}/search" method="post">
+							<c:if test="${currentPage lt noOfPages}">
+								<input type="submit" name="page" value="${currentPage + 1}"/> 
+								
+								<%--<td><a href="search?page=${currentPage + 1}">Next</a></td>--%>
+							</c:if>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -177,27 +183,6 @@
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
 	<script src="js/search.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('#search').click(function(e) {
-				e.preventDefault();
-
-				$.ajax({
-					type : 'GET',
-					url : 'search',
-					data : {
-						data : $('#userSearch').val(),
-						value : $('#search').attr('id')
-					}
-
-				}).done(function(data) {
-					
-				}).fail(function() {
-					alert("Server not responding.");
-				});
-			});
-		});
-	</script>
 </body>
 
 </html>
