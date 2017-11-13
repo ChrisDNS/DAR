@@ -14,8 +14,11 @@ public class SelectedSchoolDAOImpl extends MyPostgreSQLDAOImpl<SelectedSchool> i
 		super(t);
 	}
 	
+	
+	@SuppressWarnings("unchecked")
 	public List<SelectedSchool> getByUserID(long id) {
 		String req = "FROM SelectedSchool u WHERE u.idUser=" + id;
+		
 		Session session = sql.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		Query query = session.createQuery(req);

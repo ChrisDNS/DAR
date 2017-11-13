@@ -37,6 +37,25 @@
 <body id="page-top" class="index">
 
 	<div id="navbar"></div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h2>Custom search field</h2>
+				<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input id="userSearch" type="text" class="form-control input-lg"
+							placeholder="Buscar" /> <span class="input-group-btn">
+							<button id="search" class="btn btn-info btn-lg" type="button">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="row">
 
 		<section class="content">
@@ -58,15 +77,16 @@
 								<button type="button" class="btn btn-default btn-filter"
 									data-target="all">Todos</button>
 									-->
-									
-									<form action="${pageContext.request.contextPath}/search" method="post">
-  									 	 <input type="submit" name="button1" value="Button 1"class="btn btn-success btn-filter"
-									data-target="pagado" />
-    									 <input type="submit" name="button2" value="Button 2" class="btn btn-danger btn-filter"
-									data-target="cancelado" />
-   										 <input type="submit" name="button3" value="Button 3" class="btn btn-default btn-filter"
-									data-target="all" />
-									</form>
+
+								<form action="${pageContext.request.contextPath}/search"
+									method="post">
+									<input type="submit" name="button1" value="Button 1"
+										class="btn btn-success btn-filter" data-target="pagado" /> <input
+										type="submit" name="button2" value="Button 2"
+										class="btn btn-danger btn-filter" data-target="cancelado" />
+									<input type="submit" name="button3" value="Button 3"
+										class="btn btn-default btn-filter" data-target="all" />
+								</form>
 							</div>
 						</div>
 
@@ -157,6 +177,27 @@
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
 	<script src="js/search.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#search').click(function(e) {
+				e.preventDefault();
+
+				$.ajax({
+					type : 'GET',
+					url : 'search',
+					data : {
+						data : $('#userSearch').val(),
+						value : $('#search').attr('id')
+					}
+
+				}).done(function(data) {
+					
+				}).fail(function() {
+					alert("Server not responding.");
+				});
+			});
+		});
+	</script>
 </body>
 
 </html>

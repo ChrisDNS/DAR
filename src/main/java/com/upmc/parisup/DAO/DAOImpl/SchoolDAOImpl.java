@@ -1,5 +1,8 @@
 package com.upmc.parisup.DAO.DAOImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -27,5 +30,25 @@ public class SchoolDAOImpl extends MyPostgreSQLDAOImpl<School> implements School
 		session.getTransaction().commit();
 
 		return s;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<School> getByKeyWords(List<String> keyWords) {
+		List<School> list = new ArrayList<School>();
+
+		for (String kw : keyWords) {
+			String req = "FROM School s WHERE s.nom LIKE '%" + kw + "%'";
+
+			Session session = sql.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+
+			Query query = session.createQuery(req);
+			list.addAll(query.list());
+
+			session.getTransaction().commit();
+		}
+
+		return list;
 	}
 }
