@@ -45,41 +45,44 @@
 					<div class="panel-body">
 
 						<div class="pull-right">
-						<div class="row">
-	           				<div id="custom-search-input">
-	                            <div class="input-group col-md-12">
-	                            <form action="${pageContext.request.contextPath}/search" method="post">
-	                                <input type="text"  name="recherche" class="  search-query form-control" placeholder="Search" />
-	                                <span class="input-group-btn">
-		                            <input type="submit" name="buttonrecheche" value="search" class="btn btn-danger btn-filter"
-										data-target="cancelado" />
-	                                </span>
-	                              </form>
-	                            </div>
-	                        </div>
-	</div>
-	</div>
+							<div class="row">
+								<div id="custom-search-input">
+									<div class="input-group col-md-12">
+										<form action="${pageContext.request.contextPath}/search"
+											method="post">
+											<input type="text" name="recherche"
+												class="  search-query form-control" placeholder="Search" />
+											<span class="input-group-btn"> <input type="submit"
+												name="buttonrecheche" value="search"
+												class="btn btn-danger btn-filter" data-target="cancelado" />
+											</span>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="container">
-	
+
 							<div class="btn-group">
-									
-									<form action="${pageContext.request.contextPath}/search" method="post">
-									<p> Trier par : </p>
-  									 	 <input type="submit" name="button1" value="Ordre alphabetique"class="btn btn-success btn-filter"
-									data-target="pagado" />
-    									 <input type="submit" name="button2" value="Note moyenne" class="btn btn-danger btn-filter"
-									data-target="cancelado" />
-									<p> Type d'établissement : </p>
-   										 <input type="submit" name="button3" value="Ecoles"class="btn btn-success btn-filter"
-									data-target="pagado" />
-									 <input type="submit" name="button4" value="Instituts" class="btn btn-danger btn-filter"
-									data-target="cancelado" />
-									 <input type="submit" name="button5" value="UFR"class="btn btn-success btn-filter"
-									data-target="pagado" />
-									 <input type="submit" name="button6" value="Autre" class="btn btn-danger btn-filter"
-									data-target="cancelado" />
-									
-									</form>
+
+								<form action="${pageContext.request.contextPath}/search"
+									method="post">
+									<p>Trier par :</p>
+									<input type="submit" name="button1" value="Ordre alphabetique"
+										class="btn btn-success btn-filter" data-target="pagado" /> <input
+										type="submit" name="button2" value="Note moyenne"
+										class="btn btn-danger btn-filter" data-target="cancelado" />
+									<p>Type d'établissement :</p>
+									<input type="submit" name="button3" value="Ecoles"
+										class="btn btn-success btn-filter" data-target="pagado" /> <input
+										type="submit" name="button4" value="Instituts"
+										class="btn btn-danger btn-filter" data-target="cancelado" />
+									<input type="submit" name="button5" value="UFR"
+										class="btn btn-success btn-filter" data-target="pagado" /> <input
+										type="submit" name="button6" value="Autre"
+										class="btn btn-danger btn-filter" data-target="cancelado" />
+
+								</form>
 							</div>
 						</div>
 
@@ -90,29 +93,16 @@
 
 									<c:forEach var="school" items="${schoolList}">
 										<tr data-status="pagado">
-											<td>
-												<div class="ckbox">
-													<input type="checkbox" id="checkbox1"> <label
-														for="checkbox1"></label>
-												</div>
-											</td>
 											<td><a href="javascript:;" class="star"> <i
 													class="glyphicon glyphicon-star"></i>
 											</a></td>
 											<td>
 												<div class="media">
+													<h4 class="title">${school.nom}</h4>
+													<p class="summary">${school.commune}</p>
+													<p class="summary">${school.type_d_etablissement}</p>
+													<p class="summary">${school.universite}</p>
 
-													<div class="media-body">
-														<span class="media-meta pull-right">Febrero 13,
-															2016</span>
-														<h4 class="title">
-															${school.nom} <span class="pull-right pagado">(Pagado)</span>
-														</h4>
-														<p class="summary">${school.commune}</p>
-														<p class="summary">${school.type_d_etablissement}</p>
-														<p class="summary">${school.universite}</p>
-
-													</div>
 												</div>
 											</td>
 										</tr>
@@ -122,7 +112,8 @@
 						</div>
 
 						<%--For displaying Previous link except for the 1st page --%>
-						<form action="${pageContext.request.contextPath}/search" method="post">
+						<form action="${pageContext.request.contextPath}/search"
+							method="post">
 							<c:if test="${currentPage != 1}">
 								<td><a href="search?page=${currentPage - 1}">Previous</a></td>
 							</c:if>
@@ -140,13 +131,11 @@
 													<td>${i}</td>
 												</c:when>
 												<c:otherwise>
-													<form action="${pageContext.request.contextPath}/search" method="post">
-												
-														<td>
-														<input type="submit" name="page" value="${i}"/> 
-														<%-- <a href="search?page=${i}">${i}</a>--%>
-														</td>
-													</form>	
+													<form action="${pageContext.request.contextPath}/search"
+														method="post">
+														<td><input type="submit" name="page" value="${i}" />
+															<%-- <a href="search?page=${i}">${i}</a>--%></td>
+													</form>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
@@ -156,10 +145,11 @@
 						</div>
 
 						<%--For displaying Next link --%>
-						<form action="${pageContext.request.contextPath}/search" method="post">
+						<form action="${pageContext.request.contextPath}/search"
+							method="post">
 							<c:if test="${currentPage lt noOfPages}">
-								<input type="submit" name="page" value="${currentPage + 1}"/> 
-								
+								<input type="submit" name="page" value="${currentPage + 1}" />
+
 								<%--<td><a href="search?page=${currentPage + 1}">Next</a></td>--%>
 							</c:if>
 						</form>

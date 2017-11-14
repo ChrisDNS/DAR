@@ -178,7 +178,7 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 		query.setFirstResult(first);
 		query.setMaxResults(total);
 
-		List<T> list = query.add(Restrictions.like("type_d_etablissement", "Unité%")).list();
+		List<T> list = query.add(Restrictions.like("type_d_etablissement", "Unit��%")).list();
 		session.getTransaction().commit();
 
 		return list;
