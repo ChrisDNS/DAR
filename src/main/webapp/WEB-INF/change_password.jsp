@@ -112,10 +112,8 @@
 										}).done(function(data) {
 									if (data.success)
 										location.href = "/";
-									else {
-										console.log("caca");
+									else
 										$("#error").show();
-									}
 
 								}).fail(function() {
 									alert("Le serveur ne répond pas.");

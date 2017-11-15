@@ -24,8 +24,12 @@ function updateSchools() {
 		// For each ids, display the name of the school
 		for (i = 0; i < l; i++) {
 			id = schools[i];
-			select = $('#allSchoolsList option[value=' + id +']');
-			html += '<div class="col-sm-10" style="padding:0;"><li style="margin-bottom:10px;" class="list-group-item list-group-item-info">' + select.text() + '</li></div><div class="col-sm-2"><button onclick="removeSchool(' + i + ')" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button></div>'
+			select = $('#allSchoolsList option[value=' + id + ']');
+			html += '<div class="col-sm-10" style="padding:0;"><li style="margin-bottom:10px;" class="list-group-item list-group-item-info">'
+					+ select.text()
+					+ '</li></div><div class="col-sm-2"><button onclick="removeSchool('
+					+ i
+					+ ')" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button></div>'
 		}
 	}
 
@@ -37,12 +41,12 @@ function getDatas() {
 		firstName : $('#firstName').val(),
 		name : $('#name').val(),
 		email : $('#mail').val(),
-		confemail: $('#confmail').val(),
+		confemail : $('#confmail').val(),
 		password : $('#pwd').val(),
 		confpassword : $('#confpwd').val(),
 		address : $('#address').val(),
 		town : $('#town').val(),
-		schools: schools
+		schools : schools
 	};
 }
 
