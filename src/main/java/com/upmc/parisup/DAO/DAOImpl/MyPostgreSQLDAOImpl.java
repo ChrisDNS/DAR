@@ -63,52 +63,39 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> getAllI() {
+	public List<T> getByCriteria(String restriction, String where) {
+		List<T> l;
 		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		List<T> l = session.createCriteria(typeT).add(Restrictions.like("type_d_etablissement", "Institu%")).list();
+		session.beginTransaction();	
+		l = session.createCriteria(typeT).add( Restrictions.like(restriction, where+"%") ).list();		 
 		session.getTransaction().commit();
-
 		return l;
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public List<T> getAllE() {
+	public List<T> pagination(int first, int total, String type, String val) {
+		List<T> list;
 		Session session = sql.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		List<T> l = session.createCriteria(typeT).add(Restrictions.like("type_d_etablissement", "Ecole%")).list();
+		Criteria query = session.createCriteria(typeT);
+
+		query.setFirstResult(first);
+		query.setMaxResults(total);
+		
+		if(type.equals("all")== true) {
+			list = query.list();
+		}
+		else if(type.equals("nom") == true){
+			 list = query.addOrder( Order.asc("nom") ).list();
+		}else 
+			 list = query.add( Restrictions.like(type, val+"%") ).list();
+		
 		session.getTransaction().commit();
 
-		return l;
+		return list;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<T> getAllUFR() {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		List<T> l = session.createCriteria(typeT).add(Restrictions.like("type_d_etablissement", "Unité%")).list();
-		session.getTransaction().commit();
-
-		return l;
-	}
-
-	public List<T> getAllAUTRE() {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		List<T> l = session.createCriteria(typeT).add(Restrictions.like("type_d_etablissement", "Autre%")).list();
-		session.getTransaction().commit();
-
-		return l;
-	}
-
-	public List<T> getAllRECHERCHE(String a_rechercher) {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		List<T> l = session.createCriteria(typeT).add(Restrictions.like("universite", a_rechercher + "%")).list();
-		session.getTransaction().commit();
-
-		return l;
-	}
+	
 
 	@SuppressWarnings("unchecked")
 	public List<T> pagination(int first, int total) {
@@ -125,90 +112,5 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 		return list;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<T> pagination2(int first, int total) {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria query = session.createCriteria(typeT);
-
-		query.setFirstResult(first);
-		query.setMaxResults(total);
-
-		List<T> list = query.addOrder(Order.asc("nom")).list();
-		session.getTransaction().commit();
-
-		return list;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<T> pagination3(int first, int total) {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria query = session.createCriteria(typeT);
-
-		query.setFirstResult(first);
-		query.setMaxResults(total);
-
-		List<T> list = query.add(Restrictions.like("type_d_etablissement", "E%")).list();
-		session.getTransaction().commit();
-
-		return list;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<T> paginationINSTITUT(int first, int total) {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria query = session.createCriteria(typeT);
-
-		query.setFirstResult(first);
-		query.setMaxResults(total);
-
-		List<T> list = query.add(Restrictions.like("type_d_etablissement", "Institut%")).list();
-		session.getTransaction().commit();
-
-		return list;
-	}
-
-	public List<T> paginationUFR(int first, int total) {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria query = session.createCriteria(typeT);
-
-		query.setFirstResult(first);
-		query.setMaxResults(total);
-
-		List<T> list = query.add(Restrictions.like("type_d_etablissement", "Unit��%")).list();
-		session.getTransaction().commit();
-
-		return list;
-	}
-
-	public List<T> paginationAUTRE(int first, int total) {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria query = session.createCriteria(typeT);
-
-		query.setFirstResult(first);
-		query.setMaxResults(total);
-
-		List<T> list = query.add(Restrictions.like("type_d_etablissement", "Autre%")).list();
-		session.getTransaction().commit();
-
-		return list;
-	}
-
-	public List<T> paginationRECHERCHE(int first, int total, String a_chercher) {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria query = session.createCriteria(typeT);
-
-		query.setFirstResult(first);
-		query.setMaxResults(total);
-
-		List<T> list = query.add(Restrictions.like("universite", a_chercher + "%")).list();
-		session.getTransaction().commit();
-
-		return list;
-	}
+	
 }

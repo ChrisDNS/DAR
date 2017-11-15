@@ -49,7 +49,7 @@
 								<div id="custom-search-input">
 									<div class="input-group col-md-12">
 										<form action="${pageContext.request.contextPath}/search"
-											method="post">
+											method="get">
 											<input type="text" name="recherche"
 												class="  search-query form-control" placeholder="Search" />
 											<span class="input-group-btn"> <input type="submit"
@@ -66,7 +66,7 @@
 							<div class="btn-group">
 
 								<form action="${pageContext.request.contextPath}/search"
-									method="post">
+									method="get">
 									<p>Trier par :</p>
 									<input type="submit" name="button1" value="Ordre alphabetique"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
@@ -114,7 +114,7 @@
 
 						<%--For displaying Previous link except for the 1st page --%>
 						<form action="${pageContext.request.contextPath}/search"
-							method="post">
+							method="get">
 							<c:if test="${currentPage != 1}">
 								<td><a href="search?page=${currentPage - 1}">Previous</a></td>
 							</c:if>
@@ -133,7 +133,7 @@
 												</c:when>
 												<c:otherwise>
 													<form action="${pageContext.request.contextPath}/search"
-														method="post">
+														method="get">
 														<td><input type="submit" name="page" value="${i}" />
 															<%-- <a href="search?page=${i}">${i}</a>--%></td>
 													</form>
@@ -147,7 +147,7 @@
 
 						<%--For displaying Next link --%>
 						<form action="${pageContext.request.contextPath}/search"
-							method="post">
+							method="get">
 							<c:if test="${currentPage lt noOfPages}">
 								<input type="submit" name="page" value="${currentPage + 1}" />
 

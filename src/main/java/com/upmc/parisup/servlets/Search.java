@@ -28,45 +28,7 @@ public class Search extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (request.getRequestURI().equals("/search")) {
-			filter = false;
-			/* recuperer le num de la page demandee */
 
-			// if(request.getParameter("page") != null)
-			// page = Integer.parseInt(request.getParameter("page"));
-			page = 1;
-
-			schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-					.pagination((page - 1) * recordsPerPage, recordsPerPage);
-
-			// nombre total de page
-
-			noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-					.getAll().size();
-			noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-
-			// envoyer a la view
-			request.setAttribute("schoolList", schools);
-			request.setAttribute("noOfPages", noOfPages);
-			request.setAttribute("currentPage", page);
-
-			request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
-
-		} else {
-			String uai = request.getPathInfo().substring(1);
-			SchoolDAO sdao = (SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO();
-			School s = sdao.getByUAI(uai);
-			if(s != null) {
-				System.out.println("azdkoazddzao");
-				request.setAttribute("school", s);
-			}
-			
-			request.getRequestDispatcher("/WEB-INF/school.jsp").forward(request, response);
-		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		if (request.getParameter("button1") != null) {
 			filter = true;
 			page = 1;
@@ -93,101 +55,69 @@ public class Search extends HttpServlet {
 			page = 1;
 			button = 7;
 			a_chercher = request.getParameter("recherche");
-			System.out.println("var recherche :" + a_chercher);
 		}
-
-		System.out.println("filter " + filter + " var rech " + a_chercher);
+		
+		if (request.getParameter("page") != null)
+			page = Integer.parseInt(request.getParameter("page"));
+		
 		if (filter) {
-			/* recuperer le num de la page demandee */
+			switch(button) {
+			case 1 :	schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.pagination((page - 1) * recordsPerPage, recordsPerPage,"nom","");
+						noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.getAll().size();
+				break;
+			case 3 :	schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.pagination((page - 1) * recordsPerPage, recordsPerPage,"type_d_etablissement","Ecole");
+						noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.getByCriteria("type_d_etablissement", "Ecole").size(); 
+				break;
+			case 4 :	schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.pagination((page - 1) * recordsPerPage, recordsPerPage,"type_d_etablissement", "Institut");
+						noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.getByCriteria("type_d_etablissement", "Institut").size();
+				break;
+			case 5 :	schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.pagination((page - 1) * recordsPerPage, recordsPerPage,"type_d_etablissement", "Unit");
+						noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.getByCriteria("type_d_etablissement", "Unit").size();
 
-			if (request.getParameter("page") != null)
-				page = Integer.parseInt(request.getParameter("page"));
-			if (button == 1) {
+				break;
+			case 6 :	schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.pagination((page - 1) * recordsPerPage, recordsPerPage, "type_d_etablissement", "Autre");
+						noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.getByCriteria("type_d_etablissement", "Autre").size();
 
-				schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.pagination2((page - 1) * recordsPerPage, recordsPerPage);
-				// nombre total de page
-				noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.getAll().size();
+				break;
+			case 7 :	schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.pagination((page - 1) * recordsPerPage, recordsPerPage, "type_d_etablissement", a_chercher);
+						noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.getByCriteria("type_d_etablissement", a_chercher).size();
 
-			} else if (button == 3) {
-				schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.pagination3((page - 1) * recordsPerPage, recordsPerPage);
-				// nombre total de page
-				noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.getAllE().size();
-
-			} else if (button == 4) {
-				schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.paginationINSTITUT((page - 1) * recordsPerPage, recordsPerPage);
-				// nombre total de page
-				noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.getAllI().size();
-
-			} else if (button == 5) {
-				schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.paginationUFR((page - 1) * recordsPerPage, recordsPerPage);
-				// nombre total de page
-				noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.getAllUFR().size();
-
-			} else if (button == 6) {
-				schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.paginationAUTRE((page - 1) * recordsPerPage, recordsPerPage);
-				// nombre total de page
-				noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.getAllAUTRE().size();
-
-			} else if (button == 7) {
-
-				schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.paginationRECHERCHE((page - 1) * recordsPerPage, recordsPerPage, a_chercher);
-				// nombre total de page
-				noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.getAllRECHERCHE(a_chercher).size();
-
-			} else {
-				schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.pagination2((page - 1) * recordsPerPage, recordsPerPage);
-				// nombre total de page
-				noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
-						.getAllI().size();
-
+				break;
+			default:	schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.pagination((page - 1) * recordsPerPage, recordsPerPage, "all","");
+						noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
+								.getAll().size();
+				break;
 			}
-
-			System.out.println("post");
-
-			// int noOfRecords = ((SchoolDAOImpl)
-			// AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO()).getAll().size();
-			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-			System.out.println("nb pages" + noOfRecords);
-			// envoyer a la view
-			request.setAttribute("schoolList", schools);
-			request.setAttribute("noOfPages", noOfPages);
-			request.setAttribute("currentPage", page);
-
-			request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
+	
 		} else {
 			if (request.getParameter("page") != null)
 				page = Integer.parseInt(request.getParameter("page"));
 
-			List<School> schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY)
-					.getSchoolDAO()).pagination((page - 1) * recordsPerPage, recordsPerPage);
-
-			// nombre total de page
+			schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY)
+					.getSchoolDAO()).pagination((page - 1) * recordsPerPage, recordsPerPage,"all","");
 
 			noOfRecords = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
 					.getAll().size();
-			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-
-			// envoyer a la view
-			request.setAttribute("schoolList", schools);
-			request.setAttribute("noOfPages", noOfPages);
-			request.setAttribute("currentPage", page);
-
-			request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
-
 		}
+		
+		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+		request.setAttribute("schoolList", schools);
+		request.setAttribute("noOfPages", noOfPages);
+		request.setAttribute("currentPage", page);
+		request.getRequestDispatcher("WEB-INF/search.jsp").forward(request, response);
 
 	}
 
