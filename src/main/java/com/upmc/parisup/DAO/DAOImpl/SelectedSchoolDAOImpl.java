@@ -21,8 +21,10 @@ public class SelectedSchoolDAOImpl extends MyPostgreSQLDAOImpl<SelectedSchool> i
 		
 		Session session = sql.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
+		
 		Query query = session.createQuery(req);
 		List<SelectedSchool> l = (List<SelectedSchool>) query.list();
+		
 		session.getTransaction().commit();
 
 		return l;

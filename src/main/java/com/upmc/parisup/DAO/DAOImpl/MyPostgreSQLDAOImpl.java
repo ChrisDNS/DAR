@@ -66,12 +66,13 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 	public List<T> getByCriteria(String restriction, String where) {
 		List<T> l;
 		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();	
-		l = session.createCriteria(typeT).add( Restrictions.like(restriction, where+"%") ).list();		 
+		session.beginTransaction();
+		l = session.createCriteria(typeT).add(Restrictions.like(restriction, where + "%")).list();
 		session.getTransaction().commit();
+
 		return l;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<T> pagination(int first, int total, String type, String val) {
 		List<T> list;
@@ -81,36 +82,16 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 
 		query.setFirstResult(first);
 		query.setMaxResults(total);
-		
-		if(type.equals("all")== true) {
+
+		if (type.equals("all"))
 			list = query.list();
-		}
-		else if(type.equals("nom") == true){
-			 list = query.addOrder( Order.asc("nom") ).list();
-		}else 
-			 list = query.add( Restrictions.like(type, val+"%") ).list();
-		
+		else if (type.equals("nom"))
+			list = query.addOrder(Order.asc("nom")).list();
+		else
+			list = query.add(Restrictions.like(type, val + "%")).list();
+
 		session.getTransaction().commit();
 
 		return list;
 	}
-
-	
-
-	@SuppressWarnings("unchecked")
-	public List<T> pagination(int first, int total) {
-		Session session = sql.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Criteria query = session.createCriteria(typeT);
-
-		query.setFirstResult(first);
-		query.setMaxResults(total);
-
-		List<T> list = query.list();
-		session.getTransaction().commit();
-
-		return list;
-	}
-
-	
 }

@@ -14,14 +14,14 @@
 <title>PariSup' !</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Theme CSS -->
-<link href="/css/freelancer.min.css" rel="stylesheet">
-<link href="/css/freelancer.css" rel="stylesheet">
+<link href="css/freelancer.min.css" rel="stylesheet">
+<link href="css/freelancer.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="/vendor/font-awesome/css/font-awesome.min.css"
+<link href="vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
@@ -81,45 +81,10 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="/vendor/popper/popper.min.js"></script>
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/vendor/js/js.cookie.js"></script>
-	<script>
-		$(document).ready(
-				function() {
-					$('#error').hide();
-
-					$('#change').click(
-							function(e) {
-								e.preventDefault();
-
-								$.ajax(
-										{
-											type : 'POST',
-											url : 'password_reset/'
-													+ window.location.pathname
-															.split("/")[2],
-											data : {
-												pwd : $('#pwd').val(),
-												pwdConfirm : $('#pwdConfirm')
-														.val(),
-												email : $('#mail').attr(
-														'placeholder'),
-												value : $('#change').attr('id')
-											}
-
-										}).done(function(data) {
-									if (data.success)
-										location.href = "/";
-									else
-										$("#error").show();
-
-								}).fail(function() {
-									alert("Le serveur ne répond pas.");
-								});
-							});
-				});
-	</script>
+	<script src="vendor/popper/popper.min.js"></script>
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/js/js.cookie.js"></script>
+	<script src="js/change-password.js"></script>
 </body>
 </html>

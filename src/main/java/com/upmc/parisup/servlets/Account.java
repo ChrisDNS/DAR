@@ -1,14 +1,10 @@
 package com.upmc.parisup.servlets;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +20,7 @@ import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.School;
 import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
+import com.upmc.parisup.services.Util;
 
 public class Account extends HttpServlet {
 	private static final long serialVersionUID = -5677200504573287154L;
@@ -40,7 +37,7 @@ public class Account extends HttpServlet {
 		request.setAttribute("schools", schools);
 		
 		// User infos
-		User user = Account.getCurrentUser(request);
+		User user = Util.getCurrentUser(request);
 		request.setAttribute("user", user);
 		
 		// Schools selected
@@ -58,7 +55,7 @@ public class Account extends HttpServlet {
 		
 		ArrayList<String> errors = new ArrayList<String>();
 		JSONObject json = new JSONObject();
-		User currentUser = Account.getCurrentUser(request);
+		User currentUser = Util.getCurrentUser(request);
 		User user = SignUp.getUser(request, errors, currentUser.getEmail());
 		
 		// If no errors, then modify
@@ -97,21 +94,5 @@ public class Account extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static User getCurrentUser(HttpServletRequest request) {
-		Cookie[] cookies = request.getCookies();
-
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("email")) {
-				     String email = cookie.getValue();
-				     return ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-							.getByAttribute("email", email);
-				}
-			}
-		}
-		
-		return null;
 	}
 }

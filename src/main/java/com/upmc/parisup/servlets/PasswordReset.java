@@ -25,16 +25,17 @@ public class PasswordReset extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (request.getRequestURI().equals("/password_reset"))
+		System.out.println(request.getRequestURL());
+		if (request.getParameterMap().isEmpty())
 			request.getRequestDispatcher("WEB-INF/password_reset.jsp").forward(request, response);
 
 		else {
-			String token = request.getPathInfo().substring(1);
+			String token = request.getParameter("token");
 			UserDAO udao = (UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO();
 			User u = null;
 			if ((u = udao.getByAttribute("token", token)) != null) {
 				request.setAttribute("email", u.getEmail());
-				request.getRequestDispatcher("/WEB-INF/change_password.jsp").forward(request, response);
+				request.getRequestDispatcher("WEB-INF/change_password.jsp").forward(request, response);
 
 			} else {
 				JSONObject json = new JSONObject();
@@ -60,7 +61,7 @@ public class PasswordReset extends HttpServlet {
 				u.setToken(Util.generateToken());
 				udao.update(u);
 
-				MailService ms = new MailService("ouais", request.getRequestURL() + "/" + u.getToken());
+				MailService ms = new MailService("ouais", request.getRequestURL() + "?token=" + u.getToken());
 				ms.sendTo(email);
 				json.put("success", true);
 				json.put("message",
@@ -74,8 +75,9 @@ public class PasswordReset extends HttpServlet {
 				json.put("success", false);
 
 			else {
-				u = udao.getByAttribute("token", request.getPathInfo().substring(1).split("/")[1]);
+				u = udao.getByAttribute("token", request.getParameter("token"));
 				if (u.getEmail().equals(request.getParameter("email"))) {
+					System.out.println("TRUEEEEEEEEEEEEEEe");
 					try {
 						AuthenticationService as = new AuthenticationService();
 						u.setSalt(as.generateSalt());
@@ -84,6 +86,7 @@ public class PasswordReset extends HttpServlet {
 						udao.update(u);
 
 						json.put("success", true);
+						System.out.println("SUCCESS");
 
 					} catch (NoSuchAlgorithmException e) {
 						e.printStackTrace();
@@ -91,8 +94,10 @@ public class PasswordReset extends HttpServlet {
 						e.printStackTrace();
 					}
 
-				} else
+				} else {
 					json.put("success", false);
+					System.out.println("FALSE");
+				}
 			}
 		}
 

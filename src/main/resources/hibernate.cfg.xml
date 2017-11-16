@@ -22,5 +22,6 @@
 		<mapping resource="com/upmc/parisup/business/User.hbm.xml" />
 		<mapping resource="com/upmc/parisup/business/School.hbm.xml" />
 		<mapping resource="com/upmc/parisup/business/SelectedSchool.hbm.xml" />
+		<mapping resource="com/upmc/parisup/business/Rating.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

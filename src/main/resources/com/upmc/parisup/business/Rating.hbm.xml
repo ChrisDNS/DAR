@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.upmc.parisup.business">
+	<class name="Rating" table="RATINGS">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="idSchool" column="idSchool" type="long" />
+		<property name="idUser" column="idUser" type="long" />
+		<property name="comment" column="comment" type="string" />
+		<property name="rating" column="rating" type="long" />
+		<property name="date" column="date" type="string" />
+	</class>
+</hibernate-mapping>

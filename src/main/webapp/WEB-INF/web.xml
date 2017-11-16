@@ -38,8 +38,8 @@
 		<servlet-class>com.upmc.parisup.servlets.Account</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>School</servlet-name>
-		<servlet-class>com.upmc.parisup.servlets.School</servlet-class>
+		<servlet-name>LeaveComment</servlet-name>
+		<servlet-class>com.upmc.parisup.servlets.LeaveComment</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -56,19 +56,19 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>PasswordReset</servlet-name>
-		<url-pattern>/password_reset/*</url-pattern>
+		<url-pattern>/password_reset</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Search</servlet-name>
-		<url-pattern>/search/*</url-pattern>
+		<url-pattern>/search</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Account</servlet-name>
 		<url-pattern>/account</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>School</servlet-name>
-		<url-pattern>/schools/*</url-pattern>
+		<servlet-name>LeaveComment</servlet-name>
+		<url-pattern>/leave_comment</url-pattern>
 	</servlet-mapping>
 
 

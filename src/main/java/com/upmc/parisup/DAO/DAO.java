@@ -11,8 +11,10 @@ public interface DAO<T> {
 	public void update(T obj);
 
 	public void delete(T obj);
-	
+
 	public List<T> getAll();
-	
-	public List<T> pagination(int first, int total);
+
+	public List<T> getByCriteria(String restriction, String where);
+
+	public List<T> pagination(int first, int total, String type, String val);
 }

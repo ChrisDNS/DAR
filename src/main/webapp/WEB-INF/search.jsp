@@ -49,11 +49,11 @@
 								<div id="custom-search-input">
 									<div class="input-group col-md-12">
 										<form action="${pageContext.request.contextPath}/search"
-											method="get">
+											method="post">
 											<input type="text" name="recherche"
-												class="  search-query form-control" placeholder="Search" />
-											<span class="input-group-btn"> <input type="submit"
-												name="buttonrecheche" value="search"
+												class="search-query form-control" placeholder="Search" /> <span
+												class="input-group-btn"> <input type="submit"
+												name="button_search" value="search"
 												class="btn btn-danger btn-filter" data-target="cancelado" />
 											</span>
 										</form>
@@ -64,24 +64,21 @@
 						<div class="container">
 
 							<div class="btn-group">
-
-								<form action="${pageContext.request.contextPath}/search"
-									method="get">
+								<form id="search_form" action="search" method="post">
 									<p>Trier par :</p>
-									<input type="submit" name="button1" value="Ordre alphabetique"
+									<input type="submit" name="act" value="alpha"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="button2" value="Note moyenne"
+										type="submit" name="act" value="note"
 										class="btn btn-danger btn-filter" data-target="cancelado" />
 									<p>Type d'établissement :</p>
-									<input type="submit" name="button3" value="Ecoles"
+									<input type="submit" name="act" value="ecoles"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="button4" value="Instituts"
+										type="submit" name="act" value="instituts"
 										class="btn btn-danger btn-filter" data-target="cancelado" />
-									<input type="submit" name="button5" value="UFR"
+									<input type="submit" name="act" value="ufr"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="button6" value="Autre"
+										type="submit" name="act" value="autre"
 										class="btn btn-danger btn-filter" data-target="cancelado" />
-
 								</form>
 							</div>
 						</div>
@@ -89,8 +86,6 @@
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
-
-
 									<c:forEach var="school" items="${schoolList}">
 										<tr data-status="pagado">
 											<td><a href="javascript:;" class="star"> <i
@@ -99,7 +94,8 @@
 											<td>
 												<div class="media">
 													<h4 class="title">
-														<a href="search/${school.code_uai}">${school.nom}</a></h4>
+														<a id="show_school" href="search?uai=${school.code_uai}">${school.nom}</a>
+													</h4>
 													<p class="summary">${school.commune}</p>
 													<p class="summary">${school.type_d_etablissement}</p>
 													<p class="summary">${school.universite}</p>
@@ -114,7 +110,7 @@
 
 						<%--For displaying Previous link except for the 1st page --%>
 						<form action="${pageContext.request.contextPath}/search"
-							method="get">
+							method="post">
 							<c:if test="${currentPage != 1}">
 								<td><a href="search?page=${currentPage - 1}">Previous</a></td>
 							</c:if>
@@ -134,8 +130,8 @@
 												<c:otherwise>
 													<form action="${pageContext.request.contextPath}/search"
 														method="get">
-														<td><input type="submit" name="page" value="${i}" />
-															<%-- <a href="search?page=${i}">${i}</a>--%></td>
+														<input type="submit" name="page" value="${i}" />
+														<%-- <a href="search?page=${i}">${i}</a> --%>
 													</form>
 												</c:otherwise>
 											</c:choose>
@@ -147,7 +143,7 @@
 
 						<%--For displaying Next link --%>
 						<form action="${pageContext.request.contextPath}/search"
-							method="get">
+							method="post">
 							<c:if test="${currentPage lt noOfPages}">
 								<input type="submit" name="page" value="${currentPage + 1}" />
 
@@ -163,17 +159,13 @@
 
 	<div id="footer"></div>
 
-	<!-- jQuery -->
 	<script src="vendor/jquery/jquery.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
 	<script src="vendor/popper/popper.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
+	<script src="js/search.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
-	<script src="js/search.js"></script>
 </body>
 
 </html>
