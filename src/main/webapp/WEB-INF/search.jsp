@@ -49,7 +49,7 @@
 								<div id="custom-search-input">
 									<div class="input-group col-md-12">
 										<form action="${pageContext.request.contextPath}/search"
-											method="post">
+											method="get">
 											<input type="text" name="recherche"
 												class="search-query form-control" placeholder="Search" /> <span
 												class="input-group-btn"> <input type="submit"
@@ -61,23 +61,23 @@
 								</div>
 							</div>
 						</div>
-						<div class="container">
 
+						<div class="container">
 							<div class="btn-group">
-								<form id="search_form" action="search" method="post">
+								<form id="search_form" action="search" method="get">
 									<p>Trier par :</p>
-									<input type="submit" name="act" value="alpha"
+									<input type="submit" name="filter" value="alpha"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="act" value="note"
+										type="submit" name="filter" value="note"
 										class="btn btn-danger btn-filter" data-target="cancelado" />
 									<p>Type d'établissement :</p>
-									<input type="submit" name="act" value="ecoles"
+									<input type="submit" name="filter" value="ecoles"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="act" value="instituts"
+										type="submit" name="filter" value="instituts"
 										class="btn btn-danger btn-filter" data-target="cancelado" />
-									<input type="submit" name="act" value="ufr"
+									<input type="submit" name="filter" value="ufr"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="act" value="autre"
+										type="submit" name="filter" value="autre"
 										class="btn btn-danger btn-filter" data-target="cancelado" />
 								</form>
 							</div>
@@ -99,7 +99,6 @@
 													<p class="summary">${school.commune}</p>
 													<p class="summary">${school.type_d_etablissement}</p>
 													<p class="summary">${school.universite}</p>
-
 												</div>
 											</td>
 										</tr>
@@ -110,7 +109,7 @@
 
 						<%--For displaying Previous link except for the 1st page --%>
 						<form action="${pageContext.request.contextPath}/search"
-							method="post">
+							method="get">
 							<c:if test="${currentPage != 1}">
 								<td><a href="search?page=${currentPage - 1}">Previous</a></td>
 							</c:if>
@@ -143,7 +142,7 @@
 
 						<%--For displaying Next link --%>
 						<form action="${pageContext.request.contextPath}/search"
-							method="post">
+							method="get">
 							<c:if test="${currentPage lt noOfPages}">
 								<input type="submit" name="page" value="${currentPage + 1}" />
 
@@ -163,7 +162,6 @@
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/popper/popper.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
-	<script src="js/search.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
 </body>
