@@ -33,7 +33,11 @@ public class SchoolAPIHelper {
 			tmp = jArray.getJSONObject(i).getJSONObject(SchoolAPIConstants.FIELDS);
 
 			try {
-				schools.add(mapper.readValue(tmp.toString(), School.class));
+				School s = mapper.readValue(tmp.toString(), School.class);
+				String tmpLat = s.getLatitude_y();
+				s.setLatitude_y(s.getLongitude_x());
+				s.setLongitude_x(tmpLat);
+				schools.add(s);
 
 			} catch (JsonParseException e) {
 				e.printStackTrace();

@@ -19,6 +19,7 @@ public class FillDB {
 		User u2 = new User("belynda", "hamaz", "beloche@etu.upmc.fr");
 		User u3 = new User("marie", "laporte", "wano@etu.upmc.fr");
 
+		u1.setAddress("10 rue clauzel");
 		u1.setSalt(new AuthenticationService().generateSalt());
 		u1.setPassword(new AuthenticationService().getEncryptedPassword("test", u1.getSalt()));
 

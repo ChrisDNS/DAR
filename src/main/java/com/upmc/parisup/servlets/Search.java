@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upmc.parisup.DAO.AbstractDAOFactory;
 import com.upmc.parisup.DAO.Factory;
 import com.upmc.parisup.DAO.RatingDAO;
@@ -16,6 +19,7 @@ import com.upmc.parisup.DAO.DAOImpl.RatingDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.api.schools.SchoolAPIConstants;
 import com.upmc.parisup.business.School;
+import com.upmc.parisup.services.Util;
 
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 8564336809015917293L;

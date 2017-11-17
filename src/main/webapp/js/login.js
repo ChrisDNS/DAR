@@ -30,4 +30,5 @@ function login(user) {
 	Cookies.set('email', user.email);
 	Cookies.set('firstname', user.firstname);
 	Cookies.set('lastname', user.lastname);
+	Cookies.set('address', user.address);
 }

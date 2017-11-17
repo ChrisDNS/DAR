@@ -11,7 +11,7 @@ var setRatingStar = function() {
 			});
 };
 
-$(document).ready(function() {		
+$(document).ready(function() {
 	setRatingStar();
 	
 	var ratingStarValue = $star_rating.siblings('input.rating-value').val();
@@ -25,6 +25,7 @@ $(document).ready(function() {
 
 	$('#send_comment').click(function(e) {
 		e.preventDefault();
+		
 		$.ajax({
 			type : 'POST',
 			url : '/leave_comment',

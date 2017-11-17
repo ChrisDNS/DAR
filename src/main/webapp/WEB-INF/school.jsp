@@ -20,6 +20,7 @@
 <link href="css/freelancer.min.css" rel="stylesheet">
 <link href="css/freelancer.css" rel="stylesheet">
 <link href="css/star-rating.css" rel="stylesheet">
+<link href="css/maps.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="vendor/font-awesome/css/font-awesome.min.css"
@@ -60,8 +61,13 @@
 						<div class="panel-heading">Informations sur ${school.nom}</div>
 						<div class="panel-body">
 							<div>Nom : ${school.nom}</div>
-							<div>Adresse : ${school.adresse}</div>
+							<div id="address" data-address="${school.adresse}">Adresse
+								: ${school.adresse}</div>
 							<div>Département : ${school.departement}</div>
+							<div id="lat" data-lat="${school.latitude_y}">Latitude :
+								${school.latitude_y}</div>
+							<div id="lon" data-lon="${school.longitude_x}">Longitude :
+								${school.longitude_x}</div>
 							<div>Type d'étabissement : ${school.type_d_etablissement}</div>
 							<div>Académie : ${school.academie}</div>
 							<div id="uai" data-uai="${school.code_uai}">Code UAI :
@@ -76,11 +82,18 @@
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<div>Connaitre distance maison -> ecole TODO</div>
+						<div id="output"></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-6">
+				<div id="floating-panel">
+					<b>Mode de déplacement : </b> <select id="mode">
+						<option value="WALKING">A pied</option>
+						<option value="DRIVING">Voiture</option>
+						<option value="BICYCLING">Vélo</option>
+					</select>
+				</div>
 				<div id="map"></div>
 			</div>
 		</div>
@@ -169,7 +182,7 @@
 	<script src="js/school.js"></script>
 	<script src="js/maps.js"></script>
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbgwCBsZf0bxYm-FbYX8ljeTtkajKnfv8&callback=initMap"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbgwCBsZf0bxYm-FbYX8ljeTtkajKnfv8&callback=showGoogleMaps"
 		async defer>
 		
 	</script>
