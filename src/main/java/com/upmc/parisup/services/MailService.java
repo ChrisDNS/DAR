@@ -11,6 +11,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * 
+ * Sending mail service doesn't work with Heroku
+ *
+ */
 public class MailService {
 	private static final int PORT = 587;
 	private static final String FROM = "noreply@parisup.com";
@@ -54,7 +59,8 @@ public class MailService {
 
 			Session sess = Session.getInstance(props, new javax.mail.Authenticator() {
 				public PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("genielogiciel2017@gmail.com", "mccmrogenie");
+					// return new PasswordAuthentication("blabla@gmail.com", "blabla");
+					return null;
 				}
 			});
 
@@ -63,7 +69,7 @@ public class MailService {
 			Message m = new MimeMessage(sess);
 			m.setFrom(from);
 			m.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			m.setSubject("Mot de passe oublié");
+			m.setSubject("Mot de passe oubli��");
 			m.setContent(html, "text/html; charset=utf-8");
 
 			Transport.send(m);

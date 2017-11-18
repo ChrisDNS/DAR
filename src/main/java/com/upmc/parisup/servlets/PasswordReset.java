@@ -17,7 +17,6 @@ import com.upmc.parisup.DAO.UserDAO;
 import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.User;
 import com.upmc.parisup.services.AuthenticationService;
-import com.upmc.parisup.services.MailService;
 import com.upmc.parisup.services.Util;
 
 public class PasswordReset extends HttpServlet {
@@ -54,18 +53,21 @@ public class PasswordReset extends HttpServlet {
 			u = udao.getByAttribute("email", email);
 			if (u == null) {
 				json.put("success", false);
-				json.put("message", "Désolé, nous ne trouvons pas cet adresse email");
+				json.put("message", "Désolé, nous ne trouvons pas cette adresse email.");
 			}
 
 			else {
 				u.setToken(Util.generateToken());
 				udao.update(u);
 
-				MailService ms = new MailService("ouais", request.getRequestURL() + "?token=" + u.getToken());
-				ms.sendTo(email);
+				// MailService ms = new MailService("ouais", request.getRequestURL() + "?token="
+				// + u.getToken());
+				// ms.sendTo(email);
+				json.put("token", u.getToken());
 				json.put("success", true);
-				json.put("message",
-						"Regardez vos emails, vous trouverez un lien pour réinitialiser votre mot de passe.");
+				// json.put("message",
+				// "Regardez vos emails, vous trouverez un lien pour réinitialiser votre mot de
+				// passe.");
 			}
 
 		} else if (request.getParameter("value").equals("change")) {
@@ -77,7 +79,6 @@ public class PasswordReset extends HttpServlet {
 			else {
 				u = udao.getByAttribute("token", request.getParameter("token"));
 				if (u.getEmail().equals(request.getParameter("email"))) {
-					System.out.println("TRUEEEEEEEEEEEEEEe");
 					try {
 						AuthenticationService as = new AuthenticationService();
 						u.setSalt(as.generateSalt());
@@ -86,7 +87,6 @@ public class PasswordReset extends HttpServlet {
 						udao.update(u);
 
 						json.put("success", true);
-						System.out.println("SUCCESS");
 
 					} catch (NoSuchAlgorithmException e) {
 						e.printStackTrace();

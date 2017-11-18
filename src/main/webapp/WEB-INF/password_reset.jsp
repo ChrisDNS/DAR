@@ -50,7 +50,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<div id="footer"></div>
 
 	<!-- Bootstrap core JavaScript -->
@@ -60,38 +60,6 @@
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('#info').hide();
-			$('#info').html("");
-
-			$('#reset').click(function(e) {
-				e.preventDefault();
-
-				$.ajax({
-					type : 'POST',
-					url : 'password_reset',
-					data : {
-						mail : $('#mail').val(),
-						value : $("#mail").attr("name")
-					}
-
-				}).done(function(data) {
-					if (data.success) {
-						$('#info').html(data.message);
-						$('.form-group').hide();
-						$('#info').show();
-						$('#reset').hide();
-					} else {
-						$('#info').html(data.message);
-						$('#info').show();
-					}
-
-				}).fail(function() {
-					alert("Server not responding.");
-				});
-			});
-		});
-	</script>
+	<script src="js/password-reset.js"></script>
 </body>
 </html>

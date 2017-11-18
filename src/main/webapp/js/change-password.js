@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 	$('#change').click(function(e) {
 		e.preventDefault();
-		console.log("fdp");
+		
 		$.ajax({
 			type : 'POST',
 			url : 'password_reset',
