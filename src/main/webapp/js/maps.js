@@ -1,26 +1,36 @@
 var map;
 var callbackGoogleMaps = false;
-// var callbackCodeAddress = false;
 
 var home = {
 	lat : "",
 	lon : ""
 };
 
-var school = {
-	lat : $('#lat').data('lat'),
-	lon : $('#lon').data('lon')
+var currentSchool = {
+	lat : parseFloat($('#lat').data('lat')),
+	lon : parseFloat($('#lon').data('lon'))
 }
 
 function showGoogleMaps() {
 	callbackGoogleMaps = true;
 }
 
-$(document).ready(function() {
+$(document).ready(
+function() {
 	if (Cookies.get('email') == null || Cookies.get('email') == "") {
-		alert("Vous n'êtes pas connecté.");
-	} else
-		codeAddress(Cookies.get('address'));
+		alert('Vous n\'êtes pas connecté.');
+		$("#output").html(
+				'Vous devez être connecté pour accéder à ce service.');
+		initMap(false);
+
+	} else {
+		if(Cookies.get('address') == null || Cookies.get('address') == "")
+			initMap(false);
+		else {
+			codeAddress(Cookies.get('address'));
+			$("#output").html('Vous n\'avez pas entré d\'adresse lors de votre inscription.');
+		}
+	}
 
 });
 
@@ -34,7 +44,7 @@ function codeAddress(address) {
 			home.lat = results[0].geometry.location.lat();
 			home.lon = results[0].geometry.location.lng();
 
-			initMap(school);
+			initMap(true);
 
 		} else
 			alert('Le geocoding n\'a pas fonctionné: ' + status);
@@ -54,14 +64,9 @@ function showDistance(origin, destination) {
 			});
 }
 
-function initMap(school) {
-	var currentSchool = {
-		lat : parseFloat(school.lat),
-		lon : parseFloat(school.lon)
-	};
-
+function initMap(bool) {
 	map = new google.maps.Map(document.getElementById('map'), {
-		center : new google.maps.LatLng(school.lat, school.lon),
+		center : new google.maps.LatLng(currentSchool.lat, currentSchool.lon),
 		zoom : 12
 	});
 
@@ -72,8 +77,8 @@ function initMap(school) {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var pos = {
-				lat : school.lat,
-				lng : school.lon
+				lat : position.coords.latitude,
+				lng : position.coords.longitude
 			};
 
 			infoWindow.setPosition(pos);
@@ -81,12 +86,16 @@ function initMap(school) {
 			map.setCenter(pos);
 
 			setMarker(home);
-			setMarker(school);
+			setMarker(currentSchool);
 
-			calculateDistance(new google.maps.LatLng(home.lat, home.lon),
-					new google.maps.LatLng(school.lat, school.lon), 'WALKING');
-			showDistance(new google.maps.LatLng(home.lat, home.lon),
-					new google.maps.LatLng(school.lat, school.lon));
+			if (bool) {
+				calculateDistance(new google.maps.LatLng(home.lat, home.lon),
+						new google.maps.LatLng(currentSchool.lat,
+								currentSchool.lon), 'WALKING');
+				showDistance(new google.maps.LatLng(home.lat, home.lon),
+						new google.maps.LatLng(currentSchool.lat,
+								currentSchool.lon));
+			}
 
 		}, function() {
 			handleLocationError(true, infoWindow, map.getCenter());
@@ -109,16 +118,18 @@ function calculateDistance(from, to, mode) {
 	}, function(response, status) {
 		if (status !== 'OK')
 			alert('Erreur : ' + status);
+
 		else {
 			var origin = response.originAddresses[0];
 			var destination = response.destinationAddresses[0];
 			$("#output").html(
-					'<strong>DE </strong>' + origin
-							+ '<br><strong> A </strong>' + destination
-							+ ' : <br>' + '<strong>'
+					'<strong>DE </strong>' + origin + '<strong> A </strong>'
+							+ destination + ' : <br>' + '<strong> Trajet : '
 							+ response.rows[0].elements[0].distance.text
-							+ '<\strong>' + ' en : '
-							+ $('#mode option:selected').val());
+							+ ' <\strong>' + '('
+							+ $('#mode option:selected').val() + ')'
+							+ '<br> <strong>Temps : <\strong>'
+							+ response.rows[0].elements[0].duration.text);
 		}
 	});
 }
@@ -152,17 +163,6 @@ function calculateAndDisplayRoute(ori, dest, directionsService,
 function setMarker(place) {
 	var marker = new google.maps.Marker({
 		position : new google.maps.LatLng(place.lat, place.lon),
-		map : map,
-		animation : google.maps.Animation.DROP,
-	});
-}
-
-function successCallback(position) {
-	map.panTo(new google.maps.LatLng(position.coords.latitude,
-			position.coords.longitude));
-	var marker = new google.maps.Marker({
-		position : new google.maps.LatLng(position.coords.latitude,
-				position.coords.longitude),
 		map : map,
 		animation : google.maps.Animation.DROP,
 	});

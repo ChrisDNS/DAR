@@ -18,6 +18,7 @@ import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.SelectedSchoolDAOImpl;
 import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
+import com.upmc.parisup.services.UserService;
 import com.upmc.parisup.services.Util;
 
 public class SetFavourite extends HttpServlet {
@@ -25,10 +26,12 @@ public class SetFavourite extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		UserService us = new UserService();
 		SchoolDAO sdao = (SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO();
 		SelectedSchoolDAO ssdao = (SelectedSchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY)
 				.getSelectedSchoolDAO();
@@ -37,7 +40,7 @@ public class SetFavourite extends HttpServlet {
 		String action = request.getParameter("action");
 		String uai = request.getParameter("uai");
 
-		User u = Util.getCurrentUser(request);
+		User u = us.getCurrentUser(request);
 
 		List<SelectedSchool> userListSS = ssdao.getByUserID(u.getId());
 

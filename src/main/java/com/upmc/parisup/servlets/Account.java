@@ -20,6 +20,8 @@ import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.School;
 import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
+import com.upmc.parisup.services.SchoolService;
+import com.upmc.parisup.services.UserService;
 import com.upmc.parisup.services.Util;
 
 public class Account extends HttpServlet {
@@ -35,10 +37,13 @@ public class Account extends HttpServlet {
 		// Add all schools into combobox
 		List<School> schools = ((SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO())
 				.getAll();
+
+		UserService us = new UserService();
+
 		request.setAttribute("schools", schools);
 
 		// User infos
-		User user = Util.getCurrentUser(request);
+		User user = us.getCurrentUser(request);
 		request.setAttribute("user", user);
 
 		// Schools selected
@@ -54,10 +59,12 @@ public class Account extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		UserService us = new UserService();
 		ArrayList<String> errors = new ArrayList<String>();
 		JSONObject json = new JSONObject();
-		User currentUser = Util.getCurrentUser(request);
-		User user = SignUp.getUser(request, errors, currentUser.getEmail());
+
+		User currentUser = us.getCurrentUser(request);
+		User user = us.getUser(request, errors, currentUser.getEmail());
 
 		// If no errors, then modify
 		if (user != null) {
@@ -75,7 +82,7 @@ public class Account extends HttpServlet {
 						.getSelectedSchoolDAO()).delete(previousSchools.get(i));
 
 			// Add the new selected schools
-			SignUp.addNewSelectedSchools(request, currentUser.getId());
+			new SchoolService().addNewSelectedSchools(request, currentUser.getId());
 
 			ObjectMapper mapper = new ObjectMapper();
 			String userToJson = mapper.writeValueAsString(user);

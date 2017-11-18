@@ -18,7 +18,7 @@ import com.upmc.parisup.DAO.DAOImpl.RatingDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.business.Rating;
 import com.upmc.parisup.business.User;
-import com.upmc.parisup.services.Util;
+import com.upmc.parisup.services.UserService;
 
 public class LeaveComment extends HttpServlet {
 	private static final long serialVersionUID = 5288887076145694915L;
@@ -30,12 +30,14 @@ public class LeaveComment extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		UserService us = new UserService();
+
 		SchoolDAO sdao = (SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO();
 		RatingDAO rdao = (RatingDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getRatingDAO();
 		String comment = request.getParameter("comment");
 		String rating = request.getParameter("rating");
 
-		User u = Util.getCurrentUser(request);
+		User u = us.getCurrentUser(request);
 
 		Rating r = new Rating();
 		r.setIdSchool(sdao.getByUAI(request.getParameter("uai")).getId());

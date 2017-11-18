@@ -5,16 +5,9 @@ import java.security.SecureRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
-
-import com.upmc.parisup.DAO.AbstractDAOFactory;
-import com.upmc.parisup.DAO.Factory;
-import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
-import com.upmc.parisup.business.User;
 
 public class Util {
 
@@ -44,21 +37,5 @@ public class Util {
 			return false;
 
 		return true;
-	}
-
-	public static User getCurrentUser(HttpServletRequest request) {
-		Cookie[] cookies = request.getCookies();
-
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("email")) {
-					String email = cookie.getValue();
-					return ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
-							.getByAttribute("email", email);
-				}
-			}
-		}
-
-		return null;
 	}
 }

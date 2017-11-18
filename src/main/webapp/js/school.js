@@ -96,10 +96,9 @@ $(document).ready(function() {
 	if(Cookies.get('email') == null || Cookies.get('email') == "") {
 		$('#leave_comment').hide();
 		$('#fav_button').hide();
-	}
-	
-	isInFav(data);
-	
+	} else
+		isInFav(data);
+		
 	setRatingStar();
 	
 	var ratingStarValue = $star_rating.siblings('input.rating-value').val();
