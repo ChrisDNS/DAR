@@ -16,7 +16,7 @@ public class SelectedSchoolDAOImpl extends MyPostgreSQLDAOImpl<SelectedSchool> i
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<SelectedSchool> getByUserID(long id) {
+	public List<SelectedSchool> getByUserID(Long id) {
 		String req = "FROM SelectedSchool u WHERE u.idUser=" + id;
 		
 		Session session = sql.getSessionFactory().getCurrentSession();

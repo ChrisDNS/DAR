@@ -1,8 +1,7 @@
 <!-- Navigation -->
-<li class="nav-item dropdown">
-	<a id="login" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><b></b>
-		<span class="caret"></span>
-	</a>
+<li class="nav-item dropdown"><a id="login" href="#"
+	class="nav-link dropdown-toggle" data-toggle="dropdown"><b></b> <span
+		class="caret"></span> </a>
 	<ul id="login-dp" class="dropdown-menu">
 		<li>
 			<form action="/account">
@@ -22,8 +21,7 @@
 				</div>
 			</div>
 		</li>
-	</ul>
-</li>
+	</ul></li>
 
 <script>
 	(function() {
@@ -41,6 +39,9 @@
 		$('#disconnect').click(function(e) {
 			e.preventDefault();
 
+			Cookies.remove('id', {
+				path : '/'
+			});
 			Cookies.remove('email', {
 				path : '/'
 			});
@@ -50,6 +51,10 @@
 			Cookies.remove('lastname', {
 				path : '/'
 			});
+			Cookies.remove('address', {
+				path : '/'
+			});
+			
 			window.location.assign("/");
 		});
 	});

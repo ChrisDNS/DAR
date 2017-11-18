@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upmc.parisup.DAO.AbstractDAOFactory;
 import com.upmc.parisup.DAO.Factory;
 import com.upmc.parisup.DAO.RatingDAO;
@@ -19,7 +16,6 @@ import com.upmc.parisup.DAO.DAOImpl.RatingDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.api.schools.SchoolAPIConstants;
 import com.upmc.parisup.business.School;
-import com.upmc.parisup.services.Util;
 
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 8564336809015917293L;
@@ -31,10 +27,10 @@ public class Search extends HttpServlet {
 			throws ServletException, IOException {
 		SchoolDAO sdao = (SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO();
 
-		if (request.getParameter("uai") != null) {
-			String uai = request.getParameter("uai");
-			RatingDAO rdao = (RatingDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getCommentDAO();
-			School s = sdao.getByUAI(uai);
+		if (request.getParameter("id") != null) {
+			Long id = Long.parseLong(request.getParameter("id"));
+			RatingDAO rdao = (RatingDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getRatingDAO();
+			School s = sdao.get(id);
 			if (s != null) {
 				request.setAttribute("school", s);
 				request.setAttribute("ratings", rdao.getAllByDateDescAndSchoolID(s.getId()));

@@ -24,6 +24,7 @@ import com.upmc.parisup.business.School;
 import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
 import com.upmc.parisup.services.AuthenticationService;
+import com.upmc.parisup.services.Util;
 
 public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = -5677200504573287154L;
@@ -41,6 +42,7 @@ public class SignUp extends HttpServlet {
 		request.setAttribute("schools", schools);
 		request.setAttribute("user", null);
 		request.setAttribute("selectedSchools", null);
+		
 		request.getRequestDispatcher("WEB-INF/signup.jsp").forward(request, response);
 	}
 
@@ -71,16 +73,8 @@ public class SignUp extends HttpServlet {
 
 		json.put("success", user != null);
 		json.put("message", String.join("\n", errors));
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
 
-		try {
-			response.getWriter().print(json);
-			response.getWriter().close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		Util.sendJSON(response, json);
 	}
 
 	public static User getUser(HttpServletRequest request, ArrayList<String> errors, String currentMail) {

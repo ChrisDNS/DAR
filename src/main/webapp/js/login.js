@@ -27,6 +27,7 @@ $(document).ready(function() {
 });
 
 function login(user) {
+	Cookies.set('id', user.id);
 	Cookies.set('email', user.email);
 	Cookies.set('firstname', user.firstname);
 	Cookies.set('lastname', user.lastname);

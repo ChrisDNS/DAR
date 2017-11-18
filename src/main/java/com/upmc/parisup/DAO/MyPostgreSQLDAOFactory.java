@@ -19,7 +19,7 @@ public class MyPostgreSQLDAOFactory extends AbstractDAOFactory {
 		private static final UserDAO USER_DAO = new UserDAOImpl(User.class);
 		private static final SchoolDAO SCHOOL_DAO = new SchoolDAOImpl(School.class);
 		private static final SelectedSchoolDAO SELECTED_SCHOOL_DAO = new SelectedSchoolDAOImpl(SelectedSchool.class);
-		private static final RatingDAO COMMENT_DAO = new RatingDAOImpl(Rating.class);
+		private static final RatingDAO RATING_DAO = new RatingDAOImpl(Rating.class);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class MyPostgreSQLDAOFactory extends AbstractDAOFactory {
 	}
 
 	@Override
-	public DAO<?> getCommentDAO() {
-		return DAOHolder.COMMENT_DAO;
+	public DAO<?> getRatingDAO() {
+		return DAOHolder.RATING_DAO;
 	}
 }

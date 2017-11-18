@@ -58,7 +58,14 @@
 			<div class="col-md-6">
 				<div class="panel-group">
 					<div class="panel panel-default">
-						<div class="panel-heading">Informations sur ${school.nom}</div>
+						<div class="panel-heading">
+							Informations sur ${school.nom}
+							<div id="fav_button" class="click">
+								<span id="fav_span" data-action="" class="fav-star fa fa-star-o"></span>
+								<div class="ring"></div>
+								<div class="ring2"></div>
+							</div>
+						</div>
 						<div class="panel-body">
 							<div>Nom : ${school.nom}</div>
 							<div id="address" data-address="${school.adresse}">Adresse
@@ -103,7 +110,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3>Avis</h3>
-						<button type="button" class=" btn btn-primary "
+						<button id="leave_comment" type="button" class=" btn btn-primary "
 							data-toggle="modal" data-target="#commentModal">Laisser
 							votre avis</button>
 					</div>
@@ -111,16 +118,16 @@
 						<c:forEach var="rating" items="${ratings}">
 							<div class="list-group-item"
 								style="margin-top: 5px; margin-bottom: 5px">
-								<span class="label label-success "></span> <span
-									class="commentaire"><strong>${cookie.firstname.value}
-										: </strong></span><span class="commentaire">${rating.comment}</span>
-								<c:forEach var='i' begin='${rating.rating+1}' end='5'>
-									<span class="fa fa-star-o" style="float: right;"></span>
-								</c:forEach>
+								<span class="label label-success "></span>
 								<c:forEach var='i' begin='1' end='${rating.rating}'>
-									<span class="fa fa-star" style="float: right;"></span>
+									<span class="fa fa-star"></span>
 								</c:forEach>
-								<span class="badge temps">${rating.date}</span>
+								<c:forEach var='i' begin='${rating.rating+1}' end='5'>
+									<span class="fa fa-star-o"></span>
+								</c:forEach>
+								<span class="commentaire"><strong>${rating.nameUser}
+										: </strong></span><span class="commentaire">${rating.comment}</span> <span
+									class="badge temps" style="margin-left: 3px;">${rating.date}</span>
 							</div>
 						</c:forEach>
 					</div>

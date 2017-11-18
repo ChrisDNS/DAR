@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.upmc.parisup.DAO.AbstractDAOFactory;
-import com.upmc.parisup.DAO.RatingDAO;
 import com.upmc.parisup.DAO.Factory;
+import com.upmc.parisup.DAO.RatingDAO;
 import com.upmc.parisup.DAO.SchoolDAO;
 import com.upmc.parisup.DAO.DAOImpl.RatingDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.business.Rating;
+import com.upmc.parisup.business.User;
 import com.upmc.parisup.services.Util;
 
 public class LeaveComment extends HttpServlet {
@@ -30,13 +31,16 @@ public class LeaveComment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		SchoolDAO sdao = (SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO();
-		RatingDAO rdao = (RatingDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getCommentDAO();
+		RatingDAO rdao = (RatingDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getRatingDAO();
 		String comment = request.getParameter("comment");
 		String rating = request.getParameter("rating");
 
+		User u = Util.getCurrentUser(request);
+
 		Rating r = new Rating();
 		r.setIdSchool(sdao.getByUAI(request.getParameter("uai")).getId());
-		r.setIdUser(Util.getCurrentUser(request).getId());
+		r.setNameUser(u.getFirstname() + " " + u.getLastname().charAt(0));
+		r.setIdUser(u.getId());
 		r.setComment(comment);
 		r.setRating(Long.parseLong(rating));
 

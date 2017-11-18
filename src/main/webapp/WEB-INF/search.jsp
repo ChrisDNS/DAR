@@ -94,7 +94,7 @@
 											<td>
 												<div class="media">
 													<h4 class="title">
-														<a id="show_school" href="search?uai=${school.code_uai}">${school.nom}</a>
+														<a id="show_school" href="search?id=${school.id}">${school.nom}</a>
 													</h4>
 													<p class="summary">${school.commune}</p>
 													<p class="summary">${school.type_d_etablissement}</p>

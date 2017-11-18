@@ -5,5 +5,7 @@ import java.util.List;
 import com.upmc.parisup.business.SelectedSchool;
 
 public interface SelectedSchoolDAO extends DAO<SelectedSchool> {
-	public List<SelectedSchool> getByUserID(long id);
+	
+	public List<SelectedSchool> getByUserID(Long id);
+	
 }

@@ -6,3 +6,76 @@
 .star-rating .fa-star {
 	color: gold;
 }
+
+@import
+	url(//fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,cyrillic)
+	;
+
+.click {
+	font-size: 20px;
+	color: rgba(0, 0, 0, .5);
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+
+.click span {
+	
+}
+
+span:hover {
+	opacity: 0.8;
+}
+
+span:active {
+	transform: scale(0.93, 0.93) translateY(2px)
+}
+
+.ring, .ring2 {
+	opacity: 0;
+	background: gold;
+	width: 1px;
+	height: 1px;
+	position: absolute;
+	top: 19px;
+	left: 18px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.active span, .active-2 span {
+	color: #F5CC27 !important;
+}
+
+.active-2 .ring {
+	width: 58px !important;
+	height: 58px !important;
+	top: -10px !important;
+	left: -10px !important;
+	position: absolute;
+	border-radius: 50%;
+	opacity: 1 !important;
+	left: -10px !important;
+}
+
+.active-2 .ring {
+	background: #F5CC27 !important;
+}
+
+.active-2 .ring2 {
+	background: #fff !important;
+}
+
+.active-3 .ring2 {
+	width: 60px !important;
+	height: 60px !important;
+	top: -11px !important;
+	left: -11px !important;
+	position: absolute;
+	border-radius: 50%;
+	opacity: 1 !important;
+}
+
+* {
+	transition: all .32s ease;
+}

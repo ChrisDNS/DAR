@@ -1,3 +1,8 @@
+#map {
+	height: 400px;
+	width: 550px;
+}
+
 #floating-panel {
 	position: absolute;
 	top: 10px;

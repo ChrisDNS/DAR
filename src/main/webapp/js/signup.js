@@ -15,6 +15,7 @@ function removeSchool(i) {
 
 function updateSchools() {
 	var id, i, l = schools.length;
+	console.log(schools);
 	var ul = $('#schoolsList'), select;
 	var html = "";
 
@@ -25,11 +26,14 @@ function updateSchools() {
 		for (i = 0; i < l; i++) {
 			id = schools[i];
 			select = $('#allSchoolsList option[value=' + id + ']');
-			html += '<div class="col-sm-10" style="padding:0;"><li style="margin-bottom:10px;" class="list-group-item list-group-item-info">'
+			html += '<a href=search?id='
+					+ id
+					+ '><div class="col-sm-10" style="padding:0;"><li style="margin-bottom:10px;" class="list-group-item list-group-item-info">'
 					+ select.text()
 					+ '</li></div><div class="col-sm-2"><button onclick="removeSchool('
 					+ i
-					+ ')" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button></div>'
+					+ ')" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button></div></a>'
+
 		}
 	}
 
@@ -87,7 +91,8 @@ $(document).ready(function() {
 				var user = JSON.parse(data.user);
 				login(user);
 				$('div #error').hide();
-				alert("Vos informations ont été enregistrées avec succès.")
+				alert("Vos informations ont été enregistrées avec succès.");
+
 			} else {
 				$('div #error').html(data.message);
 				$('div #error').show();

@@ -4,6 +4,7 @@ public class Rating {
 	private Long id;
 
 	private Long idSchool, idUser;
+	private String nameUser;
 	private String comment;
 	private Long rating;
 	private String date;
@@ -36,6 +37,14 @@ public class Rating {
 		this.idUser = idUser;
 	}
 
+	public String getNameUser() {
+		return nameUser;
+	}
+
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
+	}
+
 	public String getComment() {
 		return comment;
 	}
@@ -62,7 +71,7 @@ public class Rating {
 
 	@Override
 	public String toString() {
-		return "Rating [id=" + id + ", idSchool=" + idSchool + ", idUser=" + idUser + ", comment=" + comment
-				+ ", rating=" + rating + ", date=" + date + "]";
+		return "Rating [id=" + id + ", idSchool=" + idSchool + ", idUser=" + idUser + ", nameUser=" + nameUser
+				+ ", comment=" + comment + ", rating=" + rating + ", date=" + date + "]";
 	}
 }

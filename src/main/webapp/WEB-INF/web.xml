@@ -41,6 +41,10 @@
 		<servlet-name>LeaveComment</servlet-name>
 		<servlet-class>com.upmc.parisup.servlets.LeaveComment</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>SetFavourite</servlet-name>
+		<servlet-class>com.upmc.parisup.servlets.SetFavourite</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Homepage</servlet-name>
@@ -69,6 +73,10 @@
 	<servlet-mapping>
 		<servlet-name>LeaveComment</servlet-name>
 		<url-pattern>/leave_comment</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SetFavourite</servlet-name>
+		<url-pattern>/set_favourite</url-pattern>
 	</servlet-mapping>
 
 

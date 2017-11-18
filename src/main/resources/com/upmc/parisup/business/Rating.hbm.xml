@@ -10,6 +10,7 @@
 		</id>
 		<property name="idSchool" column="idSchool" type="long" />
 		<property name="idUser" column="idUser" type="long" />
+		<property name="nameUser" column="nameUser" type="string" />
 		<property name="comment" column="comment" type="string" />
 		<property name="rating" column="rating" type="long" />
 		<property name="date" column="date" type="string" />

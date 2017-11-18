@@ -1,22 +1,27 @@
 var map;
 var callbackGoogleMaps = false;
+// var callbackCodeAddress = false;
+
 var home = {
 	lat : "",
 	lon : ""
 };
+
+var school = {
+	lat : $('#lat').data('lat'),
+	lon : $('#lon').data('lon')
+}
 
 function showGoogleMaps() {
 	callbackGoogleMaps = true;
 }
 
 $(document).ready(function() {
-	var school = {
-		lat : $('#lat').data('lat'),
-		lon : $('#lon').data('lon')
-	}
+	if (Cookies.get('email') == null || Cookies.get('email') == "") {
+		alert("Vous n'êtes pas connecté.");
+	} else
+		codeAddress(Cookies.get('address'));
 
-	if (callbackGoogleMaps)
-		initMap(school);
 });
 
 function codeAddress(address) {
@@ -29,7 +34,7 @@ function codeAddress(address) {
 			home.lat = results[0].geometry.location.lat();
 			home.lon = results[0].geometry.location.lng();
 
-			setMarker(home);
+			initMap(school);
 
 		} else
 			alert('Le geocoding n\'a pas fonctionné: ' + status);
@@ -67,21 +72,21 @@ function initMap(school) {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var pos = {
-				lat : position.coords.latitude,
-				lng : position.coords.longitude
+				lat : school.lat,
+				lng : school.lon
 			};
 
 			infoWindow.setPosition(pos);
 			infoWindow.setContent('Lieu trouvé.');
 			map.setCenter(pos);
 
+			setMarker(home);
 			setMarker(school);
-			codeAddress(Cookies.get('address'));
 
-			distance(new google.maps.LatLng(48.891304999, 2.3529866999),
+			calculateDistance(new google.maps.LatLng(home.lat, home.lon),
+					new google.maps.LatLng(school.lat, school.lon), 'WALKING');
+			showDistance(new google.maps.LatLng(home.lat, home.lon),
 					new google.maps.LatLng(school.lat, school.lon));
-			
-			showDistance(new google.maps.LatLng(48.891304999, 2.3529866999), new google.maps.LatLng(school.lat, school.lon));
 
 		}, function() {
 			handleLocationError(true, infoWindow, map.getCenter());
@@ -91,12 +96,12 @@ function initMap(school) {
 		handleLocationError(false, infoWindow, map.getCenter());
 }
 
-function distance(from, to) {
+function calculateDistance(from, to, mode) {
 	var service = new google.maps.DistanceMatrixService;
 	service.getDistanceMatrix({
 		origins : [ from ],
 		destinations : [ to ],
-		travelMode : 'WALKING',
+		travelMode : mode,
 		unitSystem : google.maps.UnitSystem.METRIC,
 		avoidHighways : false,
 		avoidTolls : false
@@ -108,8 +113,12 @@ function distance(from, to) {
 			var origin = response.originAddresses[0];
 			var destination = response.destinationAddresses[0];
 			$("#output").html(
-					'de ' + origin + ' à ' + destination + ' : '
-							+ response.rows[0].elements[0].distance.text);
+					'<strong>DE </strong>' + origin
+							+ '<br><strong> A </strong>' + destination
+							+ ' : <br>' + '<strong>'
+							+ response.rows[0].elements[0].distance.text
+							+ '<\strong>' + ' en : '
+							+ $('#mode option:selected').val());
 		}
 	});
 }
@@ -117,6 +126,7 @@ function distance(from, to) {
 function calculateAndDisplayRoute(ori, dest, directionsService,
 		directionsDisplay) {
 	var selectedMode = $('#mode option:selected').val();
+
 	directionsService.route({
 		origin : {
 			lat : ori.lat(),
@@ -130,10 +140,12 @@ function calculateAndDisplayRoute(ori, dest, directionsService,
 
 	}, function(response, status) {
 		if (status == 'OK') {
+			calculateDistance(ori, dest, selectedMode);
 			directionsDisplay.setDirections(response);
-		} else {
-			window.alert('Directions request failed due to ' + status);
-		}
+
+		} else
+			window.alert('La reqûete des directions à échouer à cause de '
+					+ status);
 	});
 }
 

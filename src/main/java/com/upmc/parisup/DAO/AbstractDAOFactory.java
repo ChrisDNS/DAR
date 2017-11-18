@@ -12,7 +12,7 @@ public abstract class AbstractDAOFactory {
 	
 	public abstract DAO<?> getSelectedSchoolDAO();
 	
-	public abstract DAO<?> getCommentDAO();
+	public abstract DAO<?> getRatingDAO();
 
 	
 	public static AbstractDAOFactory getFactory(Factory type) {

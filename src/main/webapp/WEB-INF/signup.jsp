@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -39,10 +39,10 @@
 	<div class="signupForm">
 		<h1 class="text-muted">
 			<c:choose>
-			    <c:when test="${user==null}">
+				<c:when test="${user==null}">
 			        Inscription
-			    </c:when>    
-			    <c:otherwise>
+			    </c:when>
+				<c:otherwise>
 			        Mon compte
 			    </c:otherwise>
 			</c:choose>
@@ -52,12 +52,12 @@
 				<label class="control-label col-sm-5" for="firstName">Prénom:</label>
 				<div class="col-sm-3">
 					<c:choose>
-					    <c:when test="${user==null}">
-					        <c:set value="" var="firstName"></c:set>
-					    </c:when>    
-					    <c:otherwise>
-					        <c:set value="${user.firstname}" var="firstName"></c:set>
-					    </c:otherwise>
+						<c:when test="${user==null}">
+							<c:set value="" var="firstName"></c:set>
+						</c:when>
+						<c:otherwise>
+							<c:set value="${user.firstname}" var="firstName"></c:set>
+						</c:otherwise>
 					</c:choose>
 					<input type="text" class="form-control" id="firstName"
 						placeholder="Entrer votre prénom" value="${firstName}">
@@ -67,12 +67,12 @@
 				<label class="control-label col-sm-5" for="name">Nom:</label>
 				<div class="col-sm-3">
 					<c:choose>
-					    <c:when test="${user==null}">
-					        <c:set value="" var="lastName"></c:set>
-					    </c:when>    
-					    <c:otherwise>
-					        <c:set value="${user.lastname}" var="lastName"></c:set>
-					    </c:otherwise>
+						<c:when test="${user==null}">
+							<c:set value="" var="lastName"></c:set>
+						</c:when>
+						<c:otherwise>
+							<c:set value="${user.lastname}" var="lastName"></c:set>
+						</c:otherwise>
 					</c:choose>
 					<input type="text" class="form-control" id="name"
 						placeholder="Entrer votre nom" value="${lastName}">
@@ -82,12 +82,12 @@
 				<label class="control-label col-sm-5" for="mail">Email:</label>
 				<div class="col-sm-3">
 					<c:choose>
-					    <c:when test="${user==null}">
-					        <c:set value="" var="email"></c:set>
-					    </c:when>    
-					    <c:otherwise>
-					        <c:set value="${user.email}" var="email"></c:set>
-					    </c:otherwise>
+						<c:when test="${user==null}">
+							<c:set value="" var="email"></c:set>
+						</c:when>
+						<c:otherwise>
+							<c:set value="${user.email}" var="email"></c:set>
+						</c:otherwise>
 					</c:choose>
 					<input type="email" class="form-control" id="mail"
 						placeholder="Entrer votre adresse électronique" value="${email}">
@@ -98,7 +98,8 @@
 					de l'email:</label>
 				<div class="col-sm-3">
 					<input type="email" class="form-control" id="confmail"
-						placeholder="Confirmer votre adresse électronique" value="${email}">
+						placeholder="Confirmer votre adresse électronique"
+						value="${email}">
 				</div>
 			</div>
 			<div class="form-group">
@@ -121,12 +122,12 @@
 				<label class="control-label col-sm-5" for="address">Adresse:*</label>
 				<div class="col-sm-3">
 					<c:choose>
-					    <c:when test="${user==null}">
-					        <c:set value="" var="address"></c:set>
-					    </c:when>    
-					    <c:otherwise>
-					        <c:set value="${user.address}" var="address"></c:set>
-					    </c:otherwise>
+						<c:when test="${user==null}">
+							<c:set value="" var="address"></c:set>
+						</c:when>
+						<c:otherwise>
+							<c:set value="${user.address}" var="address"></c:set>
+						</c:otherwise>
 					</c:choose>
 					<input type="text" class="form-control" id="address"
 						placeholder="Entrer votre addresse" value="${address}">
@@ -136,12 +137,12 @@
 				<label class="control-label col-sm-5" for="town">Ville:*</label>
 				<div class="col-sm-3">
 					<c:choose>
-					    <c:when test="${user==null}">
-					        <c:set value="" var="town"></c:set>
-					    </c:when>    
-					    <c:otherwise>
-					        <c:set value="${user.town}" var="town"></c:set>
-					    </c:otherwise>
+						<c:when test="${user==null}">
+							<c:set value="" var="town"></c:set>
+						</c:when>
+						<c:otherwise>
+							<c:set value="${user.town}" var="town"></c:set>
+						</c:otherwise>
 					</c:choose>
 					<input type="text" class="form-control" id="town"
 						placeholder="Entrer votre ville" value="${town}">
@@ -175,20 +176,24 @@
 					</div>
 				</div>
 			</c:if>
-			<p class="text-warning signupInfos">Les champs * sont optionnels mais serviront à perfectionner vos recherches et/ou relations avec les autres étudiants.</p>
-			<p class="text-warning signupInfos">Les anciennes et / ou récente(s) école(s) fréquentée(s) vous feront automatiquement rejoindre les réseaux associés.</p>
+			<p class="text-warning signupInfos">Les champs * sont optionnels
+				mais serviront à perfectionner vos recherches et/ou relations avec
+				les autres étudiants.</p>
+			<p class="text-warning signupInfos">Les anciennes et / ou
+				récente(s) école(s) fréquentée(s) vous feront automatiquement
+				rejoindre les réseaux associés.</p>
 			<div id="error"
 				style="text-align: center; display: none; color: red;"
 				class="alert alert-error"></div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<c:choose>
-					    <c:when test="${user==null}">
-					        <button id="sign" type="submit" class="btn btn-success">Inscription</button>
-					    </c:when>    
-					    <c:otherwise>
-					        <button id="modify" type="submit" class="btn btn-success">Modifier</button>
-					    </c:otherwise>
+						<c:when test="${user==null}">
+							<button id="sign" type="submit" class="btn btn-success">Inscription</button>
+						</c:when>
+						<c:otherwise>
+							<button id="modify" type="submit" class="btn btn-success">Modifier</button>
+						</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
@@ -204,7 +209,7 @@
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
 
-	<script type="text/javascript">
+	<script type="text/javascript">		
 		var schools = [
 		    <c:forEach items="${selectedSchools}" var="schoole" varStatus="status">
 		    	'${schoole.idSchool}' <c:if test="${!status.last}">,</c:if>
