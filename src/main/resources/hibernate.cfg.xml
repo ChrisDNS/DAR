@@ -7,14 +7,14 @@
 	<session-factory>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<!-- 
+		 
 		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/parisup</property>
 		<property name="hibernate.connection.username">mbc_team</property>
 		<property name="hibernate.connection.password">dar_project</property>
-		-->
-		<property name="hibernate.connection.url">jdbc:postgresql://ec2-54-83-48-188.compute-1.amazonaws.com:5432/d64b5vvnlo4du1?user=pbgqyemwajrije&amp;password=c86370239d858c31ea7f6daad9702975fc30b824fd85305f4ad38268c70849df&amp;sslmode=require</property>
-		<property name="hibernate.connection.username">pbgqyemwajrije</property>
-		<property name="hibernate.connection.password">c86370239d858c31ea7f6daad9702975fc30b824fd85305f4ad38268c70849df</property>
+		
+<!-- 		<property name="hibernate.connection.url">jdbc:postgresql://ec2-54-83-48-188.compute-1.amazonaws.com:5432/d64b5vvnlo4du1?user=pbgqyemwajrije&amp;password=c86370239d858c31ea7f6daad9702975fc30b824fd85305f4ad38268c70849df&amp;sslmode=require</property> -->
+<!-- 		<property name="hibernate.connection.username">pbgqyemwajrije</property> -->
+<!-- 		<property name="hibernate.connection.password">c86370239d858c31ea7f6daad9702975fc30b824fd85305f4ad38268c70849df</property> -->
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="show_sql">true</property>
