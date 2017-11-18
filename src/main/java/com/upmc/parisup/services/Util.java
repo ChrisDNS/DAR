@@ -2,6 +2,8 @@ package com.upmc.parisup.services;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,15 @@ public class Util {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static boolean testMail(String email) {
+		Pattern pattern = Pattern.compile(UtilConstants.MAIL_REGEX);
+		Matcher matcher = pattern.matcher(email);
+		if (!matcher.matches())
+			return false;
+
+		return true;
 	}
 
 	public static User getCurrentUser(HttpServletRequest request) {

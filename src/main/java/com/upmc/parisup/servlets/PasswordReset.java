@@ -50,24 +50,30 @@ public class PasswordReset extends HttpServlet {
 
 		if (request.getParameter("value").equals("reset")) {
 			String email = request.getParameter("mail");
-			u = udao.getByAttribute("email", email);
-			if (u == null) {
+			if (!Util.testMail(email)) {
 				json.put("success", false);
-				json.put("message", "Désolé, nous ne trouvons pas cette adresse email.");
-			}
+				json.put("message", "Ceci n'est pas une adresse valide.");
 
-			else {
-				u.setToken(Util.generateToken());
-				udao.update(u);
+			} else {
+				u = udao.getByAttribute("email", email);
+				if (u == null) {
+					json.put("success", false);
+					json.put("message", "Désolé, nous ne trouvons pas cette adresse email.");
+				}
 
-				// MailService ms = new MailService("ouais", request.getRequestURL() + "?token="
-				// + u.getToken());
-				// ms.sendTo(email);
-				json.put("token", u.getToken());
-				json.put("success", true);
-				// json.put("message",
-				// "Regardez vos emails, vous trouverez un lien pour réinitialiser votre mot de
-				// passe.");
+				else {
+					u.setToken(Util.generateToken());
+					udao.update(u);
+
+					// MailService ms = new MailService("ouais", request.getRequestURL() + "?token="
+					// + u.getToken());
+					// ms.sendTo(email);
+					json.put("token", u.getToken());
+					json.put("success", true);
+					// json.put("message",
+					// "Regardez vos emails, vous trouverez un lien pour réinitialiser votre mot de
+					// passe.");
+				}
 			}
 
 		} else if (request.getParameter("value").equals("change")) {

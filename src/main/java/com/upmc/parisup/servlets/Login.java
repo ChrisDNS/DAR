@@ -35,7 +35,11 @@ public class Login extends HttpServlet {
 		} else if (password == null || password.isEmpty()) {
 			json.put("message", "Veuillez remplir tous les champs.");
 			json.put("success", false);
+		}
 
+		if (!Util.testMail(email)) {
+			json.put("message", "Ceci n'est pas une adresse valide.");
+			json.put("success", false);
 		} else {
 			User user = ((UserDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getUserDAO())
 					.getByAttribute("email", email);
