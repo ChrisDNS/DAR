@@ -51,5 +51,6 @@ public class LeaveComment extends HttpServlet {
 		r.setDate(dateFormat.format(date));
 
 		rdao.add(r);
+		System.out.println("COMMENTAIRE AJOUTE");
 	}
 }

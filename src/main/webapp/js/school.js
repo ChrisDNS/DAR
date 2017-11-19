@@ -81,10 +81,13 @@ function isInFav(data) {
 			$('#fav_span').addClass('active-3');
 			$('#fav_span').addClass('fa-star');
 			$('#fav_span').removeClass('fa-star-o');
+			console.log("oui");
 			
 		} else {
 			$('#fav_span').data('action', 'not_fav');
 			$('#fav_span').removeClass("fa-star");
+			console.log("non");
+
 		}
 
 	}).fail(function() {

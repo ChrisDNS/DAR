@@ -36,7 +36,7 @@ public class SetFavourite extends HttpServlet {
 		SelectedSchoolDAO ssdao = (SelectedSchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY)
 				.getSelectedSchoolDAO();
 		JSONObject json = new JSONObject();
-		System.out.println(request.getParameter("idUser"));
+		
 		String action = request.getParameter("action");
 		String uai = request.getParameter("uai");
 

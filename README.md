@@ -18,7 +18,7 @@ Sur ce site vous pourrez :
 * [PostgreSQL](https://www.postgresql.fr/)
 * [Hibernate](http://wwww.hibernate.org)
 * [Heroku](https://dashboard.heroku.com/)
-* [API Ile-de-France des établissements du supérieur et leurs domaines](https://data.iledefrance.fr/explore/dataset/etablissements-denseignement-superieur/)
+* [API Open Data Ile-de-France des établissements du supérieur et leurs domaines](https://data.iledefrance.fr/explore/dataset/etablissements-denseignement-superieur/)
 * [API Google Maps](https://developers.google.com/maps/documentation/javascript/?hl=fr)
 
 #### Côté client
