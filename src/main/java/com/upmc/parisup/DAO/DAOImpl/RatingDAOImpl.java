@@ -28,6 +28,26 @@ public class RatingDAOImpl extends MyPostgreSQLDAOImpl<Rating> implements Rating
 		return ret;
 	}
 
+	@Override
+	public Long getAverageRateSchoolID(Long idSchool) {
+		Long total = new Long(0);
+		List<Rating> list = getAllByDateDesc();
+		List<Rating> ret = new ArrayList<Rating>();
+
+		for (Rating r : list) {
+			if (r.getId() == idSchool) {
+				ret.add(r);
+				total += r.getRating();
+			}
+		}
+
+		if (total != 0) {
+			return total / ret.size();
+
+		} else
+			return total;
+	}
+
 	@SuppressWarnings("unchecked")
 	private List<Rating> getAllByDateDesc() {
 		List<Rating> list;

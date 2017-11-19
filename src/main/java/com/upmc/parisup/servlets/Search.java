@@ -1,7 +1,9 @@
 package com.upmc.parisup.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,10 +28,10 @@ public class Search extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		SchoolDAO sdao = (SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO();
+		RatingDAO rdao = (RatingDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getRatingDAO();
 
 		if (request.getParameter("id") != null) {
 			Long id = Long.parseLong(request.getParameter("id"));
-			RatingDAO rdao = (RatingDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getRatingDAO();
 			School s = sdao.get(id);
 			if (s != null) {
 				request.setAttribute("school", s);
@@ -50,6 +52,9 @@ public class Search extends HttpServlet {
 
 		if (request.getParameter("page") != null)
 			page = Integer.parseInt(request.getParameter("page"));
+
+		if (request.getParameter("search") != null)
+			button = request.getParameter("search");
 
 		if (button != null) {
 			filtering = true;
@@ -78,6 +83,11 @@ public class Search extends HttpServlet {
 				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
 						"type_d_etablissement", "Autre");
 				noOfRecords = sdao.getByCriteria("type_d_etablissement", "Autre").size();
+			} else if (button.equals("search")) {
+				String value = request.getParameter("searchValue");
+				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
+						"nom", value);
+				noOfRecords = sdao.getByCriteria("nom", value).size();
 			} else {
 				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
 						"all", "");
@@ -92,8 +102,14 @@ public class Search extends HttpServlet {
 					.getAll().size();
 		}
 
+		Map<School, Long> ratingSchools = new HashMap<>();
+		for (School s : schools)
+			ratingSchools.put(s, rdao.getAverageRateSchoolID(s.getId()));
+
+
 		noOfPages = (int) Math.ceil(noOfRecords * 1.0 / SchoolAPIConstants.PAGE_SIZE);
-		request.setAttribute("schoolList", schools);
+
+		request.setAttribute("schoolList", ratingSchools);
 		request.setAttribute("noOfPages", noOfPages);
 		request.setAttribute("currentPage", page);
 		request.setAttribute("filter", button);

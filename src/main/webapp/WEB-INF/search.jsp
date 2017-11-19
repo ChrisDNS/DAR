@@ -49,13 +49,18 @@
 								<div id="custom-search-input">
 									<div class="input-group col-md-12">
 										<form action="${pageContext.request.contextPath}/search"
-											method="get">
-											<input type="text" name="recherche"
-												class="search-query form-control" placeholder="Search" /> <span
-												class="input-group-btn"> <input type="submit"
-												name="button_search" value="search"
-												class="btn btn-danger btn-filter" data-target="cancelado" />
-											</span>
+											method="get" role="search"
+											style="width: 15em; margin: 0.3em 2em;">
+											<div class="input-group">
+												<input type="text" name="searchValue" class="form-control"
+													placeholder="search">
+												<div class="input-group-btn">
+													<button type="submit" name="search" value="search"
+														class="btn btn-default">
+														<span class="glyphicon glyphicon-search"></span>
+													</button>
+												</div>
+											</div>
 										</form>
 									</div>
 								</div>
@@ -86,19 +91,131 @@
 						<div class="table-container">
 							<table class="table table-filter">
 								<tbody>
+									<c:set var="count" value="0" scope="page" />
 									<c:forEach var="school" items="${schoolList}">
+										<c:set var="count" value="${count + 1}" scope="page" />
 										<tr data-status="pagado">
-											<td><a href="javascript:;" class="star"> <i
-													class="glyphicon glyphicon-star"></i>
-											</a></td>
+											<td><c:choose>
+													<c:when test="${school.value < 1}">
+														<div class="pull-left">
+															<div class="pull-left"
+																style="width: 35px; line-height: 1;">
+																<div style="height: 9px; margin: 5px 0;">
+																	1 <span class="glyphicon glyphicon-star"></span>
+																</div>
+															</div>
+															<div class="pull-left" style="width: 180px;">
+																<div class="progress"
+																	style="height: 9px; margin: 8px 0;">
+																	<div class="progress-bar progress-bar-danger"
+																		role="progressbar" aria-valuenow="1" aria-valuemin="0"
+																		aria-valuemax="5" style="width: 20%">
+																		<span class="sr-only">80% Complete (danger)</span>
+																	</div>
+																</div>
+															</div>
+
+														</div>
+														<br />
+													</c:when>
+													<c:when test="${school.value < 2 && school.value > 1}">
+														<div class="pull-left">
+															<div class="pull-left"
+																style="width: 35px; line-height: 1;">
+																<div style="height: 9px; margin: 5px 0;">
+																	2 <span class="glyphicon glyphicon-star"></span>
+																</div>
+															</div>
+															<div class="pull-left" style="width: 180px;">
+																<div class="progress"
+																	style="height: 9px; margin: 8px 0;">
+																	<div class="progress-bar progress-bar-warning"
+																		role="progressbar" aria-valuenow="2" aria-valuemin="0"
+																		aria-valuemax="5" style="width: 40%">
+																		<span class="sr-only">80% Complete (danger)</span>
+																	</div>
+																</div>
+															</div>
+
+														</div>
+
+													</c:when>
+													<c:when test="${school.value < 3 && school.value > 2 }">
+														<div class="pull-left">
+															<div class="pull-left"
+																style="width: 35px; line-height: 1;">
+																<div style="height: 9px; margin: 5px 0;">
+																	3 <span class="glyphicon glyphicon-star"></span>
+																</div>
+															</div>
+															<div class="pull-left" style="width: 180px;">
+																<div class="progress"
+																	style="height: 9px; margin: 8px 0;">
+																	<div class="progress-bar progress-bar-info"
+																		role="progressbar" aria-valuenow="3" aria-valuemin="0"
+																		aria-valuemax="5" style="width: 60%">
+																		<span class="sr-only">80% Complete (danger)</span>
+																	</div>
+																</div>
+															</div>
+
+														</div>
+
+													</c:when>
+													<c:when test="${school.value < 4 && school.value > 3 }">
+														<div class="pull-left">
+															<div class="pull-left"
+																style="width: 35px; line-height: 1;">
+																<div style="height: 9px; margin: 5px 0;">
+																	4 <span class="glyphicon glyphicon-star"></span>
+																</div>
+															</div>
+															<div class="pull-left" style="width: 180px;">
+																<div class="progress"
+																	style="height: 9px; margin: 8px 0;">
+																	<div class="progress-bar progress-bar-primary"
+																		role="progressbar" aria-valuenow="4" aria-valuemin="0"
+																		aria-valuemax="5" style="width: 80%">
+																		<span class="sr-only">80% Complete (danger)</span>
+																	</div>
+																</div>
+															</div>
+
+														</div>
+
+													</c:when>
+
+													<c:otherwise>
+														<div class="pull-left">
+															<div class="pull-left"
+																style="width: 35px; line-height: 1;">
+																<div style="height: 9px; margin: 5px 0;">
+																	5 <span class="glyphicon glyphicon-star"></span>
+																</div>
+															</div>
+															<div class="pull-left" style="width: 180px;">
+																<div class="progress"
+																	style="height: 9px; margin: 8px 0;">
+																	<div class="progress-bar progress-bar-success"
+																		role="progressbar" aria-valuenow="5" aria-valuemin="0"
+																		aria-valuemax="5" style="width: 1000%">
+																		<span class="sr-only">80% Complete (danger)</span>
+																	</div>
+																</div>
+															</div>
+
+														</div>
+													</c:otherwise>
+												</c:choose></td>
 											<td>
 												<div class="media">
 													<h4 class="title">
-														<a id="show_school" href="search?id=${school.id}">${school.nom}</a>
+														<a id="show_school" href="search?id=${school.key.id}">${school.key.nom}</a>
 													</h4>
-													<p class="summary">${school.commune}</p>
-													<p class="summary">${school.type_d_etablissement}</p>
-													<p class="summary">${school.universite}</p>
+													<p class="summary">${school.key.commune}</p>
+													<p class="summary">${school.key.type_d_etablissement}</p>
+													<p class="summary">${school.key.universite}</p>
+
 												</div>
 											</td>
 										</tr>
