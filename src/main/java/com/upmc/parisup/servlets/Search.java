@@ -102,9 +102,11 @@ public class Search extends HttpServlet {
 		}
 
 		Map<School, Long> ratingSchools = new HashMap<>();
-		for (School s : schools)
-			ratingSchools.put(s, new SchoolService().getAverageRateSchoolID(s.getId()));
-
+		for (School s : schools) {
+			Long a = new SchoolService().getAverageRateSchoolID(s.getId());
+			ratingSchools.put(s,a.longValue());
+			
+		}
 		noOfPages = (int) Math.ceil(noOfRecords * 1.0 / SchoolAPIConstants.PAGE_SIZE);
 
 		request.setAttribute("schoolList", ratingSchools);

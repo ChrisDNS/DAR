@@ -47,11 +47,11 @@ public class SchoolService {
 		for (Rating r : list) {
 			if (r.getIdSchool().equals(idSchool)) {
 				ret.add(r);
-				total += r.getRating();
+				total += r.getRating().longValue();
 			}
 		}
 
-		if (total != 0) {
+		if (ret.size() != 0) {
 			return total / ret.size();
 
 		} else

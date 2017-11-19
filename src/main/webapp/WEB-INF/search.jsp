@@ -96,8 +96,9 @@
 									<c:forEach var="school" items="${schoolList}">
 										<c:set var="count" value="${count + 1}" scope="page" />
 										<tr data-status="pagado">
+											
 											<td><c:choose>
-													<c:when test="${school.value < 1}">
+													<c:when test="${school.value <= 1}">
 														<div class="pull-left">
 															<div class="pull-left"
 																style="width: 35px; line-height: 1;">
@@ -119,7 +120,7 @@
 														</div>
 														<br />
 													</c:when>
-													<c:when test="${school.value < 2 && school.value > 1}">
+													<c:when test="${school.value <= 2 && school.value > 1}">
 														<div class="pull-left">
 															<div class="pull-left"
 																style="width: 35px; line-height: 1;">
@@ -141,7 +142,7 @@
 														</div>
 
 													</c:when>
-													<c:when test="${school.value < 3 && school.value > 2 }">
+													<c:when test="${school.value <= 3 && school.value > 2 }">
 														<div class="pull-left">
 															<div class="pull-left"
 																style="width: 35px; line-height: 1;">
@@ -163,7 +164,7 @@
 														</div>
 
 													</c:when>
-													<c:when test="${school.value < 4 && school.value > 3 }">
+													<c:when test="${school.value <= 4 && school.value > 3 }">
 														<div class="pull-left">
 															<div class="pull-left"
 																style="width: 35px; line-height: 1;">
