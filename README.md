@@ -29,9 +29,9 @@ Sur ce site vous pourrez :
 
 ### Equipe
 
-Marie Laporte, Christopher Dionisio, Belynda Hamaz.
+Marie Laporte, Christopher Dionisio, Belynda Hamaz. Encadré par Romain Demangeon.
 
 ### Rendus
 
-* [Rapport](todo)
-* [Présentation](todo)
+* [Rapport](https://github.com/ChrisDNS/DAR/blob/master/Rapport.pdf)
+* [Présentation](https://github.com/ChrisDNS/DAR/blob/master/Presentation.pdf)
