@@ -18,6 +18,7 @@ import com.upmc.parisup.DAO.DAOImpl.RatingDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.api.schools.SchoolAPIConstants;
 import com.upmc.parisup.business.School;
+import com.upmc.parisup.services.UtilConstants;
 
 public class Search extends HttpServlet {
 	private static final long serialVersionUID = 8564336809015917293L;
@@ -59,30 +60,26 @@ public class Search extends HttpServlet {
 		if (button != null) {
 			filtering = true;
 
-			if (button.equals("alpha")) {
+			if (button.equals("Alphabétique")) {
 				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
 						"nom", "");
 				noOfRecords = sdao.getAll().size();
-			} else if (button.equals("note")) {
-				// filter = true;
-				// page = 1;
-				// button = 3;
-			} else if (button.equals("ecoles")) {
+			} else if (button.equals("Ecoles")) {
 				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
-						"type_d_etablissement", "Ecole");
-				noOfRecords = sdao.getByCriteria("type_d_etablissement", "Ecole").size();
-			} else if (button.equals("instituts")) {
+						"type_d_etablissement", UtilConstants.ECOLES);
+				noOfRecords = sdao.getByCriteria("type_d_etablissement", UtilConstants.ECOLES).size();
+			} else if (button.equals("Instituts")) {
 				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
-						"type_d_etablissement", "Institut");
-				noOfRecords = sdao.getByCriteria("type_d_etablissement", "Institut").size();
-			} else if (button.equals("ufr")) {
+						"type_d_etablissement", UtilConstants.INSTITUTS);
+				noOfRecords = sdao.getByCriteria("type_d_etablissement", UtilConstants.INSTITUTS).size();
+			} else if (button.equals("UFR")) {
 				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
-						"type_d_etablissement", "Unit");
-				noOfRecords = sdao.getByCriteria("type_d_etablissement", "Unit").size();
-			} else if (button.equals("autre")) {
+						"type_d_etablissement", UtilConstants.UFR);
+				noOfRecords = sdao.getByCriteria("type_d_etablissement", UtilConstants.UFR).size();
+			} else if (button.equals("Autres")) {
 				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
-						"type_d_etablissement", "Autre");
-				noOfRecords = sdao.getByCriteria("type_d_etablissement", "Autre").size();
+						"type_d_etablissement", UtilConstants.AUTRES);
+				noOfRecords = sdao.getByCriteria("type_d_etablissement", UtilConstants.AUTRES).size();
 			} else if (button.equals("search")) {
 				String value = request.getParameter("searchValue");
 				schools = sdao.pagination((page - 1) * SchoolAPIConstants.PAGE_SIZE, SchoolAPIConstants.PAGE_SIZE,
@@ -105,7 +102,6 @@ public class Search extends HttpServlet {
 		Map<School, Long> ratingSchools = new HashMap<>();
 		for (School s : schools)
 			ratingSchools.put(s, rdao.getAverageRateSchoolID(s.getId()));
-
 
 		noOfPages = (int) Math.ceil(noOfRecords * 1.0 / SchoolAPIConstants.PAGE_SIZE);
 

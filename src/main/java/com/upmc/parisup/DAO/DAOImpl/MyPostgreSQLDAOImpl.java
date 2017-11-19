@@ -67,7 +67,7 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 		List<T> l;
 		Session session = sql.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		l = session.createCriteria(typeT).add(Restrictions.like(restriction, where + "%")).list();
+		l = session.createCriteria(typeT).add(Restrictions.like(restriction, "%" + where + "%")).list();
 		session.getTransaction().commit();
 
 		return l;

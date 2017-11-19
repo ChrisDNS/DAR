@@ -53,7 +53,7 @@
 											style="width: 15em; margin: 0.3em 2em;">
 											<div class="input-group">
 												<input type="text" name="searchValue" class="form-control"
-													placeholder="search">
+													placeholder="Search...">
 												<div class="input-group-btn">
 													<button type="submit" name="search" value="search"
 														class="btn btn-default">
@@ -71,18 +71,19 @@
 							<div class="btn-group">
 								<form id="search_form" action="search" method="get">
 									<p>Trier par :</p>
-									<input type="submit" name="filter" value="alpha"
-										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="filter" value="note"
-										class="btn btn-danger btn-filter" data-target="cancelado" />
+									<input type="submit" name="filter" value="Alphabétique"
+										class="btn btn-success btn-filter" data-target="pagado" />
+									<!-- 										<input -->
+									<!-- 										type="submit" name="filter" value="" -->
+									<!-- 										class="btn btn-danger btn-filter" data-target="cancelado" /> -->
 									<p>Type d'établissement :</p>
-									<input type="submit" name="filter" value="ecoles"
+									<input type="submit" name="filter" value="Ecoles"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="filter" value="instituts"
+										type="submit" name="filter" value="Intituts"
 										class="btn btn-danger btn-filter" data-target="cancelado" />
-									<input type="submit" name="filter" value="ufr"
+									<input type="submit" name="filter" value="UFR"
 										class="btn btn-success btn-filter" data-target="pagado" /> <input
-										type="submit" name="filter" value="autre"
+										type="submit" name="filter" value="Autres"
 										class="btn btn-danger btn-filter" data-target="cancelado" />
 								</form>
 							</div>
@@ -256,16 +257,6 @@
 								</tbody>
 							</table>
 						</div>
-
-						<%--For displaying Next link --%>
-						<form action="${pageContext.request.contextPath}/search"
-							method="get">
-							<c:if test="${currentPage lt noOfPages}">
-								<input type="submit" name="page" value="${currentPage + 1}" />
-
-								<%--<td><a href="search?page=${currentPage + 1}">Next</a></td>--%>
-							</c:if>
-						</form>
 					</div>
 				</div>
 			</div>
