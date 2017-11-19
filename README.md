@@ -16,7 +16,7 @@ Sur ce site vous pourrez :
 * [JSTL](https://www.jmdoudoux.fr/java/dej/chap-jstl.htm)
 * [JSP/Servlets Java](https://www.google.fr/search?q=jsp+servlets)
 * [PostgreSQL](https://www.postgresql.fr/)
-* [Hibernate](wwww.hibernate.org)
+* [Hibernate](http://wwww.hibernate.org)
 * [Heroku](https://dashboard.heroku.com/)
 * [API Ile-de-France des établissements du supérieur et leurs domaines](https://data.iledefrance.fr/explore/dataset/etablissements-denseignement-superieur/)
 * [API Google Maps](https://developers.google.com/maps/documentation/javascript/?hl=fr)
