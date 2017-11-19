@@ -1,3 +1,10 @@
+// ------------
+/**
+ * Get the first parameter inside a URL
+ *
+ * @param sParam
+ * @returns the first parameter string
+ */
 function getURLParameter(sParam) {
 	var sPageURL = window.location.search.substring(1);
 	var sURLVariables = sPageURL.split('&');

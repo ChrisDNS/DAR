@@ -1,3 +1,6 @@
+/**
+ * Add a new school in the list and update graphics
+ */
 function addSchool() {
 
 	// Stock the new ID if not already in
@@ -8,11 +11,18 @@ function addSchool() {
 	updateSchools();
 }
 
+/**
+ * Delete a particular school in the list and update graphics
+ * @param i
+ */
 function removeSchool(i) {
 	schools.splice(i, 1);
 	updateSchools();
 }
 
+/**
+ * Update the graphics according to the schools variable
+ */
 function updateSchools() {
 	var id, i, l = schools.length;
 	console.log(schools);
@@ -40,6 +50,12 @@ function updateSchools() {
 	ul.html(html);
 }
 
+/**
+ * Get all the datas in the forms
+ *
+ * @param sParam
+ * @returns the first parameter string
+ */
 function getDatas() {
 	return {
 		firstName : $('#firstName').val(),
@@ -57,6 +73,7 @@ function getDatas() {
 $(document).ready(function() {
 	updateSchools();
 
+	// When trying to sign up
 	$('#sign').click(function(e) {
 		e.preventDefault();
 
@@ -79,6 +96,7 @@ $(document).ready(function() {
 		});
 	});
 
+	// When trying to modify account
 	$('#modify').click(function(e) {
 		e.preventDefault();
 

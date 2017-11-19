@@ -11,6 +11,9 @@ var currentSchool = {
 	lon : parseFloat($('#lon').data('lon'))
 }
 
+/**
+ * Allow to show the map
+ */
 function showGoogleMaps() {
 	callbackGoogleMaps = true;
 }
@@ -34,6 +37,9 @@ function() {
 
 });
 
+/**
+ * Get the address of the user
+ */
 function codeAddress(address) {
 	geocoder = new google.maps.Geocoder;
 	geocoder.geocode({
@@ -51,6 +57,9 @@ function codeAddress(address) {
 	});
 }
 
+/**
+ * Show the distance between the user's home and the school
+ */
 function showDistance(origin, destination) {
 	var directionsDisplay = new google.maps.DirectionsRenderer;
 	var directionsService = new google.maps.DirectionsService;
@@ -64,6 +73,9 @@ function showDistance(origin, destination) {
 			});
 }
 
+/**
+ * Initialize the map stuff
+ */
 function initMap(bool) {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : new google.maps.LatLng(currentSchool.lat, currentSchool.lon),
@@ -105,6 +117,9 @@ function initMap(bool) {
 		handleLocationError(false, infoWindow, map.getCenter());
 }
 
+/**
+ * Calculate the distance between two markers
+ */
 function calculateDistance(from, to, mode) {
 	var service = new google.maps.DistanceMatrixService;
 	service.getDistanceMatrix({
@@ -134,6 +149,9 @@ function calculateDistance(from, to, mode) {
 	});
 }
 
+/**
+ * Calculate and display the route in the map
+ */
 function calculateAndDisplayRoute(ori, dest, directionsService,
 		directionsDisplay) {
 	var selectedMode = $('#mode option:selected').val();
@@ -160,6 +178,9 @@ function calculateAndDisplayRoute(ori, dest, directionsService,
 	});
 }
 
+/**
+ * Set a marker position
+ */
 function setMarker(place) {
 	var marker = new google.maps.Marker({
 		position : new google.maps.LatLng(place.lat, place.lon),
@@ -168,6 +189,9 @@ function setMarker(place) {
 	});
 }
 
+/**
+ * Error handler when location failed.
+ */
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	infoWindow.setPosition(pos);
 	infoWindow

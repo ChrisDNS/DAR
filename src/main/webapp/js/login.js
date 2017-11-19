@@ -26,6 +26,9 @@ $(document).ready(function() {
 	});
 });
 
+/**
+ * Add some cookies needed for authentification
+ */
 function login(user) {
 	Cookies.set('id', user.id);
 	Cookies.set('email', user.email);
