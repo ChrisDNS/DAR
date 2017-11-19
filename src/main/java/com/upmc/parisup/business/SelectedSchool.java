@@ -1,5 +1,10 @@
 package com.upmc.parisup.business;
 
+/**
+ * 
+ * SelectedSchool job
+ *
+ */
 public class SelectedSchool {
 	private Long id;
 
@@ -14,6 +19,10 @@ public class SelectedSchool {
 		this.idSchool = idSchool;
 		this.idUser = idUser;
 	}
+
+	/////////////////////////
+	// GETTERS AND SETTERS //
+	/////////////////////////
 
 	public Long getId() {
 		return this.id;

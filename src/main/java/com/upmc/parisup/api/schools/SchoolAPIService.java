@@ -7,12 +7,22 @@ import java.util.Map;
 
 import com.upmc.parisup.business.School;
 
+/**
+ * 
+ * Open Data Schools in Ile-de-France API service
+ *
+ */
 public class SchoolAPIService {
 
 	private SchoolAPIService() {
 
 	}
 
+	/**
+	 * 
+	 * Singleton Holder
+	 *
+	 */
 	private static class SchoolAPIHolder {
 		private static final SchoolAPIService INSTANCE = new SchoolAPIService();
 	}
@@ -21,6 +31,11 @@ public class SchoolAPIService {
 		return SchoolAPIHolder.INSTANCE;
 	}
 
+	/**
+	 * Retrieve all data from API
+	 * 
+	 * @return List<School>
+	 */
 	public List<School> retrieveAllSchools() {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put(SchoolAPIConstants.ROWS, String.valueOf(SchoolAPIConstants.PAGE_SIZE));

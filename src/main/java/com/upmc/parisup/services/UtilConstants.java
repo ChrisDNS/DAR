@@ -1,5 +1,10 @@
 package com.upmc.parisup.services;
 
+/**
+ * 
+ * Util constants
+ *
+ */
 public class UtilConstants {
 
 	public UtilConstants() {

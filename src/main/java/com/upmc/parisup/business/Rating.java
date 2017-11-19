@@ -1,5 +1,10 @@
 package com.upmc.parisup.business;
 
+/**
+ * 
+ * Rating job
+ *
+ */
 public class Rating {
 	private Long id;
 
@@ -12,6 +17,10 @@ public class Rating {
 	public Rating() {
 
 	}
+
+	/////////////////////////
+	// GETTERS AND SETTERS //
+	/////////////////////////
 
 	public Long getId() {
 		return id;

@@ -1,5 +1,10 @@
 package com.upmc.parisup.DAO;
 
+/**
+ * 
+ * Abstract factory
+ *
+ */
 public abstract class AbstractDAOFactory {
 	
 	public AbstractDAOFactory() {
@@ -14,7 +19,6 @@ public abstract class AbstractDAOFactory {
 	
 	public abstract DAO<?> getRatingDAO();
 
-	
 	public static AbstractDAOFactory getFactory(Factory type) {
 		if (type.equals(Factory.MYSQL_DAO_FACTORY))
 			return new MyPostgreSQLDAOFactory();

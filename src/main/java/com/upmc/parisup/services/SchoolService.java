@@ -13,12 +13,23 @@ import com.upmc.parisup.DAO.DAOImpl.SelectedSchoolDAOImpl;
 import com.upmc.parisup.business.Rating;
 import com.upmc.parisup.business.SelectedSchool;
 
+/**
+ * 
+ * School service
+ *
+ */
 public class SchoolService {
 
 	public SchoolService() {
 
 	}
 
+	/**
+	 * Retrieves all selected schools
+	 * 
+	 * @param request
+	 * @return int[]
+	 */
 	public int[] getSelectedSchools(HttpServletRequest request) {
 		String[] schoolsStrings = request.getParameterValues("schools[]");
 		int[] schools = {};
@@ -28,6 +39,12 @@ public class SchoolService {
 		return schools;
 	}
 
+	/**
+	 * Adds new selected schools
+	 * 
+	 * @param request
+	 * @param idUser
+	 */
 	public void addNewSelectedSchools(HttpServletRequest request, long idUser) {
 		int[] schools = getSelectedSchools(request);
 		for (int i = 0; i < schools.length; i++) {
@@ -38,6 +55,12 @@ public class SchoolService {
 		}
 	}
 
+	/**
+	 * Retrieves the average rating of a school identified by the id argument
+	 * 
+	 * @param idSchool
+	 * @return average rating
+	 */
 	public Long getAverageRateSchoolID(Long idSchool) {
 		Long total = new Long(0);
 		List<Rating> list = ((RatingDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getRatingDAO())

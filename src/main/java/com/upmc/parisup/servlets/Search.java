@@ -38,7 +38,7 @@ public class Search extends HttpServlet {
 			if (s != null) {
 				request.setAttribute("school", s);
 				request.setAttribute("ratings", rdao.getAllByDateDescAndSchoolID(s.getId()));
-				
+
 				request.getRequestDispatcher("WEB-INF/school.jsp").forward(request, response);
 			}
 
@@ -102,11 +102,13 @@ public class Search extends HttpServlet {
 		}
 
 		Map<School, Long> ratingSchools = new HashMap<>();
+		SchoolService ss = new SchoolService();
+
 		for (School s : schools) {
-			Long a = new SchoolService().getAverageRateSchoolID(s.getId());
-			ratingSchools.put(s,a.longValue());
-			
+			Long a = ss.getAverageRateSchoolID(s.getId());
+			ratingSchools.put(s, a.longValue());
 		}
+
 		noOfPages = (int) Math.ceil(noOfRecords * 1.0 / SchoolAPIConstants.PAGE_SIZE);
 
 		request.setAttribute("schoolList", ratingSchools);

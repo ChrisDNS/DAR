@@ -2,6 +2,11 @@ package com.upmc.parisup.business;
 
 import java.util.Arrays;
 
+/**
+ * 
+ * User job
+ *
+ */
 public class User {
 	private Long id;
 
@@ -26,6 +31,10 @@ public class User {
 		this.address = address;
 		this.town = town;
 	}
+
+	/////////////////////////
+	// GETTERS AND SETTERS //
+	/////////////////////////
 
 	public Long getId() {
 		return id;

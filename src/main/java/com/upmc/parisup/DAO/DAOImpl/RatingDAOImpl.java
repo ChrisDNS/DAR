@@ -10,6 +10,11 @@ import org.hibernate.criterion.Order;
 import com.upmc.parisup.DAO.RatingDAO;
 import com.upmc.parisup.business.Rating;
 
+/**
+ * 
+ * Rating DAO implementation
+ *
+ */
 public class RatingDAOImpl extends MyPostgreSQLDAOImpl<Rating> implements RatingDAO {
 
 	public RatingDAOImpl(Class<Rating> t) {

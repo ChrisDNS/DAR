@@ -6,6 +6,11 @@ import org.hibernate.Session;
 import com.upmc.parisup.DAO.UserDAO;
 import com.upmc.parisup.business.User;
 
+/**
+ * 
+ * User DAO implementation
+ *
+ */
 public class UserDAOImpl extends MyPostgreSQLDAOImpl<User> implements UserDAO {
 
 	public UserDAOImpl(Class<User> userClass) {

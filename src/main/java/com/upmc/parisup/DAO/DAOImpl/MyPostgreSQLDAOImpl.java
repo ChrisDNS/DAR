@@ -10,6 +10,12 @@ import org.hibernate.criterion.Restrictions;
 import com.upmc.parisup.DAO.DAO;
 import com.upmc.parisup.persistence.MyPostgreSQLPersistence;
 
+/**
+ * 
+ * PostgreSQL database implementation
+ *
+ * @param <T>
+ */
 public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 	protected MyPostgreSQLPersistence sql = MyPostgreSQLPersistence.getInstance();
 	private Class<T> typeT;
@@ -21,6 +27,10 @@ public class MyPostgreSQLDAOImpl<T> implements DAO<T> {
 	public Class<T> getTypeT() {
 		return typeT;
 	}
+
+	/////////////
+	// C.R.U.D //
+	/////////////
 
 	public T get(Long id) {
 		Session session = sql.getSessionFactory().getCurrentSession();

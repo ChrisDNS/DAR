@@ -8,6 +8,11 @@ import org.hibernate.Session;
 import com.upmc.parisup.DAO.SelectedSchoolDAO;
 import com.upmc.parisup.business.SelectedSchool;
 
+/**
+ * 
+ * Favourite schools DAO implementation
+ *
+ */
 public class SelectedSchoolDAOImpl extends MyPostgreSQLDAOImpl<SelectedSchool> implements SelectedSchoolDAO {
 
 	public SelectedSchoolDAOImpl(Class<SelectedSchool> t) {

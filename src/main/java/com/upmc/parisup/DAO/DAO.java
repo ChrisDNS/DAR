@@ -2,6 +2,12 @@ package com.upmc.parisup.DAO;
 
 import java.util.List;
 
+/**
+ * 
+ * DAO interface
+ *
+ * @param <T>
+ */
 public interface DAO<T> {
 
 	public T get(Long id);

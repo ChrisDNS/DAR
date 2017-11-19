@@ -12,6 +12,11 @@ import com.upmc.parisup.api.schools.SchoolAPIService;
 import com.upmc.parisup.business.School;
 import com.upmc.parisup.business.User;
 
+/**
+ * 
+ * Fill database with some samples
+ *
+ */
 public class FillDB {
 
 	public static void addUsers() throws NoSuchAlgorithmException, InvalidKeySpecException {

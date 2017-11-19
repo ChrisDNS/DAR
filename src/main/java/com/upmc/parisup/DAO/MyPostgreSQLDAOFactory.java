@@ -9,12 +9,22 @@ import com.upmc.parisup.business.School;
 import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
 
+/**
+ * 
+ * PostgreSQL DAO factory
+ *
+ */
 public class MyPostgreSQLDAOFactory extends AbstractDAOFactory {
 
 	public MyPostgreSQLDAOFactory() {
 		super();
 	}
 
+	/**
+	 * 
+	 * Singleton holder
+	 *
+	 */
 	private static class DAOHolder {
 		private static final UserDAO USER_DAO = new UserDAOImpl(User.class);
 		private static final SchoolDAO SCHOOL_DAO = new SchoolDAOImpl(School.class);

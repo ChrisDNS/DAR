@@ -12,12 +12,23 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upmc.parisup.business.School;
 
+/**
+ * 
+ * Open Data Schools in Ile-de-France API Helper
+ *
+ */
 public class SchoolAPIHelper {
 
 	private SchoolAPIHelper() {
 
 	}
 
+	/**
+	 * Retrieve all schools from JSON and map them into School object
+	 * 
+	 * @param json
+	 * @return List<School>
+	 */
 	public static List<School> retrieveAllSchools(String json) {
 		if (json == null || json == "")
 			return null;

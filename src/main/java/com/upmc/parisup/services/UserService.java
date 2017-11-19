@@ -12,12 +12,23 @@ import com.upmc.parisup.DAO.Factory;
 import com.upmc.parisup.DAO.DAOImpl.UserDAOImpl;
 import com.upmc.parisup.business.User;
 
+/**
+ * 
+ * User service
+ *
+ */
 public class UserService {
 
 	public UserService() {
 
 	}
 
+	/**
+	 * Retrieves the current user thanks to cookies.
+	 * 
+	 * @param request
+	 * @return current user
+	 */
 	public User getCurrentUser(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 
@@ -34,6 +45,14 @@ public class UserService {
 		return null;
 	}
 
+	/**
+	 * Retrieves the user according to arguments.
+	 * 
+	 * @param request
+	 * @param errors
+	 * @param currentMail
+	 * @return user
+	 */
 	public User getUser(HttpServletRequest request, ArrayList<String> errors, String currentMail) {
 		String firstName = request.getParameter("firstName");
 		String name = request.getParameter("name");
@@ -47,9 +66,9 @@ public class UserService {
 				.getByAttribute("email", email);
 
 		if (user != null && (currentMail == null || !email.equals(currentMail)))
-			errors.add("Ce mail est dÃ©jÃ  enregistrÃ©.");
+			errors.add("Ce mail est déjà  enregistré.");
 		if (!email.equals(confirmationEmail))
-			errors.add("Les deux emails sont diffÃ©rents.");
+			errors.add("Les deux emails sont différents.");
 		else {
 			if (!Util.testMail(email) && !Util.testMail(confirmationEmail)) {
 				errors.add("Cette adresse email n'est pas valide.");
@@ -57,15 +76,15 @@ public class UserService {
 		}
 
 		if (!password.equals(confirmationPassword))
-			errors.add("Les mots de passe sont diffÃ©rents.");
+			errors.add("Les mots de passe sont différents.");
 		if (firstName.isEmpty())
-			errors.add("Le champ prÃ©nom ne peut pas Ãªtre vide.");
+			errors.add("Le champ prénom ne peut pas être vide.");
 		if (name.isEmpty())
-			errors.add("Le champ nom ne peut pas Ãªtre vide.");
+			errors.add("Le champ nom ne peut pas être vide.");
 		if (email.isEmpty())
-			errors.add("Le champ email ne peut pas Ãªtre vide.");
+			errors.add("Le champ email ne peut pas être vide.");
 		if (password.isEmpty() && currentMail == null)
-			errors.add("Le champ mot de passe ne peut pas Ãªtre vide.");
+			errors.add("Le champ mot de passe ne peut pas être vide.");
 
 		if (errors.isEmpty()) {
 			user = new User(firstName, name, email, address, town);

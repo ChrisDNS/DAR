@@ -3,7 +3,7 @@ package com.upmc.parisup.api.schools;
 
 /**
  * 
- * Open Data Schools in Ile-de-France API
+ * Open Data Schools in Ile-de-France API constants
  *
  */
 public class SchoolAPIConstants {

@@ -7,12 +7,23 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
+/**
+ * 
+ * Open Data Schools in Ile-de-France API request helper
+ *
+ */
 public class SchoolAPIRequestHelper {
 	
 	private SchoolAPIRequestHelper() {
 		
 	}
 
+	/**
+	 * Creates URL from arguments.
+	 * 
+	 * @param params
+	 * @return URL
+	 */
 	public static String create(Map<String, String> params) {
 		String req = SchoolAPIConstants.URL;
 		req += "?dataset=";
@@ -24,6 +35,12 @@ public class SchoolAPIRequestHelper {
 		return req;
 	}
 
+	/**
+	 * Reads URL content
+	 * 
+	 * @param req
+	 * @return URL content
+	 */
 	public static String send(String req) {
 		StringBuffer ret = new StringBuffer();
 		BufferedReader br;
