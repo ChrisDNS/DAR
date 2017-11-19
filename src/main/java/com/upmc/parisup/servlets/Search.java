@@ -18,6 +18,7 @@ import com.upmc.parisup.DAO.DAOImpl.RatingDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.api.schools.SchoolAPIConstants;
 import com.upmc.parisup.business.School;
+import com.upmc.parisup.services.SchoolService;
 import com.upmc.parisup.services.UtilConstants;
 
 public class Search extends HttpServlet {
@@ -37,6 +38,7 @@ public class Search extends HttpServlet {
 			if (s != null) {
 				request.setAttribute("school", s);
 				request.setAttribute("ratings", rdao.getAllByDateDescAndSchoolID(s.getId()));
+				
 				request.getRequestDispatcher("WEB-INF/school.jsp").forward(request, response);
 			}
 
@@ -101,7 +103,7 @@ public class Search extends HttpServlet {
 
 		Map<School, Long> ratingSchools = new HashMap<>();
 		for (School s : schools)
-			ratingSchools.put(s, rdao.getAverageRateSchoolID(s.getId()));
+			ratingSchools.put(s, new SchoolService().getAverageRateSchoolID(s.getId()));
 
 		noOfPages = (int) Math.ceil(noOfRecords * 1.0 / SchoolAPIConstants.PAGE_SIZE);
 

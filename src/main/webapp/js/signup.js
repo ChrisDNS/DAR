@@ -30,9 +30,9 @@ function updateSchools() {
 					+ id
 					+ '><div class="col-sm-10" style="padding:0;"><li style="margin-bottom:10px;" class="list-group-item list-group-item-info">'
 					+ select.text()
-					+ '</li></div><div class="col-sm-2"><button onclick="removeSchool('
+					+ '</li></div></a><div class="col-sm-2"><button onclick="removeSchool('
 					+ i
-					+ ')" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button></div></a>'
+					+ ')" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-trash"></span></button></div>'
 
 		}
 	}

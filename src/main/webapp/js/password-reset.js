@@ -15,9 +15,12 @@ $(document).ready(function() {
 
 		}).done(function(data) {
 			if (data.success) {
-				location.href += "?token=" + data.token;
-				$('.form-group').hide();
-				$('#reset').hide();
+				alert("Le service de mail étant payant avec notre hébergeur Heroku, nous avons décidé de retirer cette fonctionnalité.\n" +
+						"Veuillez nous en excuser.");
+				location.href = "/";
+//				location.href += "?token=" + data.token;
+//				$('.form-group').hide();
+//				$('#reset').hide();
 
 			} else {
 				$('#info').html(data.message);

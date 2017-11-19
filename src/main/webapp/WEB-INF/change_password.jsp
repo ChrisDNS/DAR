@@ -85,6 +85,7 @@
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
+	<script src="js/utils.js"></script>
 	<script src="js/change-password.js"></script>
 </body>
 </html>

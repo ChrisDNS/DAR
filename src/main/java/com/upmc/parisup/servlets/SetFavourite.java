@@ -12,9 +12,7 @@ import org.json.JSONObject;
 
 import com.upmc.parisup.DAO.AbstractDAOFactory;
 import com.upmc.parisup.DAO.Factory;
-import com.upmc.parisup.DAO.SchoolDAO;
 import com.upmc.parisup.DAO.SelectedSchoolDAO;
-import com.upmc.parisup.DAO.DAOImpl.SchoolDAOImpl;
 import com.upmc.parisup.DAO.DAOImpl.SelectedSchoolDAOImpl;
 import com.upmc.parisup.business.SelectedSchool;
 import com.upmc.parisup.business.User;
@@ -32,13 +30,12 @@ public class SetFavourite extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		UserService us = new UserService();
-		SchoolDAO sdao = (SchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY).getSchoolDAO();
 		SelectedSchoolDAO ssdao = (SelectedSchoolDAOImpl) AbstractDAOFactory.getFactory(Factory.MYSQL_DAO_FACTORY)
 				.getSelectedSchoolDAO();
 		JSONObject json = new JSONObject();
-		
+
 		String action = request.getParameter("action");
-		String uai = request.getParameter("uai");
+		Long idSchool = Long.parseLong(request.getParameter("idSchool"));
 
 		User u = us.getCurrentUser(request);
 
@@ -46,13 +43,13 @@ public class SetFavourite extends HttpServlet {
 
 		if (action.equals("fav")) {
 			SelectedSchool ss = new SelectedSchool();
-			ss.setIdSchool(sdao.getByUAI(uai).getId());
+			ss.setIdSchool(idSchool);
 			ss.setIdUser(u.getId());
 			ssdao.add(ss);
 
 		} else if (action.equals("not_fav")) {
 			userListSS.forEach(school -> {
-				if (school.getIdSchool() == sdao.getByUAI(uai).getId()) {
+				if (school.getIdSchool().equals(idSchool)) {
 					ssdao.getByUserID(u.getId()).remove(school);
 					ssdao.delete(school);
 				}
@@ -60,7 +57,7 @@ public class SetFavourite extends HttpServlet {
 
 		} else {
 			for (SelectedSchool ss : userListSS) {
-				if (ss.getIdSchool() != sdao.getByUAI(uai).getId())
+				if (!ss.getIdSchool().equals(idSchool))
 					continue;
 
 				json.put("success", true);
