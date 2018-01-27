@@ -1,0 +1,1 @@
+document.cookie = "parisSupUsername=chris ; expires=Thu, 18 Dec 2019 12:00:00 UTC; path=/";

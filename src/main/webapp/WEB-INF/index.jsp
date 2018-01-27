@@ -126,6 +126,7 @@
 	<script src="js/utils.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
+	<script src="js/cookie.js"></script>
 </body>
 
 </html>
