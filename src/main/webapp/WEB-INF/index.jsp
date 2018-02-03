@@ -122,7 +122,8 @@
 			$(document).ready(function() {
 				$('#ifrm').load(function() {
 					document.getElementById('ifrm').contentWindow.postMessage("hello there!", "http://localhost:9090");
-					
+					console.log("fefefe");
+					console.log(document.getElementById('ifrm').contentWindow);
 					function receiveMessage(event) {
 					  if (event.origin !== "http://localhost:9090") {
 						alert("not ok");
@@ -132,8 +133,8 @@
 					}
 					
 					window.addEventListener("message", receiveMessage, false);					
-				}
-			}
+				});
+			});
 		</script>
 	</div>
 
