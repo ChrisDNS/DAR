@@ -116,9 +116,11 @@
 		</div>
 	</section>
 
-	<div>
-		<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
-		<script>
+	<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
+	<div id="footer"></div>
+
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script>
 			$(document).ready(function() {
 				$('#ifrm').load(function() {
 					document.getElementById('ifrm').contentWindow.postMessage("hello there!", "http://localhost:9090");
@@ -135,12 +137,7 @@
 					window.addEventListener("message", receiveMessage, false);					
 				});
 			});
-		</script>
-	</div>
-
-	<div id="footer"></div>
-
-	<script src="vendor/jquery/jquery.min.js"></script>
+	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/popper/popper.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
