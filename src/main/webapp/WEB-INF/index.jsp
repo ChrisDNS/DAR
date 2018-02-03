@@ -124,13 +124,13 @@
 			window.addEventListener('message', function(e) {
 				if (e.source === iframe.contentWindow
 						&& e.origin === 'http://localhost:9090') {
+					alert(e.data);
 					var cookie = e.data;
-					console.log(cookie);
 				}
 
 			});
 			
-			iframe.contentWindow.postMessage('give me the cookie:cookie name',
+			iframe.contentWindow.postMessage('mdr',
 					'http:\/\/localhost:9090');
 		</script>
 	</div>
