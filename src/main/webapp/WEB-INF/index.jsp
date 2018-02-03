@@ -118,17 +118,18 @@
 
 	<div>
 		<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
-		<script>
-			$(document).ready(
-					function() {
-						$('#ifrm').load(
-								function() {
-									var iframe = $('#ifrm')[0]
-									iframe.contentWindow.postMessage('mdr',
-											'http:\/\/localhost:9090');
-								});
-					});
-		</script>
+<!-- 		<script> -->
+// 			$(document).ready(
+// 					function() {
+// 						$('#ifrm').load(
+// 								function() {
+// 									alert("mdr");
+// 									var iframe = $('#ifrm')[0];
+// 									iframe.contentWindow.postMessage('mdr',
+// 											'http:\/\/localhost:9090');
+// 								});
+// 					});
+<!-- 		</script> -->
 	</div>
 
 	<div id="footer"></div>
