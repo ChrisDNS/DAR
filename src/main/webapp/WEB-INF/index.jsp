@@ -118,9 +118,6 @@
 
 	<div id="footer"></div>
 
-	<iframe id="ifrm" name="ifrm" src="http://localhost:9090" width="100"
-		height="100"></iframe>
-
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/login.js"></script>
@@ -129,6 +126,23 @@
 	<script src="js/utils.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
+	<script>
+	$(document).ready(function() {
+	win.addEventListener("load", function() {
+		var win = document.getElementById('ifrm');
+		win.contentWindow.postMessage("message", "http://localhost:9090");
+		console.log("fefefe");
+
+		function receiveMessage(event) {
+			if (event.origin !== "http://localhost:9090")
+				return;
+			
+			alert(event.data);
+		}
+
+		window.addEventListener("message", receiveMessage, false);
+	});
+	</script>
 </body>
 
 </html>

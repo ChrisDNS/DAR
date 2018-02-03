@@ -14,32 +14,18 @@ $(document).ready(function() {
 			if (data.success) {
 				var user = JSON.parse(data.user);
 				login(user);
-				
-		        var ifrm = document.createElement("iframe");
-		        ifrm.setAttribute("src", "http://localhost:9090");
-		        ifrm.setAttribute("name", "ifrm");
-		        ifrm.style.width = "100px";
-		        ifrm.style.height = "100px";
-		        document.body.appendChild(ifrm);
-		        
-				var win = document.getElementById('ifrm');
-				
-				win.addEventListener("load", function() {
-					win.contentWindow.postMessage("message", "http://localhost:9090");
-					console.log("fefefe");
-		
-					function receiveMessage(event) {
-						if (event.origin !== "http://localhost:9090")
-							return;
-						
-						alert(event.data);
-					}
-		
-					window.addEventListener("message", receiveMessage, false);
-				});
-				
+
+				var ifrm = document.createElement("iframe");
+				ifrm.setAttribute("id", "ifrm");
+				ifrm.setAttribute("name", "ifrm");
+				ifrm.setAttribute("src", "http://localhost:9090");
+				ifrm.style.width = "100px";
+				ifrm.style.height = "100px";
+
+				document.body.appendChild(ifrm);
+
 				location.href = "/";
-				
+
 			} else {
 				$('#error').html(data.message);
 				$('#error').show();
