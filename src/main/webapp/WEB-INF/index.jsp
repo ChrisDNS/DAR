@@ -117,28 +117,29 @@
 	</section>
 
 	<div id="footer"></div>
-	
-	<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
+
+	<iframe id="ifrm" name="ifrm" src="http://localhost:9090" width="100"
+		height="100"></iframe>
 
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/login.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('iframe').on('load', function() {
-				document.getElementById('ifrm').contentWindow.postMessage("hello there!", "http://localhost:9090");
-				console.log("fefefe");
-				console.log(document.getElementById('ifrm').contentWindow);
-				function receiveMessage(event) {
-				  if (event.origin !== "http://localhost:9090") {
+			var win = window.frames.ifrm;
+			win.postMessage("message", "http://localhost:9090");
+			console.log("fefefe");
+			console.log(document.getElementById('ifrm').contentWindow);
+
+			function receiveMessage(event) {
+				if (event.origin !== "http://localhost:9090") {
 					alert("not ok");
-				   	return;
-				  }
-				  alert("ok");
+					return;
 				}
-				
-				window.addEventListener("message", receiveMessage, false);					
-			});
+				alert("ok");
+			}
+
+			window.addEventListener("message", receiveMessage, false);
 		});
 	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
