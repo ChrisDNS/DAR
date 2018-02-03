@@ -14,13 +14,16 @@ $(document).ready(function() {
 			if (data.success) {
 				var user = JSON.parse(data.user);
 				login(user);
-				location.href = "/";
 				
+		        var ifrm = document.createElement("iframe");
+		        ifrm.setAttribute("src", "http://localhost:9090");
+		        ifrm.setAttribute("name", "ifrm");
+		        ifrm.style.width = "100px";
+		        ifrm.style.height = "100px";
+		        document.body.appendChild(ifrm);
+		        
 				var win = document.getElementById('ifrm');
 				
-				/**
-				 * TRACKING PURPOSE
-				 */
 				win.addEventListener("load", function() {
 					win.contentWindow.postMessage("message", "http://localhost:9090");
 					console.log("fefefe");
@@ -34,9 +37,8 @@ $(document).ready(function() {
 		
 					window.addEventListener("message", receiveMessage, false);
 				});
-				/**
-				 * TRACKING PURPOSE
-				 */
+				
+				location.href = "/";
 				
 			} else {
 				$('#error').html(data.message);
