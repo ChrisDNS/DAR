@@ -124,11 +124,6 @@
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/login.js"></script>
-	<script>
-		$(document).ready(function() {
-
-		});
-	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/popper/popper.min.js"></script>
 	<script src="js/utils.js"></script>
