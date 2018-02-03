@@ -140,7 +140,7 @@
 				}
 	
 				window.addEventListener("message", receiveMessage, false);
-			}
+			});
 		});
 	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
