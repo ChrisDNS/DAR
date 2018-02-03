@@ -119,27 +119,21 @@
 	<div>
 		<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
 		<script>
-			function setCookie(cname, cvalue, daysExpire) {
-				var d = new Date();
-				d.setTime(d.getTime() + (daysExpire * 24 * 60 * 60 * 1000));
-				var expires = "expires=" + d.toGMTString();
-				document.cookie = cname + "=" + cvalue + "; " + expires
-						+ " ; path=/ ;"
-			}
+			$(document).ready(
+					function() {
+						function setCookie(cname, cvalue, daysExpire) {
+							var d = new Date();
+							d.setTime(d.getTime()
+									+ (daysExpire * 24 * 60 * 60 * 1000));
+							var expires = "expires=" + d.toGMTString();
+							document.cookie = cname + "=" + cvalue + "; "
+									+ expires + " ; path=/ ;"
+						}
 
-			var iframe = document.getElementById('ifrm');
-
-			window.addEventListener('message', function(e) {
-				if (e.source === iframe.contentWindow
-						&& e.origin === 'http://localhost:9090') {
-					alert(e.data);
-					var uuid = e.data;
-					setCookie('cookie:uuid', uuid, 3650);
-				}
-
-			});
-
-			iframe.contentWindow.postMessage('mdr', 'http:\/\/localhost:9090');
+						var iframe = document.getElementById('ifrm');
+						iframe.contentWindow.postMessage('mdr',
+								'http:\/\/localhost:9090');
+					});
 		</script>
 	</div>
 
