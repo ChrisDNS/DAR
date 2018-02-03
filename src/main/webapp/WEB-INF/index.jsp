@@ -120,15 +120,16 @@
 		<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
 		<script>
 			$(document).ready(function() {
-				var popup = window.open(...popup details...);
-				popup.postMessage("hello there!", "http://localhost:9090");
-				
-				function receiveMessage(event) {
-				  if (event.origin !== "http://localhost:9090")
-				    return;
+				$('#ifrm').load(function() { 
+					document.getElementById('ifrm').contentWindow.postMessage("hello there!", "http://localhost:9090");
+					
+					function receiveMessage(event) {
+					  if (event.origin !== "http://localhost:9090")
+					    return;
+					}
+					
+					window.addEventListener("message", receiveMessage, false);					
 				}
-				
-				window.addEventListener("message", receiveMessage, false);
 			}
 		</script>
 	</div>
