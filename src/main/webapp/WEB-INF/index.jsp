@@ -126,10 +126,9 @@
 	<script src="js/login.js"></script>
 	<script>
 		$(document).ready(function() {
-			var win = window.frames.ifrm;
-			win.postMessage("message", "http://localhost:9090");
+			var win = document.getElementById('ifrm');
+			win.contentWindow.postMessage("message", "http://localhost:9090");
 			console.log("fefefe");
-			console.log(document.getElementById('ifrm').contentWindow);
 
 			function receiveMessage(event) {
 				if (event.origin !== "http://localhost:9090") {
