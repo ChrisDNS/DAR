@@ -121,18 +121,12 @@
 		<script>
 			$(document).ready(
 					function() {
-						function setCookie(cname, cvalue, daysExpire) {
-							var d = new Date();
-							d.setTime(d.getTime()
-									+ (daysExpire * 24 * 60 * 60 * 1000));
-							var expires = "expires=" + d.toGMTString();
-							document.cookie = cname + "=" + cvalue + "; "
-									+ expires + " ; path=/ ;"
-						}
-
-						var iframe = document.getElementById('ifrm');
-						iframe.contentWindow.postMessage('mdr',
-								'http:\/\/localhost:9090');
+						$('#ifrm').load(
+								function() {
+									var iframe = $('#ifrm')[0]
+									iframe.contentWindow.postMessage('mdr',
+											'http:\/\/localhost:9090');
+								});
 					});
 		</script>
 	</div>
