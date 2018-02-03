@@ -128,19 +128,20 @@
 	<script src="js/showFooter.js"></script>
 	<script>
 	$(document).ready(function() {
-	win.addEventListener("load", function() {
-		var win = document.getElementById('ifrm');
-		win.contentWindow.postMessage("message", "http://localhost:9090");
-		console.log("fefefe");
-
-		function receiveMessage(event) {
-			if (event.origin !== "http://localhost:9090")
-				return;
-			
-			alert(event.data);
-		}
-
-		window.addEventListener("message", receiveMessage, false);
+		win.addEventListener("load", function() {
+			var win = document.getElementById('ifrm');
+			win.contentWindow.postMessage("message", "http://localhost:9090");
+			console.log("fefefe");
+	
+			function receiveMessage(event) {
+				if (event.origin !== "http://localhost:9090")
+					return;
+				
+				alert(event.data);
+			}
+	
+			window.addEventListener("message", receiveMessage, false);
+		});
 	});
 	</script>
 </body>
