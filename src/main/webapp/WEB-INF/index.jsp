@@ -120,12 +120,15 @@
 		<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
 		<script>
 			$(document).ready(function() {
-				$('#ifrm').load(function() { 
+				$('#ifrm').load(function() {
 					document.getElementById('ifrm').contentWindow.postMessage("hello there!", "http://localhost:9090");
 					
 					function receiveMessage(event) {
-					  if (event.origin !== "http://localhost:9090")
-					    return;
+					  if (event.origin !== "http://localhost:9090") {
+						alert("not ok");
+					   	return;
+					  }
+					  alert("ok");
 					}
 					
 					window.addEventListener("message", receiveMessage, false);					
