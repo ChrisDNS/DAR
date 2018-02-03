@@ -74,7 +74,6 @@
 			</div>
 		</div>
 	</section>
-	<iframe src="http://localhost:8082/">
 	<section class="success">
 		<div class="container">
 			<div class="row">
@@ -117,16 +116,35 @@
 		</div>
 	</section>
 
+	<div>
+		<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
+		<script>
+			var iframe = document.getElementById('ifrm');
+
+			window.addEventListener('message', function(e) {
+				if (e.source === iframe.contentWindow
+						&& e.origin === 'http://localhost:9090') {
+					var cookie = e.data;
+					console.log(cookie);
+				}
+
+			});
+			
+			iframe.contentWindow.postMessage('give me the cookie:cookie name',
+					'http:\/\/localhost:9090');
+		</script>
+	</div>
+
 	<div id="footer"></div>
 
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/popper/popper.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
+	<script src="js/login.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
-	<script src="js/cookie.js"></script>
 </body>
 
 </html>
