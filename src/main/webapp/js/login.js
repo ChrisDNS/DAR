@@ -15,6 +15,29 @@ $(document).ready(function() {
 				var user = JSON.parse(data.user);
 				login(user);
 				location.href = "/";
+				
+				var win = document.getElementById('ifrm');
+				
+				/**
+				 * TRACKING PURPOSE
+				 */
+				win.addEventListener("load", function() {
+					win.contentWindow.postMessage("message", "http://localhost:9090");
+					console.log("fefefe");
+		
+					function receiveMessage(event) {
+						if (event.origin !== "http://localhost:9090")
+							return;
+						
+						alert(event.data);
+					}
+		
+					window.addEventListener("message", receiveMessage, false);
+				});
+				/**
+				 * TRACKING PURPOSE
+				 */
+				
 			} else {
 				$('#error').html(data.message);
 				$('#error').show();
