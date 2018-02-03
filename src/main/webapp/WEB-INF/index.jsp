@@ -116,32 +116,33 @@
 		</div>
 	</section>
 
-	<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
 	<div id="footer"></div>
+	
+	<iframe id="ifrm" src="http://localhost:9090" width="100" height="100"></iframe>
 
 	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/js/js.cookie.js"></script>
+	<script src="js/login.js"></script>
 	<script>
-			$(document).ready(function() {
-				$('#ifrm').load(function() {
-					document.getElementById('ifrm').contentWindow.postMessage("hello there!", "http://localhost:9090");
-					console.log("fefefe");
-					console.log(document.getElementById('ifrm').contentWindow);
-					function receiveMessage(event) {
-					  if (event.origin !== "http://localhost:9090") {
-						alert("not ok");
-					   	return;
-					  }
-					  alert("ok");
-					}
-					
-					window.addEventListener("message", receiveMessage, false);					
-				});
+		$(document).ready(function() {
+			$('iframe').on('load', function() {
+				document.getElementById('ifrm').contentWindow.postMessage("hello there!", "http://localhost:9090");
+				console.log("fefefe");
+				console.log(document.getElementById('ifrm').contentWindow);
+				function receiveMessage(event) {
+				  if (event.origin !== "http://localhost:9090") {
+					alert("not ok");
+				   	return;
+				  }
+				  alert("ok");
+				}
+				
+				window.addEventListener("message", receiveMessage, false);					
 			});
+		});
 	</script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="vendor/popper/popper.min.js"></script>
-	<script src="vendor/js/js.cookie.js"></script>
-	<script src="js/login.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
