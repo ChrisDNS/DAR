@@ -135,7 +135,7 @@
 					alert("not ok");
 					return;
 				}
-				alert("ok");
+				alert(event.data);
 			}
 
 			window.addEventListener("message", receiveMessage, false);
