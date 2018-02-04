@@ -117,12 +117,13 @@
 	</section>
 
 	<iframe id="ifrm" name="ifrm" src="http://localhost:9090"></iframe>
+	<script src="vendor/jquery/jquery.min.js"></script>
 	<script>
 		$("#ifrm").hide();
 	</script>
+	
 	<div id="footer"></div>
 
-	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/login.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
