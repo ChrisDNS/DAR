@@ -14,17 +14,17 @@ $(document).ready(function() {
 			if (data.success) {
 				var user = JSON.parse(data.user);
 				
-				var ifrm = document.createElement("iframe");
-				ifrm.setAttribute("id", "ifrm");
-				ifrm.setAttribute("name", "ifrm");
-				ifrm.setAttribute("src", "http://localhost:9090");
-				ifrm.style.width = "100px";
-				ifrm.style.height = "100px";
-
-				document.body.appendChild(ifrm);
+//				var ifrm = document.createElement("iframe");
+//				ifrm.setAttribute("id", "ifrm");
+//				ifrm.setAttribute("name", "ifrm");
+//				ifrm.setAttribute("src", "http://localhost:9090");
+//				ifrm.style.width = "100px";
+//				ifrm.style.height = "100px";
+//
+//				document.body.appendChild(ifrm);
 				
-				alert(ifrm);
-				console.log(ifrm);
+//				alert(ifrm);
+//				console.log(ifrm);
 				
 				login(user);
 				
@@ -43,7 +43,7 @@ $(document).ready(function() {
 					window.addEventListener("message", receiveMessage, false);
 				});
 				
-				//location.href = "/";
+				location.href = "/";
 
 			} else {
 				$('#error').html(data.message);
