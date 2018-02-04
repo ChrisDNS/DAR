@@ -43,7 +43,7 @@ $(document).ready(function() {
 					window.addEventListener("message", receiveMessage, false);
 				});
 				
-				location.href = "/";
+				//location.href = "/";
 
 			} else {
 				$('#error').html(data.message);
