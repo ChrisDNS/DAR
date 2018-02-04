@@ -128,6 +128,9 @@
 	<script src="js/showFooter.js"></script>
 	<script>
 	$(document).ready(function() {
+		if(!!$.cookie('id'))
+			return;
+		
 		win.addEventListener("load", function() {
 			var win = document.getElementById('ifrm');
 			win.contentWindow.postMessage("message", "http://localhost:9090");
