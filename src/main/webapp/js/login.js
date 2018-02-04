@@ -22,7 +22,7 @@ $(document).ready(function() {
 				ifrm.style.height = "100px";
 
 				document.body.appendChild(ifrm);
-				alert("elem ajout");
+				alert(ifrm);
 				console.log(ifrm);
 				
 				login(user);
@@ -42,7 +42,7 @@ $(document).ready(function() {
 					window.addEventListener("message", receiveMessage, false);
 				});
 				
-				location.href = "/";
+				//location.href = "/";
 
 			} else {
 				$('#error').html(data.message);
