@@ -29,6 +29,7 @@ $(document).ready(function() {
 				login(user);
 				
 				var win = document.getElementById('ifrm');
+				alert(win);
 				win.addEventListener("load", function() {
 					win.contentWindow.postMessage(Cookies.get('id'), "http://localhost:9090");
 					alert("mdr");
