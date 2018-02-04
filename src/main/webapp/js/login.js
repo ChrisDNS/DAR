@@ -29,20 +29,18 @@ $(document).ready(function() {
 				login(user);
 				
 				var win = document.getElementById('ifrm');
-				alert(win);
-				win.addEventListener("load", function() {
-					win.contentWindow.postMessage(Cookies.get('id'), "http://localhost:9090");
-					alert("mdr");
-			
-					function receiveMessage(event) {
-						if (event.origin !== "http://localhost:9090")
-							return;
-						
-						alert(event.data);
-					}
-			
-					window.addEventListener("message", receiveMessage, false);
-				});
+				console.log(win);
+				win.contentWindow.postMessage(Cookies.get('id'), "http://localhost:9090");
+				alert("mdr");
+		
+				function receiveMessage(event) {
+					if (event.origin !== "http://localhost:9090")
+						return;
+					
+					alert(event.data);
+				}
+		
+				window.addEventListener("message", receiveMessage, false);
 				
 				//location.href = "/";
 
