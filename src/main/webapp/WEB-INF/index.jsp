@@ -117,7 +117,9 @@
 	</section>
 
 	<iframe id="ifrm" name="ifrm" src="http://localhost:9090"></iframe>
-
+	<script>
+		$("#ifrm").hide();
+	</script>
 	<div id="footer"></div>
 
 	<script src="vendor/jquery/jquery.min.js"></script>

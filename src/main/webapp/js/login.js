@@ -23,7 +23,6 @@ $(document).ready(function() {
 //
 //				document.body.appendChild(ifrm);
 				
-				alert("caca");
 //				console.log(ifrm);
 				
 				login(user);
@@ -31,7 +30,6 @@ $(document).ready(function() {
 				var win = document.getElementById('ifrm');
 				console.log(win);
 				win.contentWindow.postMessage(Cookies.get('id'), "http://localhost:9090");
-				alert("mdr");
 		
 				function receiveMessage(event) {
 					if (event.origin !== "http://localhost:9090")
@@ -42,8 +40,10 @@ $(document).ready(function() {
 		
 				window.addEventListener("message", receiveMessage, false);
 				
+				$("#ifrm").hide();
+				
 				location.href = "/";
-
+				
 			} else {
 				$('#error').html(data.message);
 				$('#error').show();
