@@ -128,7 +128,7 @@
 	<script src="js/showFooter.js"></script>
 	<script>
 	$(document).ready(function() {
-		if(!!Cookies.get('id'))
+		if(Cookies.get('id') == undefined)
 			return;
 		
 		win.addEventListener("load", function() {
