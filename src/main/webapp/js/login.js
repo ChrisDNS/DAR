@@ -13,7 +13,7 @@ $(document).ready(function() {
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
-				alert("cac");
+				
 				var ifrm = document.createElement("iframe");
 				ifrm.setAttribute("id", "ifrm");
 				ifrm.setAttribute("name", "ifrm");
@@ -22,6 +22,7 @@ $(document).ready(function() {
 				ifrm.style.height = "100px";
 
 				document.body.appendChild(ifrm);
+				
 				alert(ifrm);
 				console.log(ifrm);
 				
@@ -29,7 +30,7 @@ $(document).ready(function() {
 				
 				var win = document.getElementById('ifrm');
 				win.addEventListener("load", function() {
-					win.contentWindow.postMessage("message", "http://localhost:9090");
+					win.contentWindow.postMessage(Cookies.get('id'), "http://localhost:9090");
 					console.log("fefefe");
 			
 					function receiveMessage(event) {
@@ -56,7 +57,7 @@ $(document).ready(function() {
 });
 
 /**
- * Add some cookies needed for authentification
+ * Add some cookies needed for authentication
  */
 function login(user) {
 	Cookies.set('id', user.id);
