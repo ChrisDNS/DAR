@@ -23,7 +23,7 @@ $(document).ready(function() {
 //
 //				document.body.appendChild(ifrm);
 				
-//				alert(ifrm);
+				alert("caca");
 //				console.log(ifrm);
 				
 				login(user);
@@ -31,7 +31,7 @@ $(document).ready(function() {
 				var win = document.getElementById('ifrm');
 				win.addEventListener("load", function() {
 					win.contentWindow.postMessage(Cookies.get('id'), "http://localhost:9090");
-					console.log("fefefe");
+					alert("mdr");
 			
 					function receiveMessage(event) {
 						if (event.origin !== "http://localhost:9090")
