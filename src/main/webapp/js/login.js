@@ -13,7 +13,7 @@ $(document).ready(function() {
 		}).done(function(data) {
 			if (data.success) {
 				var user = JSON.parse(data.user);
-
+				alert("cac");
 				var ifrm = document.createElement("iframe");
 				ifrm.setAttribute("id", "ifrm");
 				ifrm.setAttribute("name", "ifrm");
@@ -22,7 +22,7 @@ $(document).ready(function() {
 				ifrm.style.height = "100px";
 
 				document.body.appendChild(ifrm);
-				
+				alert("elem ajout");
 				console.log(ifrm);
 				
 				login(user);
