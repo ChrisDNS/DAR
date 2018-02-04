@@ -126,27 +126,6 @@
 	<script src="js/utils.js"></script>
 	<script src="js/showNavbar.js"></script>
 	<script src="js/showFooter.js"></script>
-	<script>
-	$(document).ready(function() {
-		if(Cookies.get('id') == undefined)
-			return;
-		
-		win.addEventListener("load", function() {
-			var win = document.getElementById('ifrm');
-			win.contentWindow.postMessage("message", "http://localhost:9090");
-			console.log("fefefe");
-	
-			function receiveMessage(event) {
-				if (event.origin !== "http://localhost:9090")
-					return;
-				
-				alert(event.data);
-			}
-	
-			window.addEventListener("message", receiveMessage, false);
-		});
-	});
-	</script>
 </body>
 
 </html>
