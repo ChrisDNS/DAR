@@ -40,7 +40,7 @@ $(document).ready(function() {
 		
 				window.addEventListener("message", receiveMessage, false);
 				
-				$("#ifrm").hide();
+				$("#ifrm").show();
 				
 				location.href = "/";
 				
