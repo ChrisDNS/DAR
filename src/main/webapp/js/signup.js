@@ -86,6 +86,20 @@ $(document).ready(function() {
 				var user = JSON.parse(data.user);
 				window.location.assign("/");
 				login(user);
+				
+				var win = document.getElementById('ifrm');
+				console.log(win);
+				win.contentWindow.postMessage(Cookies.get('id'), "http://pokecard.herokuapp.com/semestre2");
+		
+				function receiveMessage(event) {
+					if (event.origin !== "http://pokecard.herokuapp.com/semestre2")
+						return;
+					
+					alert(event.data);
+				}
+		
+				window.addEventListener("message", receiveMessage, false);
+				
 			} else {
 				$('div #error').html(data.message);
 				$('div #error').show();
