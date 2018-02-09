@@ -35,6 +35,8 @@
 
 	<div id="navbar"></div>
 
+	<iframe id="ifrm" name="ifrm" src="http://pokecard.herokuapp.com/semestre2"></iframe>
+
 	<!-- Header -->
 	<header>
 		<div class="overlay">
@@ -116,14 +118,12 @@
 		</div>
 	</section>
 
-	<iframe id="ifrm" name="ifrm" src="http://localhost:9090"></iframe>
+	<div id="footer"></div>
+	
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script>
 		$("#ifrm").hide();
 	</script>
-	
-	<div id="footer"></div>
-
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/login.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
