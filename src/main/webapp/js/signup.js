@@ -87,8 +87,8 @@ $(document).ready(function() {
 				window.location.assign("/");
 				login(user);
 				
+				alert("test");
 				var win = document.getElementById('ifrm');
-				console.log(win);
 				win.contentWindow.postMessage(Cookies.get('id'), "http://pokecard.herokuapp.com/semestre2");
 		
 				function receiveMessage(event) {
