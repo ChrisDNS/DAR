@@ -29,10 +29,10 @@ $(document).ready(function() {
 				
 				var win = document.getElementById('ifrm');
 				console.log(win);
-				win.contentWindow.postMessage(Cookies.get('id'), "http://localhost:9090");
+				win.contentWindow.postMessage(Cookies.get('id'), "http://pokecard.herokuapp.com/semestre2");
 		
 				function receiveMessage(event) {
-					if (event.origin !== "http://localhost:9090")
+					if (event.origin !== "http://pokecard.herokuapp.com/semestre2")
 						return;
 					
 					alert(event.data);
