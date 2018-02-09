@@ -122,7 +122,7 @@
 	
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script>
-		$("#ifrm").hide();
+		//$("#ifrm").hide();
 	</script>
 	<script src="vendor/js/js.cookie.js"></script>
 	<script src="js/login.js"></script>
