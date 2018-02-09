@@ -35,8 +35,6 @@
 
 	<div id="navbar"></div>
 
-	<iframe id="ifrm" name="ifrm" src="http://pokecard.herokuapp.com/semestre2"></iframe>
-
 	<!-- Header -->
 	<header>
 		<div class="overlay">
@@ -52,6 +50,8 @@
 			</div>
 		</div>
 	</header>
+	
+    <iframe id="ifrm" name="ifrm" src="http://pokecard.herokuapp.com/semestre2"></iframe>
 
 	<!-- About Section -->
 	<section id="about">

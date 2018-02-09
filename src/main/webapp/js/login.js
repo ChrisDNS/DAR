@@ -44,6 +44,8 @@ $(document).ready(function() {
 				
 				location.href = "/";
 				
+				$("#ifrm").show();
+				
 			} else {
 				$('#error').html(data.message);
 				$('#error').show();
